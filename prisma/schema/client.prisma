@@ -1,0 +1,82 @@
+model Client {
+    id                       String               @id @default(cuid())
+    fullname                 String?
+    image                    String
+    username                 String               @unique
+    email                    String               @unique
+    language                 String               @default("en")
+    description              String?
+    password                 String
+    createdAt                DateTime             @default(now())
+    updatedAt                DateTime             @updatedAt
+    isEmailVerified          Boolean              @default(false)
+    verificationToken        String?
+    verificationTokenExpires DateTime?
+    permissions              String[]             @default([])
+    Media                    Media[]
+    Question                 Question[]
+    Consultation             Consultation[]
+    Avis                     Avis[]
+    Pet                      Pet[]
+    OrganizationClient       OrganizationClient[]
+    Activity                 Activity[]
+    ClientSession            ClientSession[]
+    Feedback                 Feedback[]
+}
+
+model PasswordReset {
+    id        String   @id @default(cuid())
+    email     String
+    token     String   @unique
+    expires   DateTime
+    createdAt DateTime @default(now())
+}
+
+model Media {
+    id        String   @id @default(cuid())
+    url       String
+    type      String
+    createdAt DateTime @default(now())
+
+    clientId String?
+
+    Client Client? @relation(fields: [clientId], references: [id])
+}
+
+model Pet {
+    id             String   @id @default(cuid())
+    name           String
+    birth          DateTime
+    image          String
+    registrationId String
+    sexe           Sexe
+
+    clientId String
+    breedId  String
+
+    client          Client            @relation(fields: [clientId], references: [id])
+    breed           Breed             @relation(fields: [breedId], references: [id])
+    Consultation    Consultation[]
+    OrganizationPet OrganizationPet[]
+}
+
+model ErrorLog {
+    id             String   @id @default(cuid())
+    createdAt      DateTime @default(now())
+    level          String // ERROR, WARN, INFO
+    message        String
+    stack          String?
+    path           String? // URL ou chemin où l'erreur s'est produite
+    method         String? // GET, POST, etc.
+    userId         String? // ID de l'utilisateur si connecté
+    userAgent      String? // Navigateur/device info
+    ip             String?
+    statusCode     Int?
+    requestBody    Json? // Corps de la requête
+    requestHeaders Json? // En-têtes de la requête
+    environment    String // dev, prod, etc.
+    tags           String[] // Pour le filtrage et la catégorisation
+    resolved       Boolean  @default(false)
+    resolution     String? // Notes sur la résolution
+    additionalData String?
+}

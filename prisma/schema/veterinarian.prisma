@@ -1,0 +1,246 @@
+// liste des villes en belgique
+
+model City {
+    id             String   @id @default(cuid())
+    name           String
+    arrondissement String
+    province       String
+    createdAt      DateTime @default(now())
+    updatedAt      DateTime @updatedAt
+
+    // Relations
+    organizations Organization[]
+
+    @@unique([name, arrondissement, province])
+    @@map("city")
+}
+
+// liste de type d'endroit de soins ex: Salon de toilletage, clinique vétérinaire, hôpital vétérinaire...etc
+model CareType {
+    id        String   @id @default(cuid())
+    name      String   @unique
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    // Relations
+    consultationTypes       ConsultationType[]
+    organizations           Organization[]
+    ConsultationTypeDetails ConsultationTypeDetails[]
+
+    @@map("care_type")
+}
+
+// liste de type de consultation ex: Consultation de routine, Consultation de suivi, Consultation d'urgence, castration, euthanasie...etc
+model ConsultationType {
+    id        String   @id @default(cuid())
+    name      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    careTypeId     String
+    organizationId String?
+
+    CareType      CareType?      @relation(fields: [careTypeId], references: [id])
+    organizations Organization[] @relation("OrganizationToConsultationTypes")
+
+    @@unique([name, careTypeId])
+    @@map("consultation_type")
+}
+
+model ConsultationTypeDetails {
+    id                         String         @id @default(cuid())
+    name                       String
+    isActive                   Boolean        @default(true)
+    price                      Float[]        @default([0, 0])
+    description                String[]       @default(["", "", ""])
+    duration                   Int
+    groupedConsultationAllowed Int            @default(1)
+    information                String[]       @default(["", "", ""])
+    instructions               String[]       @default(["", "", ""])
+    color                      String
+    Avis                       Avis[]
+    Consultation               Consultation[]
+    // careTypeId                 String
+    // careType                   CareType       @relation(fields: [careTypeId], references: [id])
+    organizationId             String
+    organization               Organization   @relation(fields: [organizationId], references: [id])
+    CareType                   CareType?      @relation(fields: [careTypeId], references: [id])
+    careTypeId                 String?
+
+    @@unique([organizationId, name])
+}
+
+model Contact {
+    id             String        @id @default(cuid())
+    type           ContactType
+    value          String
+    Organization   Organization? @relation(fields: [organizationId], references: [id])
+    organizationId String?
+}
+
+// liste d'especes d'animaux
+model Breed {
+    id                String              @id @default(cuid())
+    name              String
+    Pet               Pet[]
+    BreedOrganization BreedOrganization[]
+}
+
+enum ContactType {
+    email
+    phone
+    website
+}
+
+enum Language {
+    fr
+    en
+    nld
+}
+
+model Experience {
+    id             String        @id @default(cuid())
+    title          String[]      @default(["", "", ""])
+    organization   String[]      @default(["", "", ""])
+    country        String[]      @default(["", "", ""])
+    startYear      Int
+    endYear        Int?
+    Organization   Organization? @relation(fields: [organizationId], references: [id])
+    organizationId String?
+}
+
+model Formation {
+    id             String        @id @default(cuid())
+    specialisation String[]      @default(["", "", ""])
+    school         String[]      @default(["", "", ""])
+    diploma        String[]      @default(["", "", ""])
+    startYear      Int
+    endYear        Int?
+    Organization   Organization? @relation(fields: [organizationId], references: [id])
+    organizationId String?
+}
+
+model Conference {
+    id             String        @id @default(cuid())
+    title          String[]      @default(["", "", ""])
+    organization   String[]      @default(["", "", ""])
+    year           Int
+    Organization   Organization? @relation(fields: [organizationId], references: [id])
+    organizationId String?
+}
+
+model Research {
+    id             String        @id @default(cuid())
+    title          String[]      @default(["", "", ""])
+    organization   String[]      @default(["", "", ""])
+    year           Int
+    Organization   Organization? @relation(fields: [organizationId], references: [id])
+    organizationId String?
+}
+
+model Association {
+    id             String        @id @default(cuid())
+    association    String[]      @default(["", "", ""])
+    role           String[]      @default(["", "", ""])
+    startYear      Int
+    endYear        Int?
+    Organization   Organization? @relation(fields: [organizationId], references: [id])
+    organizationId String?
+}
+
+model OrganizationSpecialisation {
+    id String @id @default(cuid())
+
+    organizationId String
+    organization   Organization @relation(fields: [organizationId], references: [id])
+
+    specialisationId String
+    specialisation   Specialisation @relation(fields: [specialisationId], references: [id])
+
+    @@unique([organizationId, specialisationId])
+}
+
+// Liste de specialités vétérinaires
+model Speciality {
+    id           String         @id @default(cuid())
+    name         String         @unique
+    Organization Organization[]
+}
+
+// Liste de specialisations vétérinaires
+model Specialisation {
+    id                         String                       @id @default(cuid())
+    name                       String                       @unique
+    Organization               Organization?                @relation(fields: [organizationId], references: [id])
+    organizationId             String?
+    OrganizationSpecialisation OrganizationSpecialisation[]
+}
+
+model Unavailability {
+    id             String        @id @default(cuid())
+    type           ExceptionType
+    startDate      DateTime
+    endDate        DateTime
+    createdAt      DateTime      @default(now())
+    googleEventId  String?
+    organizationId String
+
+    organization Organization @relation(fields: [organizationId], references: [id])
+}
+
+model ExceptionalAvailability {
+    id             String   @id @default(cuid())
+    description    String   @default("")
+    startDate      DateTime
+    endDate        DateTime
+    googleEventId  String?
+    organizationId String
+    createdAt      DateTime @default(now())
+
+    organization Organization @relation(fields: [organizationId], references: [id])
+}
+
+enum ExceptionType {
+    RDV
+    CLOSED
+    HOLIDAY
+    VACATION
+    MAINTENANCE
+}
+
+model OrganizationsHours {
+    id             String   @id @default(cuid())
+    //0 dimanche et 6 samedi
+    dayOfWeek      Int
+    isOpen         Boolean  @default(true)
+    //heure d'ouverture, de fermeture, de pause
+    openTime       DateTime
+    closeTime      DateTime
+    breakStartTime DateTime
+    breakEndTime   DateTime
+
+    organizationId String
+
+    organization Organization @relation(fields: [organizationId], references: [id])
+}
+
+model GoogleCalendarIntegration {
+    id                            String    @id @default(cuid())
+    organizationId                String    @unique
+    accessToken                   String?
+    refreshToken                  String?
+    expiryDate                    DateTime?
+    isConnected                   Boolean   @default(false)
+    calendars                     String?
+    selectedCalendarId            String?
+    syncDirection                 String    @default("both")
+    autoSync                      Boolean   @default(true)
+    syncConsultations             Boolean   @default(true)
+    syncUnavailabilities          Boolean   @default(true)
+    syncExceptionalAvailabilities Boolean   @default(false)
+    lastSyncAt                    DateTime?
+    createdAt                     DateTime  @default(now())
+    updatedAt                     DateTime  @updatedAt
+
+    organization Organization @relation(fields: [organizationId], references: [id])
+}

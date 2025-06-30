@@ -1,0 +1,14 @@
+{
+  "safe-action": {
+    "prefix": "safeAction",
+    "description": "pandorra safe action",
+    "scope": "javascript,typescript",
+
+    "body": [
+      "export const ${1:actionName} = SA(async (session): Promise<null> => {",
+      "",
+      "return null",
+      "})"
+    ]
+  }
+}

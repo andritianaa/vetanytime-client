@@ -1,0 +1,22 @@
+{
+  "safe-action": {
+    "prefix": "nroutep",
+    "description": "new get route with params",
+    "scope": "javascript,typescript",
+
+    "body": [
+      "import { NextRequest, NextResponse } from 'next/server';",
+      "",
+      "export const GET = async (req: NextRequest, context: any) => {",
+      "const { params } = context;",
+      "const ${1:paramName} = params.username.toString();",
+      "try {",
+      "",
+      "return NextResponse.json({})",
+      "} catch (error) {",
+      "return NextResponse.json({ error: \"Internal server error\" }, { status: 500 })",
+      "}",
+      "}"
+    ]
+  }
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <title>Verify Your Email Address</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: #2d3748;
+            margin-top: 0;
+            margin-bottom: 16px;
+            font-size: 24px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: #4a5568;
+        }
+
+        .verification-container {
+            margin: 24px 0;
+            padding: 16px;
+            background-color: #f0fff4;
+            /* Light green background */
+            border-radius: 4px;
+            border-left: 4px solid #48bb78;
+            /* Green accent */
+            text-align: center;
+        }
+
+        .verification-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .help-text {
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .expiration-text {
+            color: #4a5568;
+            font-size: 14px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body style="margin: 0; padding: 0; background-color: #f9f9f9; -webkit-font-smoothing: antialiased;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <table role="presentation" class="email-container" width="100%" style="max-width: 600px;"
+                    cellspacing="0" cellpadding="0" border="0">
+                    <!-- Email Header -->
+                    <tr>
+                        <td style="background-color: #7c3aed; padding: 24px; text-align: center;">
+                            <svg width="120" height="40" viewBox="0 0 500 100" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" style="width: 120px; height: 40px;">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M100 20H20L100 100H20L100 180H180L100 100H180L100 20Z" fill="#FFFFFF"
+                                    stroke="#FFFFFF" strokeWidth="5"></path>
+                                <text x="200" y="110" fill="#FFFFFF" font-size="60" font-weight="bold"
+                                    font-family="Arial, sans-serif">Nextas</text>
+                            </svg>
+                        </td>
+                    </tr>
+
+                    <!-- Email Content -->
+                    <tr>
+                        <td style="padding: 32px 24px;">
+                            <h1 style="color: #2d3748; margin-top: 0; margin-bottom: 16px; font-size: 24px;">Verify Your
+                                Email Address</h1>
+                            <p style="margin-bottom: 16px; color: #4a5568;">Hello {{username}},</p>
+                            <p style="margin-bottom: 16px; color: #4a5568;">Thank you for creating an account with
+                                Nextas. To complete your registration and access all features, please verify your email
+                                address by clicking the button below:</p>
+
+                            <div style="text-align: center; margin: 24px 0;">
+                                <a href="{{verificationUrl}}"
+                                    style="display: inline-block; background-color: #7c3aed; color: #ffffff !important; text-decoration: none; padding: 12px 24px; border-radius: 4px; font-weight: bold; text-align: center;">
+                                    Verify My Email
+                                </a>
+                            </div>
+
+                            <div
+                                style="margin: 24px 0; padding: 16px; background-color: #f0fff4; border-radius: 4px; border-left: 4px solid #48bb78; text-align: center;">
+                                <div style="font-size: 48px; margin-bottom: 16px;">✉️</div>
+                                <p style="margin-bottom: 8px; font-weight: bold; color: #2d3748;">Why verify your email?
+                                </p>
+                                <p style="color: #4a5568; margin-bottom: 0;">Verification helps protect your account and
+                                    gives you full access to all Nextas features and services.</p>
+                            </div>
+
+                            <p style="font-size: 14px; font-style: italic; color: #4a5568; margin-bottom: 16px;">This
+                                verification link will expire in 24 hours. If you don't verify your email within this
+                                time, you'll need to request a new verification link.</p>
+
+                            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">If you didn't create an
+                                account on Nextas, you can safely ignore this email.</p>
+
+                            <p style="margin-bottom: 0; color: #4a5568;">Regards,<br>The Nextas Team</p>
+                        </td>
+                    </tr>
+
+                    <!-- Email Footer -->
+                    <tr>
+                        <td
+                            style="background-color: #f5f5f5; padding: 16px 24px; text-align: center; font-size: 12px; color: #666;">
+                            <p style="margin-bottom: 8px;">&copy; {{currentYear}} Nextas. All rights reserved.</p>
+                            <p style="margin-bottom: 0;">This email was sent to {{clientEmail}}</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

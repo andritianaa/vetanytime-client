@@ -1,0 +1,101 @@
+model Question {
+    id   String @id @default(cuid())
+    text String
+
+    organizationId String
+    clientId       String
+
+    Anwser Anwser[]
+
+    client       Client       @relation(fields: [clientId], references: [id])
+    organization Organization @relation(fields: [organizationId], references: [id])
+}
+
+model Anwser {
+    id   String @id @default(cuid())
+    text String
+
+    questionId String
+    userId     String
+
+    question Question @relation(fields: [questionId], references: [id])
+    member   User?    @relation(fields: [userId], references: [id])
+}
+
+model Consultation {
+    id              String                 @id @default(cuid())
+    reservationDate DateTime
+    startDate       DateTime
+    endDate         DateTime
+    canceledAt      DateTime?
+    status          ConsultationStatusType
+    description     String
+    internalNotes   String                 @default("")
+    googleEventId   String?
+
+    clientId       String
+    organizationId String
+    avisId         String @unique
+    petId          String
+
+    avis                    Avis?
+    client                  Client                    @relation(fields: [clientId], references: [id])
+    organization            Organization              @relation(fields: [organizationId], references: [id])
+    consultationTypeDetails ConsultationTypeDetails[]
+    pet                     Pet                       @relation(fields: [petId], references: [id])
+}
+
+enum ConsultationStatusType {
+    ONGOING
+    CANCELED
+    COMPLETED
+}
+
+model Avis {
+    id               String  @id @default(cuid())
+    isPunctual       Boolean
+    cleanliness      Int
+    comment          String
+    cordiality       Int
+    isGoodExperience Boolean
+
+    clientId                  String
+    consultationId            String @unique
+    organizationId            String
+    consultationTypeDetailsId String
+
+    consultationType ConsultationTypeDetails @relation(fields: [consultationTypeDetailsId], references: [id])
+    client           Client                  @relation(fields: [clientId], references: [id])
+    consultation     Consultation            @relation(fields: [consultationId], references: [id])
+    organization     Organization            @relation(fields: [organizationId], references: [id])
+}
+
+model OrganizationClient {
+    id String @id @default(cuid())
+
+    clientId       String
+    organizationId String
+
+    organization Organization @relation(fields: [organizationId], references: [id])
+    client       Client       @relation(fields: [clientId], references: [id])
+}
+
+model OrganizationPet {
+    id String @id @default(cuid())
+
+    petId          String
+    organizationId String
+
+    organization Organization @relation(fields: [organizationId], references: [id])
+    pet          Pet          @relation(fields: [petId], references: [id])
+}
+
+model BreedOrganization {
+    id String @id @default(cuid())
+
+    breedId        String
+    organizationId String
+
+    organization Organization @relation(fields: [organizationId], references: [id])
+    breed        Breed        @relation(fields: [breedId], references: [id])
+}

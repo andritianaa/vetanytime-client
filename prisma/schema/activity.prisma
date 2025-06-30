@@ -1,0 +1,67 @@
+model Activity {
+    id        String   @id @default(cuid())
+    userId    String
+    sessionId String?
+    action    Actions
+    metadata  Json?
+    createdAt DateTime @default(now())
+
+    user    Client         @relation(fields: [userId], references: [id], onDelete: Cascade)
+    session ClientSession? @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+    @@index([userId])
+    @@index([sessionId])
+}
+
+enum Actions {
+    LOGIN_SUCCESS
+    EDIT_THEME
+    EDIT_IMAGE
+    EDIT_LANGAGE
+    EDIT_PASSWORD
+    RESET_PASSWORD
+    FORGOT_PASSWORD
+    LOGIN_FAILURE
+    USER_SIGNUP
+    PLAN_UPGRADE
+    PROFILE_UPDATE
+    DELETE_ACCOUNT
+    PAYMENT_SUCCESS
+    SESSION_TERMINATED
+    SESSIONS_TERMINATED
+    ADMIN_SESSION_TERMINATED
+    ADMIN_USER_SESSIONS_TERMINATED
+    UPLOADED_IMAGE
+    UPDATE_PROFILE_PICTURE
+    EMAIL_VERIFIED
+    VERIFICATION_EMAIL_SENT
+}
+
+model ClientSession {
+    id             String     @id @default(cuid())
+    userId         String
+    token          String     @unique
+    deviceType     String
+    deviceOs       String
+    deviceModel    String?
+    browser        String?
+    browserVersion String?
+    authType       String     @default("classic")
+    ip             String
+    country        String?
+    lastActive     DateTime   @default(now())
+    createdAt      DateTime   @default(now())
+    user           Client     @relation(fields: [userId], references: [id])
+    Activity       Activity[]
+
+    @@index([userId])
+    @@index([token])
+}
+
+enum Roles {
+    ADMIN
+    DEV
+    MODERATOR
+    SUPERADMIN
+    MONITOR
+}

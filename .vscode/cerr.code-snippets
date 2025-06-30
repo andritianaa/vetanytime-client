@@ -1,0 +1,8 @@
+{
+  "console-log-arrow": {
+    "prefix": "cerr",
+    "description": "console.error",
+    "scope": "typescriptreact,javascript,typescript",
+    "body": ["console.error('$1 ==> ', $1)"]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "console-log-arrow": {
+    "prefix": "errLog",
+    "description": "Error loger",
+    "scope": "typescriptreact,javascript,typescript",
+    "body": [
+      "await Logger.$1(`$2`, {",
+      "userId: user.id,",
+      "tags: [`$3`],",
+      "additionalData: { result: `success` }",
+      "});"
+    ]
+  }
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <title>Welcome to Nextas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-section {
+            display: flex;
+            margin: 24px 0;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .feature-card {
+            flex: 1 1 150px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #7c3aed;
+        }
+
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .divider {
+            border: none;
+            height: 1px;
+            background-color: #e2e8f0;
+            margin: 24px 0;
+        }
+    </style>
+</head>
+
+<body style="margin: 0; padding: 0; background-color: #f9f9f9; -webkit-font-smoothing: antialiased;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <table role="presentation" class="email-container" width="100%" style="max-width: 600px;"
+                    cellspacing="0" cellpadding="0" border="0">
+                    <!-- Email Header -->
+                    <tr>
+                        <td style="background-color: #7c3aed; padding: 24px; text-align: center;">
+                            <svg width="120" height="40" viewBox="0 0 500 100" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" style="width: 120px; height: 40px;">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M100 20H20L100 100H20L100 180H180L100 100H180L100 20Z" fill="#FFFFFF"
+                                    stroke="#FFFFFF" strokeWidth="5"></path>
+                                <text x="200" y="110" fill="#FFFFFF" font-size="60" font-weight="bold"
+                                    font-family="Arial, sans-serif">Nextas</text>
+                            </svg>
+                        </td>
+                    </tr>
+
+                    <!-- Email Content -->
+                    <tr>
+                        <td style="padding: 32px 24px;">
+                            <h1 style="color: #2d3748; margin-top: 0; margin-bottom: 16px; font-size: 24px;">Welcome to
+                                Nextas, {{username}}!</h1>
+                            <p style="margin-bottom: 16px; color: #4a5568;">Thank you for joining our platform. We're
+                                excited to have you on board and can't wait to see what you'll accomplish with Nextas.
+                            </p>
+
+                            <div style="text-align: center; margin: 24px 0;">
+                                <a href="{{dashboardUrl}}"
+                                    style="display: inline-block; background-color: #7c3aed; color: #ffffff !important; text-decoration: none; padding: 12px 24px; border-radius: 4px; font-weight: bold; text-align: center;">
+                                    Go to Dashboard
+                                </a>
+                            </div>
+
+                            <hr style="border: none; height: 1px; background-color: #e2e8f0; margin: 24px 0;">
+
+                            <h2 style="text-align: center; color: #2d3748; font-size: 20px;">Getting Started with Nextas
+                            </h2>
+
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <!-- Feature 1 -->
+                                    <td valign="top" width="33.33%" style="padding: 10px;">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0"
+                                            width="100%"
+                                            style="background-color: #f8fafc; border-radius: 8px; padding: 16px; text-align: center;">
+                                            <tr>
+                                                <td>
+                                                    <div style="font-size: 24px; margin-bottom: 8px; color: #7c3aed;">🔍
+                                                    </div>
+                                                    <div style="font-weight: bold; margin-bottom: 8px; color: #2d3748;">
+                                                        Explore</div>
+                                                    <div style="font-size: 14px; color: #4a5568;">Discover all the
+                                                        features and tools available to you.</div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                    <!-- Feature 2 -->
+                                    <td valign="top" width="33.33%" style="padding: 10px;">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0"
+                                            width="100%"
+                                            style="background-color: #f8fafc; border-radius: 8px; padding: 16px; text-align: center;">
+                                            <tr>
+                                                <td>
+                                                    <div style="font-size: 24px; margin-bottom: 8px; color: #7c3aed;">🔧
+                                                    </div>
+                                                    <div style="font-weight: bold; margin-bottom: 8px; color: #2d3748;">
+                                                        Customize</div>
+                                                    <div style="font-size: 14px; color: #4a5568;">Set up your profile
+                                                        and personalize your experience.</div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                    <!-- Feature 3 -->
+                                    <td valign="top" width="33.33%" style="padding: 10px;">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0"
+                                            width="100%"
+                                            style="background-color: #f8fafc; border-radius: 8px; padding: 16px; text-align: center;">
+                                            <tr>
+                                                <td>
+                                                    <div style="font-size: 24px; margin-bottom: 8px; color: #7c3aed;">🚀
+                                                    </div>
+                                                    <div style="font-weight: bold; margin-bottom: 8px; color: #2d3748;">
+                                                        Build</div>
+                                                    <div style="font-size: 14px; color: #4a5568;">Create your first
+                                                        project and start developing.</div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <hr style="border: none; height: 1px; background-color: #e2e8f0; margin: 24px 0;">
+
+                            <p style="margin-bottom: 16px; color: #4a5568;">Need help getting started? Check out our <a
+                                    href="{{docsUrl}}" style="color: #7c3aed; text-decoration: none;">documentation</a>
+                                or contact our <a href="{{supportUrl}}"
+                                    style="color: #7c3aed; text-decoration: none;">support team</a>.</p>
+
+                            <p style="margin-bottom: 0; color: #4a5568;">Enjoy using Nextas!<br>The Nextas Team</p>
+                        </td>
+                    </tr>
+
+                    <!-- Email Footer -->
+                    <tr>
+                        <td
+                            style="background-color: #f5f5f5; padding: 16px 24px; text-align: center; font-size: 12px; color: #666;">
+                            <p style="margin-bottom: 8px;">&copy; {{currentYear}} Nextas. All rights reserved.</p>
+
+                            <!-- Social Links -->
+                            <div style="margin: 16px 0; text-align: center;">
+                                <a href="https://twitter.com/nextas"
+                                    style="display: inline-block; width: 32px; height: 32px; border-radius: 50%; background-color: #cbd5e0; color: #fff; text-align: center; line-height: 32px; font-size: 16px; text-decoration: none; margin: 0 4px;">T</a>
+                                <a href="https://github.com/nextas"
+                                    style="display: inline-block; width: 32px; height: 32px; border-radius: 50%; background-color: #cbd5e0; color: #fff; text-align: center; line-height: 32px; font-size: 16px; text-decoration: none; margin: 0 4px;">G</a>
+                                <a href="https://linkedin.com/company/nextas"
+                                    style="display: inline-block; width: 32px; height: 32px; border-radius: 50%; background-color: #cbd5e0; color: #fff; text-align: center; line-height: 32px; font-size: 16px; text-decoration: none; margin: 0 4px;">L</a>
+                            </div>
+
+                            <p style="margin-bottom: 0;">
+                                You received this email because you signed up for Nextas.<br>
+                                You can <a href="{{unsubscribeUrl}}"
+                                    style="color: #666; text-decoration: underline;">unsubscribe</a> from these emails
+                                anytime.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
