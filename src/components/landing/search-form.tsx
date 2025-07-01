@@ -1,16 +1,25 @@
 "use client";
 
-import { Check, ChevronsUpDown, Search } from 'lucide-react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useMemo, useState } from 'react';
-import useSWR from 'swr';
+import { Check, ChevronsUpDown, Search } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useMemo, useState } from "react";
+import useSWR from "swr";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
-    Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList
-} from '@/components/ui/command';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { cn } from '@/lib/utils';
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 
 const fetcher = async (url: string) =>
   fetch(url).then(async (res) => res.json());
@@ -147,8 +156,8 @@ const SearchFormContent = () => {
     if (!cities) return [];
     return cities.map((city) => ({
       value: city.name,
-      label: `${city.name}, ${city.arrondissement}`,
-      fullLabel: `${city.name}, ${city.arrondissement}, ${city.province}`,
+      label: `${city.name}`,
+      fullLabel: `${city.name}, ${city.arrondissement}`,
     }));
   }, [cities]);
 
