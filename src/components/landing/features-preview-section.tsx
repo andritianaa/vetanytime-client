@@ -1,13 +1,13 @@
 "use client";
 
-import { AnimatePresence, motion } from 'motion/react';
-import { useState } from 'react';
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 
-import { Typography } from '@/@/components/layout/typography';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { cn } from '@/lib/utils';
+import { Typography } from "@/components/layout/typography";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { cn } from "@/lib/utils";
 
-import { SectionLayout } from './section-layout';
+import { SectionLayout } from "./section-layout";
 
 import type { ReactNode } from "react";
 type Feature = {
@@ -31,7 +31,7 @@ export const FeaturesPreviewSection = (props: FeaturesPreviewProps) => {
       className="flex flex-col gap-8 lg:gap-16"
     >
       <Typography variant="h2" className="text-5xl">
-        Tout ce qu'il te faut pour créer une application rapidement
+        Tout ce qu'il te faut pour créer une application gratuitement
       </Typography>
       <div
         className="mt-4 flex flex-1 gap-4 px-2 max-lg:flex-col"

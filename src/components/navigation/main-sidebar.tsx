@@ -1,25 +1,38 @@
 "use client";
 
-import { BookOpen, Bot, ClientCog, Frame, Map, PieChart, Settings2 } from 'lucide-react';
-import * as React from 'react';
-
-import { Logo } from '@/components/logo';
 import {
-    Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton,
-    SidebarMenuItem
-} from '@/components/ui/sidebar';
+  BookOpen,
+  Bot,
+  Frame,
+  Map,
+  PieChart,
+  Settings2,
+  UserCog,
+} from "lucide-react";
+import * as React from "react";
 
-import { NavClient } from './nav-client';
-import { NavFooter } from './nav-footer';
-import { NavMain } from './nav-main';
-import { NavSecondary } from './nav-secondary';
+import { Logo } from "@/components/logo";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+
+import { NavFooter } from "./nav-footer";
+import { NavMain } from "./nav-main";
+import { NavSecondary } from "./nav-secondary";
+import { NavClient } from "./nav-user";
 
 const data = {
   navMain: [
     {
       title: "Admin",
       url: "/admin/clients",
-      icon: ClientCog,
+      icon: UserCog,
       isActive: true,
       items: [
         {

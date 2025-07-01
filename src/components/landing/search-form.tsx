@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, ChevronsUpDown, Search } from 'lucide-react';
-import { clientouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
 
@@ -41,7 +41,7 @@ interface ConsultationType {
 
 // Separate component that uses useSearchParams
 const SearchFormContent = () => {
-  const router = clientouter();
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   // États pour les sélections

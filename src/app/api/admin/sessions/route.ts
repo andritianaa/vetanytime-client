@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { currentSession } from '@/lib/current-client';
+import { currentSession } from '@/lib/current-user';
 import { Logger } from '@/lib/error-logger';
 import { prisma } from '@/prisma';
 import { Roles } from '@prisma/client';
@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
         const session = await currentSession();
 
         // Check if client is admin
-        if (!session || !session.client.permissions?.includes(Roles.ADMIN)) {
+        if (!session || !session.user.permissions?.includes(Roles.ADMIN)) {
             return NextResponse.json({ error: "Unauthorized access" }, { status: 403 });
         }
 
@@ -89,15 +89,15 @@ export async function GET(req: NextRequest) {
         const skip = (page - 1) * limit;
 
         // Get total count for pagination
-        const totalCount = await prisma.session.count({
+        const totalCount = await prisma.clientSession.count({
             where,
         });
 
         // Fetch sessions with pagination, sorting and include relations
-        const sessions = await prisma.session.findMany({
+        const sessions = await prisma.clientSession.findMany({
             where,
             include: {
-                client: {
+                user: {
                     select: {
                         id: true,
                         username: true,

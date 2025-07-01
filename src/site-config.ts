@@ -1,6 +1,6 @@
 export const SiteConfig = {
   title: "Vetanytime",
-  description: "Trouvez un vétérinaire rapidement en Belgique",
+  description: "Trouvez un vétérinaire gratuitement en Belgique",
   prodUrl: "https://demo.nowts.app",
   appId: "vetanytime",
   domain: "demo.nowts.app",

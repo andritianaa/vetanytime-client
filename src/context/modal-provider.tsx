@@ -1,7 +1,7 @@
 "use client";
 
 import { EmailVerificationModal } from '@/components/verification/email-verification-modal';
-import { useClient } from '@/hooks/use-client';
+import { useClient } from '@/hooks/use-user';
 
 export const ModalProvider = () => {
   const { client } = useClient();

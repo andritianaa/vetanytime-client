@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { currentClient } from '@/lib/current-client';
+import { currentClient } from '@/lib/current-user';
 import { prisma } from '@/prisma';
 
 export async function POST(req: NextRequest) {

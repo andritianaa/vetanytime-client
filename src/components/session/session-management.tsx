@@ -1,6 +1,6 @@
 "use client";
 
-import { clientouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import useSWR from 'swr';
 
@@ -18,7 +18,7 @@ import { SessionTerminateAllDialog } from './session-terminate-all-dialog';
 
 import type { Session } from "@/types/session";
 export function SessionManagement() {
-  const router = clientouter();
+  const router = useRouter();
   const { toast } = useToast();
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [selectedSession, setSelectedSession] = useState<Session | null>(null);

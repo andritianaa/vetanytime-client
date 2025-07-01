@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { updateSessionActivity } from '@/actions/session.actions';
-import { currentSession } from '@/lib/current-client';
+import { currentSession } from '@/lib/current-user';
 import { Logger } from '@/lib/error-logger';
 
 /**
@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
 
         return NextResponse.json({
             currentSessionId: session.id,
-            clientId: session.clientId,
+            userId: session.userId,
         });
     }
     catch (error) {

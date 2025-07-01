@@ -3,19 +3,16 @@
 import { useCallback, useEffect, useState } from 'react';
 import useSWR from 'swr';
 
-import { ClientDetailsDialog } from '@/components/admin/clients/client-details-dialog';
-import { ClientsFilters } from '@/components/admin/clients/clients-filters';
-import { ClientsHeader } from '@/components/admin/clients/clients-header';
-import { ClientsPagination } from '@/components/admin/clients/clients-pagination';
-import { ClientsTable } from '@/components/admin/clients/clients-table';
-import { ClientsTitleSearch } from '@/components/admin/clients/clients-title-search';
+import { ClientDetailsDialog } from '@/components/admin/users/user-details-dialog';
+import { ClientsFilters } from '@/components/admin/users/users-filters';
+import { ClientsHeader } from '@/components/admin/users/users-header';
+import { ClientsPagination } from '@/components/admin/users/users-pagination';
+import { ClientsTable } from '@/components/admin/users/users-table';
+import { ClientsTitleSearch } from '@/components/admin/users/users-title-search';
 import { useToast } from '@/hooks/use-toast';
 import { fetcher } from '@/lib/utils';
 
-import type {
-  AdminClientsResponse,
-  ClientFilters,
-} from "@/types/admin-clients";
+import type { AdminClientsResponse, ClientFilters } from "@/types/admin-users";
 import type { Client } from "@/types/schema";
 
 export default function AdminClientDashboard() {

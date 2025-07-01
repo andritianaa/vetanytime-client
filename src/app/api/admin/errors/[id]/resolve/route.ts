@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { currentSession } from '@/lib/current-client';
+import { currentSession } from '@/lib/current-user';
 import { Logger } from '@/lib/error-logger';
 import { prisma } from '@/prisma';
 import { Roles } from '@prisma/client';
@@ -16,7 +16,7 @@ export async function POST(request: Request, context: any) {
         const session = await currentSession();
 
         // Check if client is admin
-        if (!session || !session.client.permissions?.includes(Roles.ADMIN)) {
+        if (!session || !session.user.permissions?.includes(Roles.ADMIN)) {
             return NextResponse.json({ error: "Unauthorized access" }, { status: 403 });
         }
 
@@ -44,7 +44,7 @@ export async function POST(request: Request, context: any) {
 
         // Log this administrative action
         await Logger.info(`Error ${id} marked as resolved by admin`, {
-            clientId: session.clientId,
+            clientId: session.userId,
             id: id,
             resolution: updatedErrorLog.resolution!,
         });

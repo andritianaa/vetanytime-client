@@ -1,19 +1,17 @@
-import { BentoGridSection } from '@/components/landing/bento-section';
-import { FAQSection } from '@/components/landing/faq-section';
-import { Hero } from '@/components/landing/hero';
-import { LandingHeader } from '@/components/landing/landing-header';
-import { ReviewTriple } from '@/components/landing/review/review-triple';
-import { Services } from '@/components/landing/services';
-import { StatsSection } from '@/components/landing/stats-section';
-import TeamsSection from '@/components/landing/teams';
-import { Footer } from '@/components/layout/footer';
+import { Navbar } from "@/app/(web)/navbar";
+import { BentoGridSection } from "@/components/landing/bento-section";
+import { FAQSection } from "@/components/landing/faq-section";
+import { Hero } from "@/components/landing/hero";
+import { ReviewTriple } from "@/components/landing/review/review-triple";
+import { Services } from "@/components/landing/services";
+import { StatsSection } from "@/components/landing/stats-section";
+import TeamsSection from "@/components/landing/teams";
+import { Footer } from "@/components/layout/footer";
 
 export default function HomePage() {
   return (
     <div className="bg-background text-foreground relative flex h-fit flex-col">
-      <div className="mt-16"></div>
-
-      <LandingHeader />
+      <Navbar />
 
       <Hero />
 

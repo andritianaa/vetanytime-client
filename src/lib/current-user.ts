@@ -1,4 +1,4 @@
-// @/lib/current-client
+// @/lib/current-user
 
 import { cookies } from 'next/headers';
 

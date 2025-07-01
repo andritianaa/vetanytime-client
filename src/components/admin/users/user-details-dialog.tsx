@@ -3,10 +3,10 @@
 import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-import { ClientMedia } from '@/components/admin/clients/client-media';
-import { ClientPermissions } from '@/components/admin/clients/client-permissions';
-import { ClientProfile } from '@/components/admin/clients/client-profile';
-import { ClientSessions } from '@/components/admin/clients/client-sessions';
+import { ClientMedia } from '@/components/admin/users/user-media';
+import { ClientPermissions } from '@/components/admin/users/user-permissions';
+import { ClientProfile } from '@/components/admin/users/user-profile';
+import { ClientSessions } from '@/components/admin/users/user-sessions';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -14,7 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { fetcher } from '@/lib/utils';
 
-import type { ClientDetailsResponse } from "@/types/admin-clients";
+import type { ClientDetailsResponse } from "@/types/admin-users";
 
 interface ClientDetailsDialogProps {
   clientId: string | undefined;
@@ -43,7 +43,7 @@ export function ClientDetailsDialog({
       setIsLoading(true);
       try {
         const data = (await fetcher(
-          `/api/admin/clients/${clientId}/details`
+          `/api/admin/users/${clientId}/details`
         )) as ClientDetailsResponse;
         setClientData(data);
       } catch (error) {

@@ -2,16 +2,17 @@
 import nodemailer from 'nodemailer';
 
 import {
-    composeTemplate, generatePlainTextVersion, loadEmailComponent, loadEmailTemplate,
-    replaceTemplateVariables
+  composeTemplate, generatePlainTextVersion, loadEmailComponent, loadEmailTemplate,
+  replaceTemplateVariables
 } from '@/utils/template-loader';
 
 // Configure nodemailer transporter
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: Number(process.env.SMTP_PORT),
+  secure: Number(process.env.SMTP_PORT) === 465, // true for 465, false for other ports
   auth: {
-    client: process.env.SMTP_CLIENT,
+    user: process.env.SMTP_CLIENT,
     pass: process.env.SMTP_PASS,
   },
 });

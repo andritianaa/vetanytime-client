@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { currentSession } from '@/lib/current-client';
+import { currentSession } from '@/lib/current-user';
 import { Logger } from '@/lib/error-logger';
 import { prisma } from '@/prisma';
 import { Actions, Prisma, Roles } from '@prisma/client';
@@ -44,7 +44,7 @@ function buildWhereClause(params: z.infer<typeof QuerySchema>) {
 
     // Filter by client ID if provided
     if (params.clientId) {
-        where.clientId = params.clientId
+        where.userId = params.clientId
     }
 
     // Filter by session ID if provided
@@ -60,7 +60,7 @@ function buildWhereClause(params: z.infer<typeof QuerySchema>) {
             // Use more efficient JSON search if available in your Prisma version
             { metadata: { path: ["$"], string_contains: searchTerm } },
             {
-                client: {
+                user: {
                     OR: [
                         { username: { contains: searchTerm, mode: "insensitive" } },
                         { email: { contains: searchTerm, mode: "insensitive" } },
@@ -99,7 +99,7 @@ export async function GET(req: NextRequest) {
     try {
         // Check authentication and permissions
         const session = await currentSession()
-        if (!session || !session.client.permissions?.includes(Roles.ADMIN)) {
+        if (!session || !session.user.permissions?.includes(Roles.ADMIN)) {
             return NextResponse.json({ error: "Unauthorized. Admin privileges required." }, { status: 403 })
         }
 
@@ -165,7 +165,7 @@ export async function GET(req: NextRequest) {
             prisma.activity.findMany({
                 where,
                 include: {
-                    client: {
+                    user: {
                         select: {
                             id: true,
                             username: true,

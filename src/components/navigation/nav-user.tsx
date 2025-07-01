@@ -10,7 +10,7 @@ import {
     DropdownMenuSeparator, DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useClient } from '@/hooks/use-client';
+import { useClient } from '@/hooks/use-user';
 
 export function NavClient({
   variant = "full",

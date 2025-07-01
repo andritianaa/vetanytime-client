@@ -1,13 +1,11 @@
 // src/app/api/auth/register/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
-import { sendVerificationEmail } from '@/actions/email-verification';
 import { generateToken, hashPassword } from '@/lib/auth';
 import { getDeviceInfo } from '@/lib/device';
 import { Logger } from '@/lib/error-logger';
-import { sendWelcomeEmail } from '@/lib/mail';
 import {
-    checkPasswordBreached, checkSecurityRules, trackFailedAttempt, trackSuccessfulAuth
+  checkSecurityRules, trackFailedAttempt, trackSuccessfulAuth
 } from '@/lib/security-monitor';
 import { registerSchema, validateInput } from '@/lib/validation';
 import { prisma } from '@/prisma';
@@ -79,19 +77,6 @@ export async function POST(req: NextRequest) {
 
     const { email, password, username } = validationResult.data;
 
-    // Check if password has been involved in data breaches
-    const isBreached = await checkPasswordBreached(password);
-    if (isBreached) {
-      return NextResponse.json(
-        {
-          error: "This password appears in known data breaches. Please choose a more secure password.",
-          details: {
-            password: ["This password appears in data breaches and is not secure."]
-          }
-        },
-        { status: 400 }
-      );
-    }
 
     // Check for existing email or username without revealing which one exists
     const existingClientEmail = await prisma.client.findUnique({
@@ -133,10 +118,10 @@ export async function POST(req: NextRequest) {
     });
 
     // Send welcome email
-    await sendWelcomeEmail(email, username);
+    // await sendWelcomeEmail(email, username);
 
     // Send verification email
-    await sendVerificationEmail(client.id, email, username);
+    // await sendVerificationEmail(client.id, email, username);
 
     // Track successful registration
     await trackSuccessfulAuth({
@@ -149,10 +134,10 @@ export async function POST(req: NextRequest) {
     // Generate token and create session
     const token = generateToken(client.id);
     const deviceInfo = await getDeviceInfo(clientAgent, ip);
-    const session = await prisma.session.create({
+    await prisma.clientSession.create({
       data: {
         token,
-        clientId: client.id,
+        userId: client.id,
         ...deviceInfo,
       },
     });

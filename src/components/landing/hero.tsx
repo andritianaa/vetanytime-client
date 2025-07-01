@@ -1,8 +1,8 @@
-import { MarqueeLanding } from '@/components/landing/marquee';
-import { SearchForm } from '@/components/landing/search-form';
-import { Typography } from '@/components/layout/typography';
-import { CircleSvg } from '@/components/svg/circle-svg';
-import { CurverdLine } from '@/components/svg/curverd-line';
+import { MarqueeLanding } from "@/components/landing/marquee";
+import { SearchForm } from "@/components/landing/search-form";
+import { Typography } from "@/components/layout/typography";
+import { CircleSvg } from "@/components/svg/circle-svg";
+import { CurverdLine } from "@/components/svg/curverd-line";
 
 export const Hero = () => {
   return (
@@ -11,7 +11,7 @@ export const Hero = () => {
         <GridBackground />
         <GradientBackground />
         <CurverdLine className="absolute top-[300px] left-7" />
-        <main className="relative py-20">
+        <main className="relative py-20 pt-36">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="text-primary bg-primary/10 border-primary mx-auto mb-4 w-fit rounded-full border px-2.5 py-1">
               #1 Pour vos animaux
@@ -21,7 +21,7 @@ export const Hero = () => {
                 variant="h1"
                 className="text-5xl font-medium tracking-tight text-balance sm:text-7xl lg:text-7xl"
               >
-                Trouvez un vétérinaire rapidement en{" "}
+                Trouvez un vétérinaire gratuitement en{" "}
                 <span className="relative inline-block">
                   <span>Belgique</span>
                   <CircleSvg className="fill-primary absolute inset-0" />

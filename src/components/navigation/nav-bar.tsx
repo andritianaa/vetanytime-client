@@ -1,10 +1,10 @@
 "use client";
-import Link from 'next/link';
+import Link from "next/link";
 
-import { Logo } from '@/components/logo';
-import { NavClient } from '@/components/navigation/nav-client';
-import { Button } from '@/components/ui/button';
-import { useClient } from '@/hooks/use-client';
+import { Logo } from "@/components/logo";
+import { NavClient } from "@/components/navigation/nav-user";
+import { Button } from "@/components/ui/button";
+import { useClient } from "@/hooks/use-user";
 
 const Navbar = () => {
   const { client, isLoading } = useClient();

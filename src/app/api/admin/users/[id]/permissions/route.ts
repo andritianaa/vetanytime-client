@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { currentSession } from '@/lib/current-client';
+import { currentSession } from '@/lib/current-user';
 import { prisma } from '@/prisma';
 import { Roles } from '@prisma/client';
 
@@ -17,7 +17,7 @@ export async function PATCH(request: Request, context: any) {
     try {
         // Check authentication and admin permissions
         const session = await currentSession()
-        if (!session || !session.client || !session.client.permissions.some((role) => ["ADMIN", "SUPERADMIN"].includes(role))) {
+        if (!session || !session.user || !session.user.permissions.some((role) => ["ADMIN", "SUPERADMIN"].includes(role))) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 403 })
         }
 

@@ -1,9 +1,9 @@
 "use client";
 
-import { animate } from 'motion/react';
-import { clientef, useEffect } from 'react';
+import { animate } from "motion/react";
+import { useEffect, useRef } from "react";
 
-import { SectionLayout } from './section-layout';
+import { SectionLayout } from "./section-layout";
 
 interface StatProps {
   number: number;
@@ -76,7 +76,7 @@ function Counter({
   to: number;
   duration?: number;
 }) {
-  const nodeRef = clientef<HTMLSpanElement>(null);
+  const nodeRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (!nodeRef.current) return;

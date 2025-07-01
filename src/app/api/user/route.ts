@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { currentClient } from '@/lib/current-client';
+import { currentClient } from '@/lib/current-user';
 import { prisma } from '@/prisma';
 
 // Schéma de validation pour la mise à jour du profil
@@ -84,7 +84,6 @@ export async function PUT(request: Request) {
                 fullname: true,
                 email: true,
                 image: true,
-                theme: true,
                 isEmailVerified: true,
                 updatedAt: true,
             },

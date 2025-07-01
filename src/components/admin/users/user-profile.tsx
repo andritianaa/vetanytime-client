@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { Check, Client, Edit, Globe, Lock, Mail } from 'lucide-react';
+import { Check, Edit, Globe, Lock, Mail, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -15,7 +15,7 @@ import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 
-import type { ClientDetailsResponse } from "@/types/admin-clients";
+import type { ClientDetailsResponse } from "@/types/admin-users";
 
 interface ClientProfileProps {
   client: ClientDetailsResponse;
@@ -42,8 +42,8 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
 
   useEffect(() => {
     // Find the most recent lastActive timestamp from all sessions
-    if (client.sessions && client.sessions.length > 0) {
-      const sortedSessions = [...client.sessions].sort(
+    if (client.Session && client.Session.length > 0) {
+      const sortedSessions = [...client.Session].sort(
         (a, b) =>
           new Date(b.lastActive).getTime() - new Date(a.lastActive).getTime()
       );
@@ -58,7 +58,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
       const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
       setIsActive(lastActiveTime > fiveMinutesAgo);
     }
-  }, [client.sessions]);
+  }, [client.Session]);
 
   // Format date
   const formatDate = (date: Date | string | null | undefined) => {
@@ -351,7 +351,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
                     <div className="space-y-1">
                       <Label className="text-muted-foreground">Username</Label>
                       <p className="text-sm flex items-center">
-                        <Client className="h-4 w-4 text-muted-foreground mr-1" />
+                        <User className="h-4 w-4 text-muted-foreground mr-1" />
                         {client.username || "No username"}
                       </p>
                     </div>
@@ -457,7 +457,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
             </div>
             <div className="space-y-1">
               <Label className="text-muted-foreground">Active Sessions</Label>
-              <p className="text-sm">{client.sessions?.length || 0}</p>
+              <p className="text-sm">{client.Session?.length || 0}</p>
             </div>
           </div>
         </CardContent>

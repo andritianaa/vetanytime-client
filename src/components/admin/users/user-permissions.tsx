@@ -13,7 +13,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Roles } from '@prisma/client';
 
-import type { ClientDetailsResponse } from "@/types/admin-clients";
+import type { ClientDetailsResponse } from "@/types/admin-users";
 interface ClientPermissionsProps {
   client: ClientDetailsResponse;
   onClientUpdated: () => void;

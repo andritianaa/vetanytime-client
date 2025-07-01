@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { hashPassword, verifyPassword } from '@/lib/auth';
-import { currentClient } from '@/lib/current-client';
+import { currentClient } from '@/lib/current-user';
 import { prisma } from '@/prisma';
 
 // This is a mock implementation - replace with your actual authentication logic

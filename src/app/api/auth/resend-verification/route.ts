@@ -2,7 +2,7 @@ import { randomBytes } from 'crypto';
 // src/app/api/auth/resend-verification/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
-import { currentClient } from '@/lib/current-client';
+import { currentClient } from '@/lib/current-user';
 import { sendEmailVerification } from '@/lib/mail';
 import { prisma } from '@/prisma';
 

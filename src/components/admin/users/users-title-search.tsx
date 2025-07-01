@@ -1,6 +1,6 @@
 "use client";
 
-import { ClientPlus, RefreshCw } from 'lucide-react';
+import { RefreshCw, UserPlus } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -41,7 +41,7 @@ export function ClientsTitleSearch({
           <RefreshCw className="h-4 w-4" />
         </Button>
         <Button>
-          <ClientPlus className="h-4 w-4 mr-2" />
+          <UserPlus className="h-4 w-4 mr-2" />
           Add Client
         </Button>
       </div>

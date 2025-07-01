@@ -4,7 +4,7 @@ import { z } from 'zod';
 
 import { EditPasswordForm } from '@/app/(main)/account/settings/edit-password-form';
 import { EditPersonalInfoForm } from '@/app/(main)/account/settings/edit-personal-info-form';
-import Footer from '@/app/(web)/components/footer';
+import { Footer } from '@/components/layout/footer';
 
 // Définir le schéma de validation
 const profileFormSchema = z.object({

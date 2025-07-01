@@ -1,12 +1,12 @@
 "use client";
 
-import { motion, useMotionValue, useScroll, useTransform } from 'motion/react';
-import Link from 'next/link';
-import { clientouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { motion, useMotionValue, useScroll, useTransform } from "motion/react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-import { LogoSvg } from '@/components/svg/logo-svg';
-import { SiteConfig } from '@/site-config';
+import { Logo } from "@/components/logo";
+import { SiteConfig } from "@/site-config";
 
 // import { AuthButtonClient } from "../auth/auth-button-client";
 
@@ -48,7 +48,7 @@ function useBoundedScroll(threshold: number) {
 
 export function LandingHeader() {
   const { scrollYBoundedProgress } = useBoundedScroll(400);
-  const router = clientouter();
+  const router = useRouter();
   const scrollYBoundedProgressDelayed = useTransform(
     scrollYBoundedProgress,
     [0, 0.75, 1],
@@ -64,7 +64,7 @@ export function LandingHeader() {
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 lg:px-8">
         <div className="flex items-center gap-1">
-          <LogoSvg
+          <Logo
             size={32}
             onClick={() => {
               router.push("/");

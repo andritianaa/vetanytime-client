@@ -1,6 +1,6 @@
 "use client";
 
-import { ClientCheck, Info } from 'lucide-react';
+import { Info, UserCheck } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -81,7 +81,7 @@ export function ActivityTable({
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
-                        <ClientCheck className="h-4 w-4 text-muted-foreground" />
+                        <UserCheck className="h-4 w-4 text-muted-foreground" />
                         <span>
                           {activity.client.username || activity.client.email}
                         </span>

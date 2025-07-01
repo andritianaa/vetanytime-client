@@ -1,24 +1,29 @@
 "use client";
 
-import { AlertTriangle } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { clientouter } from 'next/navigation';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import { AlertTriangle } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
-    Form, FormControl, FormField, FormItem, FormLabel, FormMessage
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { toast } from '@/hooks/use-toast';
-import { zodResolver } from '@hookform/resolvers/zod';
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { toast } from "@/hooks/use-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import { AuthLayout } from '../components/auth-layout';
+import { AuthLayout } from "../components/auth-layout";
 
 // Client-side login schema - should match server validation
 const loginSchema = z.object({
@@ -32,7 +37,7 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
-  const router = clientouter();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [loginError, setLoginError] = useState<string | null>(null);
   const [retryAfter, setRetryAfter] = useState<number | null>(null);
@@ -78,12 +83,12 @@ export default function LoginPage() {
         if (response.status === 429 && data.retryAfter) {
           setRetryAfter(data.retryAfter);
           setLoginError(
-            `Too many login attempts. Please try again in ${data.retryAfter} minutes.`
+            `Trop de tentatives de connexion. Veuillez réessayer dans ${data.retryAfter} minutes.`
           );
         } else {
           // Generic error for all other failures to prevent enumeration
           setLoginError(
-            "Invalid login credentials. Please check your email and password."
+            "Identifiants de connexion invalides. Veuillez vérifier votre email et votre mot de passe."
           );
         }
 

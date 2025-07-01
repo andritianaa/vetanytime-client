@@ -3,12 +3,12 @@
 import { AlertTriangle, Check, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { clientouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { checkUsernameAvalability } from '@/actions/client.ations';
+import { checkUsernameAvalability } from '@/actions/user.ations';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import {
@@ -60,7 +60,7 @@ const registerSchema = z.object({
 type RegisterFormValues = z.infer<typeof registerSchema>;
 
 export default function RegisterPage() {
-  const router = clientouter();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [registerError, setRegisterError] = useState<string | null>(null);
   const [retryAfter, setRetryAfter] = useState<number | null>(null);

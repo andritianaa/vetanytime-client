@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { trackAction } from '@/actions/tracking.actions';
-import { currentSession } from '@/lib/current-client';
+import { currentSession } from '@/lib/current-user';
 import { Logger } from '@/lib/error-logger';
 import { prisma } from '@/prisma';
 import { Actions } from '@prisma/client';
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
             data: {
                 url,
                 type,
-                clientId: session?.client.id
+                clientId: session?.user.id
             },
         });
 
@@ -50,7 +50,7 @@ export async function POST(request: Request) {
             trackAction(Actions.UPLOADED_IMAGE, {
                 url,
                 type,
-                clientId: session?.client.id,
+                clientId: session?.user.id,
                 id: media.id
             })
         }

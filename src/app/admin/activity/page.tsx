@@ -130,7 +130,7 @@ export default function AdminActivityDashboard() {
   const getActionBadgeVariant = useCallback((action: Actions) => {
     switch (action) {
       case "LOGIN_SUCCESS":
-      case "CLIENT_SIGNUP":
+      case "USER_SIGNUP":
       case "PLAN_UPGRADE":
         return "default"; // Primary color
       case "EDIT_THEME":

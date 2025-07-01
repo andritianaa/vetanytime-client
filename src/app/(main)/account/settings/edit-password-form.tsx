@@ -1,7 +1,7 @@
 "use client";
 
 import { Eye, EyeOff, Loader2, Save } from 'lucide-react';
-import { clientouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -46,7 +46,7 @@ type PasswordFormValues = z.infer<typeof passwordFormSchema>;
 
 export function EditPasswordForm() {
   const { toast } = useToast();
-  const router = clientouter();
+  const router = useRouter();
   const [isSaving, setIsSaving] = useState(false);
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);

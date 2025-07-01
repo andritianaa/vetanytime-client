@@ -2,8 +2,8 @@
 
 import type React from "react";
 
-import { Client, Loader2, Save, Upload } from 'lucide-react';
-import { clientouter } from 'next/navigation';
+import { Loader2, Save, Upload, User } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -16,9 +16,9 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
-import { useClient } from '@/hooks/use-client';
 import { useMediaUpload } from '@/hooks/use-media-upload';
 import { useToast } from '@/hooks/use-toast';
+import { useClient } from '@/hooks/use-user';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 // Définir le schéma de validation
@@ -37,7 +37,7 @@ type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export function EditPersonalInfoForm() {
   const { toast } = useToast();
-  const router = clientouter();
+  const router = useRouter();
   const { client, mutate, isLoading: isClientLoading } = useClient();
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -70,7 +70,6 @@ export function EditPersonalInfoForm() {
         fullname: client.fullname || "",
         username: client.username,
         email: client.email,
-        theme: (client.theme as "light" | "dark" | "system") || "light",
       });
     } else {
       form.reset({
@@ -199,7 +198,7 @@ export function EditPersonalInfoForm() {
                       alt={client?.username || "Avatar"}
                     />
                     <AvatarFallback className="text-4xl">
-                      <Client className="h-12 w-12" />
+                      <User className="h-12 w-12" />
                     </AvatarFallback>
                   </Avatar>
 

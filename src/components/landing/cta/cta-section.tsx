@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Typography } from '@/@/components/layout/typography';
+import { Typography } from '@/components/layout/typography';
 import { buttonVariants } from '@/components/ui/button';
 
 import { SectionLayout } from '../section-layout';

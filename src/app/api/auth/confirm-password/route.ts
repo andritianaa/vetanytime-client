@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { verifyPassword } from '@/lib/auth';
-import { currentClient } from '@/lib/current-client';
+import { currentClient } from '@/lib/current-user';
 
 export async function POST(req: Request) {
     try {

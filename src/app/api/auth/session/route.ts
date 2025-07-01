@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { currentClient, currentSession } from '@/lib/current-client';
+import { currentClient, currentSession } from '@/lib/current-user';
 
 export async function GET() {
   const client = await currentClient();

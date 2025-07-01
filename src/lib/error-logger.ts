@@ -31,7 +31,7 @@ export interface LogEntry {
 import { headers } from 'next/headers';
 
 // lib/logger.ts
-import { currentClient } from '@/lib/current-client';
+import { currentClient } from '@/lib/current-user';
 import { prisma } from '@/prisma';
 
 export class Logger {
@@ -61,8 +61,8 @@ export class Logger {
           stack: params.stack,
           path: params.path || (await requestInfo).path,
           method: params.method || (await requestInfo).method,
-          clientId: client?.id || "",
-          clientAgent: params.clientAgent || (await requestInfo).clientAgent,
+          userId: client?.id || "",
+          userAgent: params.clientAgent || (await requestInfo).clientAgent,
           ip: params.ip || (await requestInfo).ip,
           statusCode: params.statusCode,
           requestBody: params.requestBody,

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { currentSession } from '@/lib/current-client';
+import { currentSession } from '@/lib/current-user';
 import { Logger } from '@/lib/error-logger';
 import { prisma } from '@/prisma';
 
@@ -16,9 +16,9 @@ export async function GET(req: NextRequest) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const sessions = await prisma.session.findMany({
+        const sessions = await prisma.clientSession.findMany({
             where: {
-                clientId: session.clientId,
+                userId: session.userId,
             },
             orderBy: {
                 lastActive: 'desc',
@@ -62,12 +62,12 @@ export async function DELETE(req: NextRequest) {
         }
 
         // Security check - only allow clients to terminate their own sessions
-        const targetSession = await prisma.session.findUnique({
+        const targetSession = await prisma.clientSession.findUnique({
             where: { id: sessionId },
-            select: { clientId: true },
+            select: { userId: true },
         });
 
-        if (!targetSession || targetSession.clientId !== session.clientId) {
+        if (!targetSession || targetSession.userId !== session.userId) {
             return NextResponse.json(
                 { error: "Unauthorized access" },
                 { status: 403 }

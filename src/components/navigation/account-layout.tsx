@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 
 import { AccountSidebar } from '@/components/navigation/account-sidebar';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
-import { currentClient } from '@/lib/current-client';
+import { currentClient } from '@/lib/current-user';
 
 export default async function AccountLayout({
   children,

@@ -1,15 +1,15 @@
 "use client";
-import i18next from 'i18next';
-import { useEffect } from 'react';
-import { initReactI18next } from 'react-i18next';
+import i18next from "i18next";
+import { useEffect } from "react";
+import { initReactI18next } from "react-i18next";
 
-import { editLangange } from '@/actions/client.ations';
-import { useClient } from '@/hooks/use-client';
+import { editLangange } from "@/actions/user.ations";
+import { useClient } from "@/hooks/use-user";
 
-import translationEnglish from './translation/en.json';
-import translationEspania from './translation/es.json';
-import translationFrench from './translation/fr.json';
-import translationItalian from './translation/ita.json';
+import translationEnglish from "./translation/en.json";
+import translationEspania from "./translation/es.json";
+import translationFrench from "./translation/fr.json";
+import translationItalian from "./translation/ita.json";
 
 const resources = {
   en: {

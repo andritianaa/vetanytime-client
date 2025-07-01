@@ -1,7 +1,7 @@
-import { Typography } from '@/@/components/layout/typography';
+import { Layout } from '@/components/layout/layout';
+import { Typography } from '@/components/layout/typography';
+import { ClientMarkdown } from '@/components/markdown/client-markdown';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ClientMarkdown } from '@/features/markdown/client-markdown';
-import { Layout } from '@/features/page/layout';
 
 interface ReviewSingleProps {
   /**

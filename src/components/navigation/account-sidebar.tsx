@@ -1,13 +1,28 @@
 "use client";
 
-import { Bell, ClientCircle, Key, Languages, PieChart, Shield } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import {
+  Bell,
+  Key,
+  Languages,
+  PieChart,
+  Shield,
+  UserCircle,
+} from "lucide-react";
+import { usePathname } from "next/navigation";
 
 import {
-    Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel,
-    SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem
-} from '@/components/ui/sidebar';
-import { cn } from '@/lib/utils';
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
 
 /**
  * A specialized sidebar for account management pages
@@ -21,7 +36,7 @@ export function AccountSidebar() {
 
   const menuItems = [
     {
-      icon: ClientCircle,
+      icon: UserCircle,
       label: "Profile",
       href: "/account/profile",
     },

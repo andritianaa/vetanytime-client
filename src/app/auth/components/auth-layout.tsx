@@ -1,6 +1,6 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import { Logo } from '@/components/logo';
+import { Logo } from "@/components/logo";
 
 import type React from "react";
 
@@ -21,7 +21,7 @@ export function AuthLayout({ title, description, children }: AuthLayoutProps) {
         />
         <div className="max-w-sm w-full my-auto ">
           <div className="flex flex-col max-lg:pt-16 items-center relative">
-            <Logo withName className="size-12 relative z-10" />
+            <Logo className="size-12 relative z-10" />
             <h1 className="text-3xl font-semibold tracking-tight relative z-10 mb-2">
               {title}
             </h1>
@@ -34,7 +34,7 @@ export function AuthLayout({ title, description, children }: AuthLayoutProps) {
       </div>
 
       <Image
-        src={"/media/Section.png"}
+        src={"https://images.pexels.com/photos/245035/pexels-photo-245035.jpeg"}
         alt="Preview image"
         width={400}
         height={1500}

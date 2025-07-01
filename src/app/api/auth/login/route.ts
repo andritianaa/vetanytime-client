@@ -131,10 +131,10 @@ export async function POST(req: NextRequest) {
     const deviceInfo = await getDeviceInfo(clientAgent, ip);
 
     // Create new session
-    const session = await prisma.session.create({
+    const session = await prisma.clientSession.create({
       data: {
         token,
-        clientId: client.id,
+        userId: client.id,
         ...deviceInfo,
       },
     });
@@ -142,7 +142,7 @@ export async function POST(req: NextRequest) {
     // Record login activity
     await prisma.activity.create({
       data: {
-        clientId: client.id,
+        userId: client.id,
         sessionId: session.id,
         action: Actions.LOGIN_SUCCESS,
         metadata: {

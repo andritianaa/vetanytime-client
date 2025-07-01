@@ -1,7 +1,7 @@
-import { Typography } from '@/@/components/layout/typography';
+import { Typography } from '@/components/layout/typography';
+import { ClientMarkdown } from '@/components/markdown/client-markdown';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { ClientMarkdown } from '@/features/markdown/client-markdown';
 import { cn } from '@/lib/utils';
 
 import type { ComponentPropsWithoutRef } from "react";

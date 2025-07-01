@@ -1,4 +1,12 @@
-// liste des villes en belgique
+model RegisterRequest {
+    id                String  @id @default(cuid())
+    firstName         String
+    lastName          String
+    phone             String
+    email             String
+    postalCode        String
+    medicalCenterName String?
+}
 
 model City {
     id             String   @id @default(cuid())

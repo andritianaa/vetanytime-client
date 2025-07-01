@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { currentSession } from '@/lib/current-client';
+import { currentSession } from '@/lib/current-user';
 import { prisma } from '@/prisma';
 import { Prisma } from '@prisma/client';
 
@@ -11,8 +11,8 @@ export async function GET(request: NextRequest) {
         const session = await currentSession()
         if (
             !session ||
-            !session.client ||
-            !session.client.permissions.some((role) => ["ADMIN", "SUPERADMIN", "MODERATOR"].includes(role))
+            !session.user ||
+            !session.user.permissions.some((role) => ["ADMIN", "SUPERADMIN", "MODERATOR"].includes(role))
         ) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 403 })
         }
@@ -73,7 +73,7 @@ export async function GET(request: NextRequest) {
             take: limit,
             skip: skip,
             include: {
-                Session: true,
+                ClientSession: true,
                 Media: true,
             },
             orderBy: {

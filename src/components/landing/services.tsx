@@ -14,7 +14,7 @@ const services = [
     image: "https://images.pexels.com/photos/6235115/pexels-photo-6235115.jpeg",
     tags: ["Réservation", "Calendrier"],
     description:
-      "Prenez rendez-vous en ligne avec un vétérinaire rapidement et simplement.",
+      "Prenez rendez-vous en ligne avec un vétérinaire gratuitement et simplement.",
   },
   {
     id: 2,
@@ -130,8 +130,8 @@ export const Services = () => {
                           index === currentStory
                             ? `${progress}%`
                             : index < currentStory
-                              ? "100%"
-                              : "0%",
+                            ? "100%"
+                            : "0%",
                       }}
                     />
                   </div>
@@ -221,7 +221,9 @@ export const Services = () => {
                     >
                       <div className="flex items-start gap-4">
                         <div
-                          className={`h-16 w-16 overflow-hidden rounded-lg ${isActive ? "ring-primary ring-2" : ""}`}
+                          className={`h-16 w-16 overflow-hidden rounded-lg ${
+                            isActive ? "ring-primary ring-2" : ""
+                          }`}
                         >
                           <img
                             src={service.image || "/placeholder.svg"}
@@ -232,7 +234,11 @@ export const Services = () => {
 
                         <div className="flex-1">
                           <h3
-                            className={`mb-2 text-lg font-semibold ${isActive ? "text-primary" : "text-gray-900 dark:text-gray-50"}`}
+                            className={`mb-2 text-lg font-semibold ${
+                              isActive
+                                ? "text-primary"
+                                : "text-gray-900 dark:text-gray-50"
+                            }`}
                           >
                             {service.title}
                           </h3>

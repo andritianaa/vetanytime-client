@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 
-import { currentClient } from '@/lib/current-client';
+import { currentClient } from '@/lib/current-user';
 
 export default async function RouteLayout({
   children,
@@ -9,9 +9,6 @@ export default async function RouteLayout({
 }) {
   const client = await currentClient();
   if (!client) return redirect("/auth/login");
-  else if (client.onboardingCurrentStep === 1) redirect("/onboarding/meta");
-  else if (client.onboardingCurrentStep === 2) redirect("/onboarding/goal");
-  else if (client.onboardingCurrentStep === 3) redirect("/onboarding/ready");
 
   return <>{children}</>;
 }

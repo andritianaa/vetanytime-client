@@ -1,9 +1,8 @@
-import { nanoid } from 'nanoid';
 
 import { logger } from '@/lib/logger';
+import { prisma } from '@/prisma';
 import { faker } from '@faker-js/faker';
 
-import { prisma } from '../src/lib/prisma';
 import {
   belgianCities, breeds, careTypes, consultationTypesByCaretype, specialisations, specialities
 } from './seed-data';
@@ -47,7 +46,7 @@ async function main() {
   const consultationTypePromises: Promise<any>[] = [];
 
   for (const careType of createdCareTypes) {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+
     const consultationTypes = consultationTypesByCaretype[careType.name as keyof typeof consultationTypesByCaretype] || [];
 
     for (const consultationType of consultationTypes) {

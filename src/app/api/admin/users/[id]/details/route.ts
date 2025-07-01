@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { currentSession } from '@/lib/current-client';
+import { currentSession } from '@/lib/current-user';
 import { prisma } from '@/prisma';
 
 export async function GET(request: Request, context: any) {
@@ -11,8 +11,8 @@ export async function GET(request: Request, context: any) {
         const session = await currentSession()
         if (
             !session ||
-            !session.client ||
-            !session.client.permissions.some((role) => ["ADMIN", "SUPERADMIN", "MODERATOR"].includes(role))
+            !session.user ||
+            !session.user.permissions.some((role) => ["ADMIN", "SUPERADMIN", "MODERATOR"].includes(role))
         ) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 403 })
         }
@@ -22,7 +22,7 @@ export async function GET(request: Request, context: any) {
         const client = await prisma.client.findUnique({
             where: { id: clientId },
             include: {
-                Session: {
+                ClientSession: {
                     orderBy: {
                         lastActive: "desc",
                     },

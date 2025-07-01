@@ -1,19 +1,26 @@
 // src/app/verify-email/page.tsx
-import { CheckCircle2, XCircle } from 'lucide-react';
-import Link from 'next/link';
+import { CheckCircle2, XCircle } from "lucide-react";
+import Link from "next/link";
 
-import { verifyEmail } from '@/actions/email-verification';
-import { Button } from '@/components/ui/button';
+import { verifyEmail } from "@/actions/email-verification";
+import { Button } from "@/components/ui/button";
 import {
-    Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle
-} from '@/components/ui/card';
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default async function VerifyEmailPage({
   searchParams,
 }: {
-  searchParams: { token?: string };
+  searchParams: Promise<{ token?: string }>;
 }) {
-  const token = searchParams.token;
+  // Attendre la résolution de searchParams
+  const resolvedSearchParams = await searchParams;
+  const token = resolvedSearchParams.token;
 
   // Si aucun token n'est fourni, afficher une erreur
   if (!token) {
@@ -59,8 +66,8 @@ function SuccessView({ username }: { username: string }) {
         </CardHeader>
         <CardContent className="text-center py-6">
           <p className="text-muted-foreground">
-            Thank you for verifying your email address, {username}. You now
-            have full access to all features.
+            Thank you for verifying your email address, {username}. You now have
+            full access to all features.
           </p>
         </CardContent>
         <CardFooter className="flex justify-center">

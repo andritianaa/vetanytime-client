@@ -85,8 +85,8 @@ export default function ForgotPasswordPage() {
 
   return (
     <AuthLayout
-      title="Forgot Password"
-      description="Enter your email to reset your password"
+      title="Mot de passe oublié"
+      description="Entrez votre e-mail pour réinitialiser votre mot de passe"
     >
       {error && (
         <Alert variant="destructive" className="mb-4">
@@ -103,20 +103,20 @@ export default function ForgotPasswordPage() {
           >
             <Info className="h-4 w-4" />
             <AlertDescription>
-              If the email address you entered is associated with an account,
-              you will receive a password reset link shortly.
+              Si l'adresse e-mail que vous avez saisie est associée à un compte,
+              vous recevrez bientôt un lien de réinitialisation du mot de passe.
             </AlertDescription>
           </Alert>
           <p className="text-sm text-muted-foreground">
-            Don't see the email? Check your spam folder or make sure you entered
-            the correct email address.
+            Vous ne voyez pas l'e-mail&nbsp;? Vérifiez votre dossier spam ou
+            assurez-vous d'avoir saisi la bonne adresse e-mail.
           </p>
           <Button
             variant="outline"
             className="w-full"
             onClick={() => setEmailSent(false)}
           >
-            Try another email
+            Essayer une autre adresse e-mail
           </Button>
         </div>
       ) : (
@@ -137,8 +137,9 @@ export default function ForgotPasswordPage() {
                     />
                   </FormControl>
                   <FormDescription>
-                    Enter the email address associated with your account, and
-                    we'll send you a link to reset your password.
+                    Entrez l'adresse e-mail associée à votre compte, et nous
+                    vous enverrons un lien pour réinitialiser votre mot de
+                    passe.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -155,7 +156,8 @@ export default function ForgotPasswordPage() {
 
             {retryAfter && (
               <p className="text-sm text-center text-muted-foreground">
-                Too many attempts. Please try again after {retryAfter} minutes.
+                Trop de tentatives. Veuillez réessayer dans {retryAfter}{" "}
+                minutes.
               </p>
             )}
           </form>
@@ -164,7 +166,7 @@ export default function ForgotPasswordPage() {
 
       <div className="mt-4 text-sm">
         <Link href="/auth/login" className="text-primary hover:underline">
-          Return to login page
+          Retour à la page de connexion
         </Link>
       </div>
     </AuthLayout>

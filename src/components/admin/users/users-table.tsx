@@ -1,5 +1,5 @@
 "use client";
-import { CalendarIcon, Client, Info, MoreHorizontal, Shield } from 'lucide-react';
+import { CalendarIcon, Info, MoreHorizontal, Shield, User } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -45,7 +45,6 @@ export function ClientsTable({
                   <TableHead className="w-[150px]">Roles</TableHead>
                   <TableHead className="w-[180px]">Verfied client</TableHead>
                   <TableHead className="w-[100px]">Lang</TableHead>
-                  <TableHead className="w-[100px]">Theme</TableHead>
                   <TableHead className="w-[200px]">Registration</TableHead>
                   <TableHead className="text-right w-[100px]">
                     Actions
@@ -155,13 +154,7 @@ export function ClientsTable({
                         <p className="text-xs">No language</p>
                       )}
                     </TableCell>
-                    <TableCell className="text-center">
-                      {client.theme ? (
-                        <p className="text-xs">{client.theme}</p>
-                      ) : (
-                        <p className="text-xs">No theme</p>
-                      )}
-                    </TableCell>
+
                     <TableCell>
                       {client.createdAt ? (
                         <p className="text-xs">
@@ -197,7 +190,7 @@ export function ClientsTable({
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem>
-                            <Client className="mr-2 h-4 w-4" />
+                            <User className="mr-2 h-4 w-4" />
                             <span>Impersonate</span>
                           </DropdownMenuItem>
                         </DropdownMenuContent>
@@ -210,7 +203,7 @@ export function ClientsTable({
           </div>
         ) : (
           <div className="py-24 text-center">
-            <Client className="h-12 w-12 mx-auto text-muted-foreground" />
+            <User className="h-12 w-12 mx-auto text-muted-foreground" />
             <p className="mt-4 text-muted-foreground">
               No clients found matching your filters.
             </p>

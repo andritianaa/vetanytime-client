@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 
-import type { ClientFilters } from "@/types/admin-clients";
+import type { ClientFilters } from "@/types/admin-users";
 import type { DateRange } from "react-day-picker";
 
 interface ClientsFiltersProps {
