@@ -203,3 +203,13 @@ export const checkUsernameAvalability = async (username: string): Promise<boolea
     return true
   } else return false;
 }
+export const checkEmailAvailability = async (email: string): Promise<boolean> => {
+  const client = await prisma.client.findFirst({
+    where: {
+      email,
+    },
+  });
+  if (!client) {
+    return true
+  } else return false;
+}

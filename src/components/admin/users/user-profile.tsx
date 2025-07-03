@@ -119,7 +119,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
     e.preventDefault();
 
     try {
-      const response = await fetch(`/api/admin/clients/${client.id}`, {
+      const response = await fetch(`/api/admin/users/${client.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

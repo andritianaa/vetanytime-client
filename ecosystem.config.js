@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
         {
-            name: "nextas prod",
+            name: "Vetanytime prod",
             script: "npm",
             args: "start",
             env: {

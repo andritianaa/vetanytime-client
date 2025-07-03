@@ -18,9 +18,9 @@ import type { Client } from "@/types/schema";
 import type { Session } from "@/types/session";
 
 interface SessionsTableProps {
-  sessions: Array<Session & { client: Client }> | undefined;
+  sessions: Array<Session & { user: Client }> | undefined;
   isLoading: boolean;
-  onTerminateSession: (session: Session & { client: Client }) => void;
+  onTerminateSession: (session: Session & { user: Client }) => void;
 }
 
 export function SessionsTable({
@@ -115,20 +115,17 @@ export function SessionsTable({
                             <div className="flex items-center gap-2 cursor-pointer">
                               <Avatar className="h-6 w-6">
                                 <AvatarImage
-                                  src={
-                                    session.client.image || "/placeholder.svg"
-                                  }
+                                  src={session.user.image || "/placeholder.svg"}
                                 />
                                 <AvatarFallback>
-                                  {session.client.username
+                                  {session.user.username
                                     ?.slice(0, 2)
                                     .toUpperCase() || "U"}
                                 </AvatarFallback>
                               </Avatar>
                               <div>
                                 <div className="font-medium">
-                                  {session.client.username ||
-                                    session.client.email}
+                                  {session.user.username || session.user.email}
                                 </div>
                                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
                                   <span>
@@ -142,32 +139,29 @@ export function SessionsTable({
                             <div className="flex justify-between gap-4">
                               <Avatar>
                                 <AvatarImage
-                                  src={
-                                    session.client.image || "/placeholder.svg"
-                                  }
+                                  src={session.user.image || "/placeholder.svg"}
                                 />
                                 <AvatarFallback>
-                                  {session.client.username
+                                  {session.user.username
                                     ?.slice(0, 2)
                                     .toUpperCase() || "U"}
                                 </AvatarFallback>
                               </Avatar>
                               <div className="space-y-1">
                                 <h4 className="text-sm font-semibold">
-                                  {session.client.username ||
-                                    session.client.email}
+                                  {session.user.username || session.user.email}
                                 </h4>
-                                {session.client.fullname && (
+                                {session.user.fullname && (
                                   <p className="text-sm">
-                                    {session.client.fullname}
+                                    {session.user.fullname}
                                   </p>
                                 )}
                                 <p className="text-sm text-muted-foreground">
-                                  {session.client.email}
+                                  {session.user.email}
                                 </p>
                                 <div className="flex flex-wrap gap-1 pt-1">
-                                  {session.client.permissions ? (
-                                    session.client.permissions.map((role) => (
+                                  {session.user.permissions ? (
+                                    session.user.permissions.map((role) => (
                                       <Badge
                                         key={role}
                                         variant="secondary"

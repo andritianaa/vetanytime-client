@@ -15,11 +15,11 @@ export function ClientsHeader() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem className="hidden md:block">
-              <BreadcrumbLink href="/admin">Admin Dashboard</BreadcrumbLink>
+              <BreadcrumbLink href="/admin">Tableau de bord</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator className="hidden md:block" />
             <BreadcrumbItem>
-              <BreadcrumbPage>Client Management</BreadcrumbPage>
+              <BreadcrumbPage>Gestion des clients</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>

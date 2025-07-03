@@ -1,17 +1,20 @@
-import { Navbar } from "@/app/(web)/navbar";
-import { BentoGridSection } from "@/components/landing/bento-section";
-import { FAQSection } from "@/components/landing/faq-section";
-import { Hero } from "@/components/landing/hero";
-import { ReviewTriple } from "@/components/landing/review/review-triple";
-import { Services } from "@/components/landing/services";
-import { StatsSection } from "@/components/landing/stats-section";
-import TeamsSection from "@/components/landing/teams";
-import { Footer } from "@/components/layout/footer";
+import { Navbar } from '@/app/(web)/navbar';
+import { BentoGridSection } from '@/components/landing/bento-section';
+import { FAQSection } from '@/components/landing/faq-section';
+import { Hero } from '@/components/landing/hero';
+import { ReviewTriple } from '@/components/landing/review/review-triple';
+import { Services } from '@/components/landing/services';
+import { StatsSection } from '@/components/landing/stats-section';
+import TeamsSection from '@/components/landing/teams';
+import { Footer } from '@/components/layout/footer';
+import { currentClient } from '@/lib/current-user';
+import { Client } from '@prisma/client';
 
-export default function HomePage() {
+export default async function HomePage() {
+  const client = await currentClient();
   return (
     <div className="bg-background text-foreground relative flex h-fit flex-col">
-      <Navbar />
+      <Navbar client={client as Client | undefined} />
 
       <Hero />
 

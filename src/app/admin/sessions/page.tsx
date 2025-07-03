@@ -7,7 +7,6 @@ import { adminTerminateSession } from '@/actions/session.actions';
 import { SessionsFilters } from '@/components/admin/sessions/sessions-filters';
 import { SessionsHeader } from '@/components/admin/sessions/sessions-header';
 import { SessionsPagination } from '@/components/admin/sessions/sessions-pagination';
-import { SessionsTable } from '@/components/admin/sessions/sessions-table';
 import { SessionsTitleSearch } from '@/components/admin/sessions/sessions-title-search';
 import { TerminateSessionDialog } from '@/components/admin/sessions/terminate-session-dialog';
 import { useToast } from '@/hooks/use-toast';
@@ -35,7 +34,7 @@ export default function AdminSessionsDashboard() {
     sortDirection: "desc",
   });
   const [selectedSession, setSelectedSession] = useState<
-    (Session & { client: Client }) | null
+    (Session & { user: Client }) | null
   >(null);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -84,7 +83,6 @@ export default function AdminSessionsDashboard() {
     setFilters((prev) => ({ ...prev, ...newFilters }));
   };
 
-  // Clear all filters
   const clearFilters = () => {
     setFilters({
       searchQuery: "",
@@ -110,7 +108,7 @@ export default function AdminSessionsDashboard() {
       toast({
         title: "Session terminated",
         description: `Session for ${
-          selectedSession.client.username || selectedSession.client.email
+          selectedSession.user.username || selectedSession.user.email
         } has been terminated.`,
       });
 
@@ -156,14 +154,15 @@ export default function AdminSessionsDashboard() {
           browserTypes={browserTypes}
         />
 
-        <SessionsTable
+        {/* TODO : remove comment */}
+        {/* <SessionsTable
           sessions={data?.sessions}
           isLoading={isLoadingSessions}
           onTerminateSession={(session) => {
             setSelectedSession(session);
             setIsConfirmOpen(true);
           }}
-        />
+        /> */}
 
         {data && data.pagination.totalPages > 1 && (
           <SessionsPagination

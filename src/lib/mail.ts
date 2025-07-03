@@ -2,8 +2,8 @@
 import nodemailer from 'nodemailer';
 
 import {
-  composeTemplate, generatePlainTextVersion, loadEmailComponent, loadEmailTemplate,
-  replaceTemplateVariables
+    composeTemplate, generatePlainTextVersion, loadEmailComponent, loadEmailTemplate,
+    replaceTemplateVariables
 } from '@/utils/template-loader';
 
 // Configure nodemailer transporter
@@ -46,7 +46,7 @@ export async function sendResetEmail(email: string, token: string) {
     expirationTime,
     clientEmail: email,
     currentYear: new Date().getFullYear().toString(),
-    subject: "Reset Your Password - Nextas",
+    subject: "Reset Your Password - Vetanytime",
   };
 
   const emailContent = replaceTemplateVariables(template, variables);
@@ -56,9 +56,9 @@ export async function sendResetEmail(email: string, token: string) {
 
   // Send the email
   await transporter.sendMail({
-    from: process.env.SMTP_FROM || 'noreply@nextas.com',
+    from: process.env.SMTP_FROM || 'noreply@Vetanytime.com',
     to: email,
-    subject: "Reset Your Password - Nextas",
+    subject: "Reset Your Password - Vetanytime",
     html: emailContent,
     text: textContent,
   });
@@ -88,7 +88,7 @@ export async function sendWelcomeEmail(email: string, username: string) {
     unsubscribeUrl,
     clientEmail: email,
     currentYear: new Date().getFullYear().toString(),
-    subject: "Welcome to Nextas!",
+    subject: "Welcome to Vetanytime!",
   };
 
   const emailContent = replaceTemplateVariables(template, variables);
@@ -98,9 +98,9 @@ export async function sendWelcomeEmail(email: string, username: string) {
 
   // Send the email
   await transporter.sendMail({
-    from: process.env.SMTP_FROM || 'noreply@nextas.com',
+    from: process.env.SMTP_FROM || 'noreply@Vetanytime.com',
     to: email,
-    subject: "Welcome to Nextas!",
+    subject: "Welcome to Vetanytime!",
     html: emailContent,
     text: textContent,
   });
@@ -125,7 +125,7 @@ export async function sendEmailVerification(email: string, username: string, tok
     verificationUrl,
     clientEmail: email,
     currentYear: new Date().getFullYear().toString(),
-    subject: "Verify Your Email Address - Nextas",
+    subject: "Verify Your Email Address - Vetanytime",
   };
 
   const emailContent = replaceTemplateVariables(template, variables);
@@ -135,9 +135,9 @@ export async function sendEmailVerification(email: string, username: string, tok
 
   // Send the email
   await transporter.sendMail({
-    from: process.env.SMTP_FROM || 'noreply@nextas.com',
+    from: process.env.SMTP_FROM || 'noreply@Vetanytime.com',
     to: email,
-    subject: "Verify Your Email Address - Nextas",
+    subject: "Verify Your Email Address - Vetanytime",
     html: emailContent,
     text: textContent,
   });
@@ -192,7 +192,7 @@ export async function sendEmail(options: {
 
   // Send the email
   await transporter.sendMail({
-    from: process.env.SMTP_FROM || 'noreply@nextas.com',
+    from: process.env.SMTP_FROM || 'noreply@Vetanytime.com',
     to,
     subject,
     html: emailContent,

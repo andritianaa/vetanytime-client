@@ -54,7 +54,7 @@ export default function AdminClientDashboard() {
 
   // Fetch clients data
   const { data, error, isLoading, mutate } = useSWR<AdminClientsResponse>(
-    `/api/admin/clients?${buildQueryString()}`,
+    `/api/admin/users?${buildQueryString()}`,
     fetcher
   );
 
@@ -75,7 +75,6 @@ export default function AdminClientDashboard() {
     setFilters((prev) => ({ ...prev, ...newFilters }));
   };
 
-  // Clear all filters
   const clearFilters = useCallback(() => {
     setFilters({
       searchQuery: "",

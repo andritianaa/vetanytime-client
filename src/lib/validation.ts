@@ -5,9 +5,7 @@ export const usernameSchema = z
     .string()
     .min(3, { message: "Username must be at least 3 characters long" })
     .max(30, { message: "Username cannot exceed 30 characters" })
-    .regex(/^[a-zA-Z0-9_.-]+$/, {
-        message: "Username can only contain letters, numbers, underscores, dots, and hyphens"
-    });
+
 
 // Email validation schema with strict requirements
 export const emailSchema = z

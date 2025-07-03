@@ -13,11 +13,11 @@ export function SessionsHeader() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem className="hidden md:block">
-              <BreadcrumbLink href="/admin">Admin Dashboard</BreadcrumbLink>
+              <BreadcrumbLink href="/admin">Tableau de bord</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator className="hidden md:block" />
             <BreadcrumbItem>
-              <BreadcrumbPage>Client Sessions</BreadcrumbPage>
+              <BreadcrumbPage>Sessions utilisateurs</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>

@@ -80,7 +80,7 @@ export function ClientPermissions({
     setIsLoading(true);
     try {
       const response = await fetch(
-        `/api/admin/clients/${client.id}/permissions`,
+        `/api/admin/users/${client.id}/permissions`,
         {
           method: "PATCH",
           headers: {

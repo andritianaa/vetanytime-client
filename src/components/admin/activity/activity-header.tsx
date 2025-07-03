@@ -32,7 +32,7 @@ export function ActivityHeader({
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/admin">Admin Dashboard</BreadcrumbLink>
+                <BreadcrumbLink href="/admin">Tableau de bord</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>

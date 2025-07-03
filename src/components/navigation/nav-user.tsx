@@ -4,7 +4,6 @@ import { Bell, ChevronsUpDown, CreditCard, Lock, LogOut, Settings } from 'lucide
 import Link from 'next/link';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 import {
     DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel,
     DropdownMenuSeparator, DropdownMenuTrigger
@@ -28,35 +27,19 @@ export function NavClient({
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          {variant === "full" ? (
-            <div className="cursor-pointer data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left  outline-none ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8  [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-12 text-sm group-data-[collapsible=icon]:!p-0">
-              <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={client.image} alt={client.username} />
-                <AvatarFallback className="rounded-lg">
-                  {client.username.slice(0, 2).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">
-                  {client.username}
-                </span>
-                <span className="truncate text-xs">{client.email}</span>
-              </div>
-              <ChevronsUpDown className="ml-auto size-4" />
+          <div className="cursor-pointer data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground peer/menu-button flex w-fit items-center gap-2 overflow-hidden rounded-md p-2 text-left  outline-none ring-sidebar-ring transition-[width,height,padding] focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8  [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-12 text-sm group-data-[collapsible=icon]:!p-0">
+            <Avatar className="h-8 w-8 rounded-lg">
+              <AvatarImage src={client.image} alt={client.username} />
+              <AvatarFallback className="rounded-lg">
+                {client.username.slice(0, 2).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <span className="truncate font-semibold">{client.username}</span>
+              <span className="truncate text-xs">Mon compte</span>
             </div>
-          ) : (
-            <Button variant={"outline"} className="size-10">
-              <Avatar className="size-6 rounded-full">
-                <AvatarImage
-                  src={client.image || "/placeholder.svg"}
-                  alt={client.username}
-                />
-                <AvatarFallback className="rounded-full">
-                  {client.username.slice(0, 2).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-            </Button>
-          )}
+            <ChevronsUpDown className="ml-auto size-4" />
+          </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent
           className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"

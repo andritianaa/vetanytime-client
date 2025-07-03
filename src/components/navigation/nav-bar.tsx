@@ -1,10 +1,10 @@
 "use client";
-import Link from "next/link";
+import Link from 'next/link';
 
-import { Logo } from "@/components/logo";
-import { NavClient } from "@/components/navigation/nav-user";
-import { Button } from "@/components/ui/button";
-import { useClient } from "@/hooks/use-user";
+import { Logo } from '@/components/logo';
+import { NavClient } from '@/components/navigation/nav-user';
+import { Button } from '@/components/ui/button';
+import { useClient } from '@/hooks/use-user';
 
 const Navbar = () => {
   const { client, isLoading } = useClient();
@@ -14,7 +14,7 @@ const Navbar = () => {
       <nav className="h-16 bg-background border-b border-accent fixed top-0 w-full z-40">
         <div className="h-full flex items-center justify-between max-w-screen-xl mx-auto px-4 sm:px-6">
           <Link href={"/explore"} className="flex-1">
-            <Logo color="primary" className="size-28" />
+            <Logo withName />
           </Link>
 
           <div className="flex justify-end flex-1 items-center gap-3">

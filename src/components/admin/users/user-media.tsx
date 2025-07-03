@@ -48,7 +48,7 @@ export function ClientMedia({ clientId, media }: ClientMediaProps) {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `/api/admin/clients/${clientId}/media/${mediaId}`,
+        `/api/admin/users/${clientId}/media/${mediaId}`,
         {
           method: "DELETE",
         }

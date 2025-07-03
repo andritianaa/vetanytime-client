@@ -302,7 +302,7 @@ export function ClientsFilters({
           }}
           className="ml-auto h-9 text-muted-foreground hover:text-foreground"
         >
-          Clear All
+          Reinitialiser
         </Button>
       </div>
     </div>

@@ -224,7 +224,7 @@ export default function AdminErrorsDashboard() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/admin">Admin Dashboard</BreadcrumbLink>
+                <BreadcrumbLink href="/admin">Tableau de bord</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>
@@ -441,7 +441,7 @@ export default function AdminErrorsDashboard() {
               handleFilterChange();
             }}
           >
-            {sortDirection === "asc" ? "Oldest first" : "Newest first"}
+            {sortDirection === "asc" ? "Plus ancien" : "Plus récent"}
           </Button>
 
           {/* Clear filters */}

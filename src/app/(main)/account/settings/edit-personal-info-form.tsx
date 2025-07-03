@@ -135,7 +135,7 @@ export function EditPersonalInfoForm() {
       }
 
       // Mettre à jour le profil
-      const response = await fetch("/api/client", {
+      const response = await fetch("/api/user", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

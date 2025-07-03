@@ -202,12 +202,12 @@ export function ActivityFilters({
             {sortDirection === "asc" ? (
               <span className="flex items-center gap-1.5">
                 <ArrowUpDown className="h-3.5 w-3.5 rotate-180" />
-                Oldest
+                Plus ancien
               </span>
             ) : (
               <span className="flex items-center gap-1.5">
                 <ArrowUpDown className="h-3.5 w-3.5" />
-                Newest
+                Plus récent
               </span>
             )}
           </Button>
@@ -227,7 +227,7 @@ export function ActivityFilters({
           }}
           className="ml-auto h-9 text-muted-foreground hover:text-foreground"
         >
-          Clear All
+          Reinitialiser
         </Button>
       </div>
     </div>

@@ -9,7 +9,7 @@ import type { Client } from "@/types/schema";
 import type { Session } from "@/types/session";
 
 interface TerminateSessionDialogProps {
-  session: (Session & { client: Client }) | null;
+  session: (Session & { user: Client }) | null;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   onConfirm: () => Promise<void>;
@@ -43,8 +43,8 @@ export function TerminateSessionDialog({
           <DialogTitle>Terminate Client Session?</DialogTitle>
           <DialogDescription>
             This will immediately terminate the selected session for client{" "}
-            <strong>{session.client.username || session.client.email}</strong>.
-            They will need to log in again on that device.
+            <strong>{session.user.username || session.user.email}</strong>. They
+            will need to log in again on that device.
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">

@@ -68,7 +68,7 @@ export function EditPasswordForm() {
 
     try {
       // API call to update password
-      const response = await fetch("/api/client/password", {
+      const response = await fetch("/api/user/password", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

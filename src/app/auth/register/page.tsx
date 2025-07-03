@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { checkUsernameAvalability } from '@/actions/user.ations';
+import { checkEmailAvailability, checkUsernameAvalability } from '@/actions/user.ations';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import {
@@ -21,7 +21,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { AuthLayout } from '../components/auth-layout';
 
-// Client-side registration schema - should align with server validation
+// Client-side registration schema
 const registerSchema = z.object({
   username: z
     .string()
@@ -30,10 +30,6 @@ const registerSchema = z.object({
     })
     .max(30, {
       message: "Le nom d'utilisateur ne peut pas dépasser 30 caractères.",
-    })
-    .regex(/^[a-zA-Z0-9_.-]+$/, {
-      message:
-        "Le nom d'utilisateur ne peut contenir que des lettres, des chiffres, des underscores (_), des points (.) et des tirets (-).",
     }),
   email: z
     .string()
@@ -65,10 +61,16 @@ export default function RegisterPage() {
   const [registerError, setRegisterError] = useState<string | null>(null);
   const [retryAfter, setRetryAfter] = useState<number | null>(null);
   const [passwordStrength, setPasswordStrength] = useState(0);
+
+  // Username availability state
   const [usernameAvailable, setUsernameAvailable] = useState<boolean | null>(
     null
   );
   const [usernameCheckLoading, setUsernameCheckLoading] = useState(false);
+
+  // Email availability state
+  const [emailAvailable, setEmailAvailable] = useState<boolean | null>(null);
+  const [emailCheckLoading, setEmailCheckLoading] = useState(false);
 
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
@@ -88,20 +90,15 @@ export default function RegisterPage() {
     }
 
     let strength = 0;
-
-    // Length check (up to 30%)
     if (password.length >= 8) strength += 10;
     if (password.length >= 12) strength += 10;
     if (password.length >= 16) strength += 10;
-
-    // Character variety checks (up to 70%)
     if (/[A-Z]/.test(password)) strength += 15;
     if (/[a-z]/.test(password)) strength += 15;
     if (/[0-9]/.test(password)) strength += 15;
     if (/[^A-Za-z0-9]/.test(password)) strength += 15;
-    if (/(.)\1\1\1/.test(password)) strength -= 10; // Penalize repeating characters
+    if (/(.)\1\1\1/.test(password)) strength -= 10;
 
-    // Ensure the value is between 0 and 100
     setPasswordStrength(Math.max(0, Math.min(100, strength)));
   }, [form.watch("password")]);
 
@@ -109,7 +106,6 @@ export default function RegisterPage() {
   useEffect(() => {
     const checkUsername = async () => {
       const username = form.watch("username");
-
       if (
         username &&
         username.length >= 3 &&
@@ -134,12 +130,45 @@ export default function RegisterPage() {
     return () => clearTimeout(timeout);
   }, [form.watch("username")]);
 
+  // Email availability check
+  useEffect(() => {
+    const checkEmail = async () => {
+      const email = form.watch("email");
+      if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setEmailCheckLoading(true);
+        try {
+          const response = await checkEmailAvailability(email);
+          setEmailAvailable(response);
+        } catch (error) {
+          console.error("Error checking email:", error);
+          setEmailAvailable(null);
+        } finally {
+          setEmailCheckLoading(false);
+        }
+      } else {
+        setEmailAvailable(null);
+      }
+    };
+
+    const timeout = setTimeout(checkEmail, 500);
+    return () => clearTimeout(timeout);
+  }, [form.watch("email")]);
+
   // Form submission
   async function onSubmit(values: RegisterFormValues) {
-    if (!usernameAvailable) {
+    // Check availability before submitting
+    if (usernameAvailable === false) {
       form.setError("username", {
         type: "manual",
-        message: "This username is already taken.",
+        message: "Ce nom d'utilisateur est déjà pris.",
+      });
+      return;
+    }
+
+    if (emailAvailable === false) {
+      form.setError("email", {
+        type: "manual",
+        message: "Cette adresse e-mail est déjà utilisée.",
       });
       return;
     }
@@ -163,7 +192,6 @@ export default function RegisterPage() {
       if (response.ok) {
         const expirationDate = new Date();
         expirationDate.setDate(expirationDate.getDate() + 30);
-
         document.cookie = `auth-token=${
           data.token
         }; path=/; expires=${expirationDate.toUTCString()}; SameSite=Strict; Secure`;
@@ -182,11 +210,11 @@ export default function RegisterPage() {
           setRegisterError(
             `Trop de tentatives d'inscription. Veuillez réessayer dans ${data.retryAfter} minutes.`
           );
-        } else if (data.details) {
-          // Handle validation errors returned from server
-          Object.entries(data.details).forEach(([field, messages]) => {
-            if (field in form.formState.errors) {
-              form.setError(field as any, {
+        } else if (data.fieldErrors) {
+          // Handle field-specific errors from server
+          Object.entries(data.fieldErrors).forEach(([field, messages]) => {
+            if (field in values) {
+              form.setError(field as keyof RegisterFormValues, {
                 type: "manual",
                 message: Array.isArray(messages)
                   ? messages[0]
@@ -194,27 +222,34 @@ export default function RegisterPage() {
               });
             }
           });
-          setRegisterError("Please correct the errors in the form.");
+          setRegisterError("Veuillez corriger les erreurs dans le formulaire.");
         } else {
           // Generic error
           setRegisterError(
-            data.error || "Registration failed. Please try again."
+            data.error || "L'inscription a échoué. Veuillez réessayer."
           );
         }
       }
     } catch (error) {
-      setRegisterError("An error occurred. Please try again later.");
+      setRegisterError(
+        "Une erreur s'est produite. Veuillez réessayer plus tard."
+      );
       console.error("Registration error:", error);
     } finally {
       setIsLoading(false);
     }
   }
 
-  // Get color for password strength indicator
   const getPasswordStrengthColor = () => {
     if (passwordStrength < 30) return "bg-red-500";
     if (passwordStrength < 60) return "bg-amber-500";
     return "bg-green-500";
+  };
+
+  const getPasswordStrengthText = () => {
+    if (passwordStrength < 30) return "Faible";
+    if (passwordStrength < 60) return "Moyen";
+    return "Fort";
   };
 
   return (
@@ -236,11 +271,11 @@ export default function RegisterPage() {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nom*</FormLabel>
+                <FormLabel>Nom d'utilisateur*</FormLabel>
                 <div className="relative">
                   <FormControl>
                     <Input
-                      placeholder="Entrez votre nom"
+                      placeholder="Entrez votre nom d'utilisateur"
                       {...field}
                       disabled={isLoading || !!retryAfter}
                       className="pr-10"
@@ -249,15 +284,17 @@ export default function RegisterPage() {
                   {usernameCheckLoading && (
                     <div className="absolute right-3 top-1/2 -translate-y-1/2 animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full" />
                   )}
-                  {usernameAvailable !== null && !usernameCheckLoading && (
-                    <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                      {usernameAvailable ? (
-                        <Check className="h-4 w-4 text-green-500" />
-                      ) : (
-                        <X className="h-4 w-4 text-red-500" />
-                      )}
-                    </div>
-                  )}
+                  {usernameAvailable !== null &&
+                    !usernameCheckLoading &&
+                    field.value.length >= 3 && (
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                        {usernameAvailable ? (
+                          <Check className="h-4 w-4 text-green-500" />
+                        ) : (
+                          <X className="h-4 w-4 text-red-500" />
+                        )}
+                      </div>
+                    )}
                 </div>
                 <FormMessage />
               </FormItem>
@@ -270,15 +307,32 @@ export default function RegisterPage() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email*</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Entrez votre addresse e-mail"
-                    {...field}
-                    type="email"
-                    autoComplete="email"
-                    disabled={isLoading || !!retryAfter}
-                  />
-                </FormControl>
+                <div className="relative">
+                  <FormControl>
+                    <Input
+                      placeholder="Entrez votre adresse e-mail"
+                      {...field}
+                      type="email"
+                      autoComplete="email"
+                      disabled={isLoading || !!retryAfter}
+                      className="pr-10"
+                    />
+                  </FormControl>
+                  {emailCheckLoading && (
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full" />
+                  )}
+                  {emailAvailable !== null &&
+                    !emailCheckLoading &&
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value) && (
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                        {emailAvailable ? (
+                          <Check className="h-4 w-4 text-green-500" />
+                        ) : (
+                          <X className="h-4 w-4 text-red-500" />
+                        )}
+                      </div>
+                    )}
+                </div>
                 <FormMessage />
               </FormItem>
             )}
@@ -289,7 +343,7 @@ export default function RegisterPage() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Mot de passe</FormLabel>
+                <FormLabel>Mot de passe*</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
@@ -300,21 +354,29 @@ export default function RegisterPage() {
                   />
                 </FormControl>
                 {field.value && (
-                  <>
-                    <Progress
-                      value={passwordStrength}
-                      className={`h-1 w-full ${getPasswordStrengthColor()}`}
-                    />
+                  <div className="space-y-2">
+                    <Progress value={passwordStrength} className="h-2" />
                     <div className="flex justify-between text-xs">
-                      <span>Faible</span>
-                      <span>Fort</span>
+                      <span
+                        className={`${
+                          passwordStrength < 30
+                            ? "text-red-500"
+                            : passwordStrength < 60
+                            ? "text-amber-500"
+                            : "text-green-500"
+                        }`}
+                      >
+                        {getPasswordStrengthText()}
+                      </span>
+                      <span className="text-muted-foreground">
+                        {passwordStrength}%
+                      </span>
                     </div>
-                  </>
+                  </div>
                 )}
-                <FormDescription className="flex items-center gap-1">
+                <FormDescription>
                   Le mot de passe doit comporter au moins 8 caractères et
-                  inclure des majuscules, des minuscules, des chiffres et des
-                  caractères spéciaux.
+                  inclure des majuscules, des minuscules et des chiffres.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -324,7 +386,14 @@ export default function RegisterPage() {
           <Button
             type="submit"
             className="w-full"
-            disabled={isLoading || !!retryAfter}
+            disabled={
+              isLoading ||
+              !!retryAfter ||
+              usernameAvailable === false ||
+              emailAvailable === false ||
+              usernameCheckLoading ||
+              emailCheckLoading
+            }
           >
             {isLoading ? "Inscription..." : "S'inscrire"}
           </Button>
@@ -336,6 +405,7 @@ export default function RegisterPage() {
           )}
         </form>
       </Form>
+
       <Button
         className="w-full bg-white text-black mt-4"
         variant={"outline"}
@@ -350,6 +420,7 @@ export default function RegisterPage() {
         />
         {isLoading ? "Connexion..." : "S'inscrire avec Google"}
       </Button>
+
       <div className="mt-4 text-sm text-center">
         Déjà inscrit ?{" "}
         <Link href="/auth/login" className="text-primary hover:underline">

@@ -1,123 +1,130 @@
 "use client";
 
-import {
-  BookOpen,
-  Bot,
-  Frame,
-  Map,
-  PieChart,
-  Settings2,
-  UserCog,
-} from "lucide-react";
-import * as React from "react";
+import { Frame, Hospital, Map, PawPrint, PieChart, UserCog } from 'lucide-react';
+import * as React from 'react';
 
-import { Logo } from "@/components/logo";
+import { Logo } from '@/components/logo';
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
+    Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton,
+    SidebarMenuItem
+} from '@/components/ui/sidebar';
 
-import { NavFooter } from "./nav-footer";
-import { NavMain } from "./nav-main";
-import { NavSecondary } from "./nav-secondary";
-import { NavClient } from "./nav-user";
+import { NavFooter } from './nav-footer';
+import { NavMain } from './nav-main';
+import { NavClient } from './nav-user';
 
 const data = {
   navMain: [
     {
-      title: "Admin",
-      url: "/admin/clients",
+      title: "Administration",
+      url: "/admin/users",
       icon: UserCog,
       isActive: true,
       items: [
         {
           title: "Clients",
-          url: "/admin/clients",
+          url: "/admin/users",
+        },
+        {
+          title: "Contenus",
+          url: "/admin/contenu",
         },
         {
           title: "Sessions",
           url: "/admin/sessions",
         },
         {
-          title: "Activity",
+          title: "Activités",
           url: "/admin/activity",
         },
         {
-          title: "Errors",
+          title: "Erreurs",
           url: "/admin/errors",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Veterinaires",
       url: "#",
-      icon: Bot,
+      icon: Hospital,
+      isActive: true,
       items: [
         {
-          title: "Genesis",
+          title: "Liste",
           url: "#",
         },
         {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
+          title: "Nouveaux",
           url: "#",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Animaux",
       url: "#",
-      icon: BookOpen,
+      icon: PawPrint,
+      isActive: true,
       items: [
         {
-          title: "Introduction",
+          title: "Races",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "Liste",
           url: "#",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
+          title: "Nouveaux",
           url: "#",
         },
       ],
     },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
+    // {
+    //   title: "Documentation",
+    //   url: "#",
+    //   icon: BookOpen,
+    //   items: [
+    //     {
+    //       title: "Introduction",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Get Started",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Tutorials",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Changelog",
+    //       url: "#",
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: "Settings",
+    //   url: "#",
+    //   icon: Settings2,
+    //   items: [
+    //     {
+    //       title: "General",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Team",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Billing",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Limits",
+    //       url: "#",
+    //     },
+    //   ],
+    // },
   ],
 
   projects: [
@@ -147,12 +154,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <a href="#">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary">
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg ">
                   <Logo className="size-4" color="white" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Nextas</span>
-                  <span className="truncate text-xs">Free</span>
+                  <span className="truncate font-semibold">Vetanytime</span>
+                  <span className="truncate text-xs">Administration</span>
                 </div>
               </a>
             </SidebarMenuButton>
@@ -161,7 +168,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavSecondary projects={data.projects} />
+        {/* <NavSecondary projects={data.projects} /> */}
         <NavFooter className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>

@@ -80,7 +80,7 @@ export default function AdminActivityDashboard() {
 
   // Fetch clients for filtering
   const { data: clientsResponse } = useSWR<{ clients: Client[] }>(
-    "/api/admin/clients",
+    "/api/admin/users",
     fetcher
   );
   const clients = clientsResponse?.clients || [];
@@ -167,7 +167,6 @@ export default function AdminActivityDashboard() {
     setIsSessionDetailsOpen(true);
   }, []);
 
-  // Clear all filters
   const clearFilters = useCallback(() => {
     setSearchQuery("");
     setActionFilter([]);

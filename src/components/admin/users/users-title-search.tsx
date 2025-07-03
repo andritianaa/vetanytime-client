@@ -21,9 +21,11 @@ export function ClientsTitleSearch({
   return (
     <div className="flex flex-col space-y-4 md:flex-row md:justify-between md:space-y-0 px-6 pt-6">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">Client Management</h2>
+        <h2 className="text-2xl font-bold tracking-tight">
+          Gestion des clients
+        </h2>
         <p className="text-muted-foreground">
-          Manage clients, permissions, and account settings
+          Gérez les clients, les autorisations et les paramètres du compte
         </p>
       </div>
 

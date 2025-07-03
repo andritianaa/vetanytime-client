@@ -77,7 +77,7 @@ export function SessionsFilters({
       setLoading(true);
       try {
         const response = await fetch(
-          `/api/admin/clients?query=${debouncedSearch}&limit=10`
+          `/api/admin/users?query=${debouncedSearch}&limit=10`
         );
         if (!response.ok) throw new Error("Failed to fetch clients");
         const data = await response.json();
@@ -99,7 +99,7 @@ export function SessionsFilters({
         try {
           // Use the same API but filter for a specific client ID
           const response = await fetch(
-            `/api/admin/clients?clientId=${filters.clientFilter}`
+            `/api/admin/users?clientId=${filters.clientFilter}`
           );
           if (response.ok) {
             const data = await response.json();
@@ -293,14 +293,14 @@ export function SessionsFilters({
                 size="sm"
                 className="h-9 px-3 flex items-center gap-1.5 rounded-full bg-background"
               >
-                <span className="text-sm font-medium">Device Type</span>
+                <span className="text-sm font-medium">Type d'appareil</span>
                 <Badge className="ml-1 bg-primary/10 text-primary hover:bg-primary/20 px-2 py-0 h-5">
                   {filters.deviceTypeFilter.length || "All"}
                 </Badge>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-56">
-              <DropdownMenuLabel>Device Types</DropdownMenuLabel>
+              <DropdownMenuLabel>Type d'appareils</DropdownMenuLabel>
               <DropdownMenuSeparator />
               {deviceTypes.map((type) => (
                 <DropdownMenuCheckboxItem
@@ -453,7 +453,7 @@ export function SessionsFilters({
             <SelectContent>
               <SelectItem value="lastActive">Last Active</SelectItem>
               <SelectItem value="createdAt">Created Date</SelectItem>
-              <SelectItem value="deviceType">Device Type</SelectItem>
+              <SelectItem value="deviceType">Type d'appareil</SelectItem>
               <SelectItem value="browser">Browser</SelectItem>
             </SelectContent>
           </Select>
@@ -472,12 +472,12 @@ export function SessionsFilters({
             {filters.sortDirection === "asc" ? (
               <span className="flex items-center gap-1.5">
                 <ArrowUpDown className="h-3.5 w-3.5 rotate-180" />
-                Oldest
+                Plus ancien
               </span>
             ) : (
               <span className="flex items-center gap-1.5">
                 <ArrowUpDown className="h-3.5 w-3.5" />
-                Newest
+                Plus récent
               </span>
             )}
           </Button>
@@ -490,7 +490,7 @@ export function SessionsFilters({
           onClick={clearFilters}
           className="ml-auto h-9 text-muted-foreground hover:text-foreground"
         >
-          Clear All
+          Reinitialiser
         </Button>
       </div>
     </div>
