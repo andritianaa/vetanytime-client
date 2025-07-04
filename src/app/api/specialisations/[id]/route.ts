@@ -4,10 +4,11 @@ import { prisma } from '@/prisma';
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } },
+  context: any
 ) {
   try {
-    const { id } = params;
+    const { params } = context
+    const id = params.id.toString()
     const body = await request.json();
     const { name } = body;
 

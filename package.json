@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npx prisma generate && next dev --turbopack",
-    "build": "npx prisma generate && next build",
+    "build": "NODE_OPTIONS='--max-old-space-size=4096' npx prisma generate && next build",
     "start": "npx prisma generate && next start",
     "lint": "next lint"
   },
