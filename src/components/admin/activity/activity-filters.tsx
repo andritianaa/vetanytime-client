@@ -164,7 +164,7 @@ export function ActivityFilters({
       <div className="flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-2 mr-1">
           <Filter className="h-4 w-4 text-muted-foreground" />
-          <span className="font-medium text-sm">Filters</span>
+          <span className="font-medium text-sm">Filtres</span>
         </div>
 
         {/* Action filter */}
@@ -175,9 +175,9 @@ export function ActivityFilters({
               size="sm"
               className="h-9 px-3 flex items-center gap-1.5 rounded-full bg-background"
             >
-              <span className="text-sm font-medium">Action Type</span>
+              <span className="text-sm font-medium">Types d'actions</span>
               <Badge className="ml-1 bg-primary/10 text-primary hover:bg-primary/20 px-2 py-0 h-5">
-                {actionFilter.length || "All"}
+                {actionFilter.length || "Tout"}
               </Badge>
             </Button>
           </DropdownMenuTrigger>
@@ -185,7 +185,7 @@ export function ActivityFilters({
             align="start"
             className="w-56 max-h-80 overflow-y-auto"
           >
-            <DropdownMenuLabel>Action Types</DropdownMenuLabel>
+            <DropdownMenuLabel>Types d'actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
             {availableActions.map((action) => (
               <DropdownMenuCheckboxItem
@@ -249,7 +249,7 @@ export function ActivityFilters({
                 </div>
               ) : (
                 <Badge className="ml-1 bg-primary/10 text-primary hover:bg-primary/20 px-2 py-0 h-5">
-                  All
+                  Tout
                 </Badge>
               )}
             </Button>
@@ -257,14 +257,14 @@ export function ActivityFilters({
           <PopoverContent className="p-0 w-[300px]" align="start">
             <Command>
               <CommandInput
-                placeholder="Search clients..."
+                placeholder="Recherche clients..."
                 value={clientSearch}
                 onValueChange={setClientSearch}
                 className="h-9"
               />
               <CommandList>
                 <CommandEmpty>
-                  {loading ? "Loading..." : "No clients found"}
+                  {loading ? "Chargement..." : "Auncun client"}
                 </CommandEmpty>
                 <CommandGroup>
                   <CommandItem
@@ -276,7 +276,7 @@ export function ActivityFilters({
                     }}
                     className="flex items-center gap-2"
                   >
-                    <span className="text-sm">All clients</span>
+                    <span className="text-sm">Tous les clients</span>
                   </CommandItem>
                   {filteredClients.map((client) => (
                     <CommandItem
@@ -338,7 +338,7 @@ export function ActivityFilters({
                   format(dateRange.from, "LLL dd, y")
                 )
               ) : (
-                <span>Date range</span>
+                <span>Date</span>
               )}
             </Button>
           </PopoverTrigger>

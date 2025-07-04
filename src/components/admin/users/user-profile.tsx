@@ -154,8 +154,8 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
         <div className="md:w-1/3">
           <Card>
             <CardHeader>
-              <CardTitle>Client Profile</CardTitle>
-              <CardDescription>Basic client information</CardDescription>
+              <CardTitle>Profil du client</CardTitle>
+              <CardDescription>Information basique du client</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col items-center">
               <Avatar className="h-24 w-24 mb-4">
@@ -196,7 +196,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
                     isActive ? "text-green-500" : "text-amber-500"
                   }`}
                 >
-                  {isActive ? "Currently active" : "Inactive"}
+                  {isActive ? "Actif récement" : "Inactif"}
                 </span>
               </div>
             </CardContent>
@@ -207,9 +207,9 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <div>
-                <CardTitle>Account Details</CardTitle>
+                <CardTitle>Détails du compte</CardTitle>
                 <CardDescription>
-                  Manage client account information
+                  Gérer les informations du client
                 </CardDescription>
               </div>
               <Button
@@ -220,12 +220,12 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
                 {isEditing ? (
                   <>
                     <Check className="mr-2 h-4 w-4" />
-                    Cancel
+                    Annuler
                   </>
                 ) : (
                   <>
                     <Edit className="mr-2 h-4 w-4" />
-                    Edit
+                    Modifier
                   </>
                 )}
               </Button>
@@ -236,7 +236,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
                   <div className="grid gap-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="username">Username</Label>
+                        <Label htmlFor="username">Nom d'utilisateur</Label>
                         <Input
                           id="username"
                           name="username"
@@ -245,7 +245,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="fullname">Full Name</Label>
+                        <Label htmlFor="fullname">Nom complet</Label>
                         <Input
                           id="fullname"
                           name="fullname"
@@ -264,7 +264,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="description">Description</Label>
+                      <Label htmlFor="description">Déscription</Label>
                       <Textarea
                         id="description"
                         name="description"
@@ -275,7 +275,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="language">Language</Label>
+                        <Label htmlFor="language">Langage</Label>
                         <Input
                           id="language"
                           name="language"
@@ -284,7 +284,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="theme">Theme</Label>
+                        <Label htmlFor="theme">Thème</Label>
                         <Input
                           id="theme"
                           name="theme"
@@ -302,7 +302,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
                             handleSwitchChange("active", checked)
                           }
                         />
-                        <Label htmlFor="active">Active Account</Label>
+                        <Label htmlFor="active">Compte Actif/Inactif</Label>
                       </div>
                       <div className="flex items-center space-x-2">
                         <Switch
@@ -312,35 +312,35 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
                             handleSwitchChange("locked", checked)
                           }
                         />
-                        <Label htmlFor="locked">Account Locked</Label>
+                        <Label htmlFor="locked">Compte vérrouillé</Label>
                       </div>
                     </div>
                   </div>
                   <div className="flex justify-end mt-6">
-                    <Button type="submit">Save Changes</Button>
+                    <Button type="submit">Enregister</Button>
                   </div>
                 </form>
               ) : (
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
-                      <Label className="text-muted-foreground">Client ID</Label>
+                      <Label className="text-muted-foreground">Id Client</Label>
                       <p className="text-sm font-mono">{client.id}</p>
                     </div>
                     <div className="space-y-1">
                       <Label className="text-muted-foreground">
-                        Email Verification
+                        Vérification d'email
                       </Label>
                       <p className="text-sm flex items-center">
                         {client.emailVerified ? (
                           <>
                             <Check className="h-4 w-4 text-green-500 mr-1" />
-                            Verified on {formatDate(client.emailVerified)}
+                            Vérifié le {formatDate(client.emailVerified)}
                           </>
                         ) : (
                           <>
                             <Mail className="h-4 w-4 text-amber-500 mr-1" />
-                            Not verified
+                            Non vérifié
                           </>
                         )}
                       </p>
@@ -349,14 +349,18 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
-                      <Label className="text-muted-foreground">Username</Label>
+                      <Label className="text-muted-foreground">
+                        Nom d'utilisateur
+                      </Label>
                       <p className="text-sm flex items-center">
                         <User className="h-4 w-4 text-muted-foreground mr-1" />
                         {client.username || "No username"}
                       </p>
                     </div>
                     <div className="space-y-1">
-                      <Label className="text-muted-foreground">Full Name</Label>
+                      <Label className="text-muted-foreground">
+                        Nom complet
+                      </Label>
                       <p className="text-sm">
                         {client.fullname || "Not provided"}
                       </p>
@@ -364,7 +368,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
                   </div>
 
                   <div className="space-y-1">
-                    <Label className="text-muted-foreground">Description</Label>
+                    <Label className="text-muted-foreground">Déscription</Label>
                     <p className="text-sm">
                       {client.description || "No description"}
                     </p>
@@ -372,20 +376,20 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
-                      <Label className="text-muted-foreground">Language</Label>
+                      <Label className="text-muted-foreground">Langage</Label>
                       <p className="text-sm flex items-center">
                         <Globe className="h-4 w-4 text-muted-foreground mr-1" />
                         {client.language || "English (default)"}
                       </p>
                     </div>
                     <div className="space-y-1">
-                      <Label className="text-muted-foreground">Theme</Label>
+                      <Label className="text-muted-foreground">Thème</Label>
                       <p className="text-sm">
                         {client.theme
                           ? client.theme === "dark"
-                            ? "Dark"
-                            : "Light"
-                          : "System default"}
+                            ? "Sombre"
+                            : "Clair"
+                          : "Système"}
                       </p>
                     </div>
                   </div>
@@ -393,21 +397,21 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
                       <Label className="text-muted-foreground">
-                        Account Status
+                        Status du compte
                       </Label>
                       <div className="text-sm flex items-center">
                         {client.active ? (
-                          <Badge className="text-xs">Active</Badge>
+                          <Badge className="text-xs">Actif</Badge>
                         ) : (
                           <Badge variant="destructive" className="text-xs">
-                            Inactive
+                            Inactif
                           </Badge>
                         )}
                       </div>
                     </div>
                     <div className="space-y-1">
                       <Label className="text-muted-foreground">
-                        Account Lock
+                        Compte vérrouillé
                       </Label>
                       <p className="text-sm flex items-center">
                         <Lock className="h-4 w-4 text-muted-foreground mr-1" />
@@ -419,7 +423,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
                   {client.verificationToken && (
                     <div className="space-y-1">
                       <Label className="text-muted-foreground">
-                        Verification Token
+                        Vérification de token
                       </Label>
                       <p className="text-sm font-mono">
                         {client.verificationToken}
@@ -435,19 +439,23 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Account Timeline</CardTitle>
+          <CardTitle>Historique du compte</CardTitle>
           <CardDescription>
-            Important dates and events for this client
+            Dates et évènements importants pour le client
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-1">
-              <Label className="text-muted-foreground">Registration Date</Label>
+              <Label className="text-muted-foreground">
+                Date d'enregistrement
+              </Label>
               <p className="text-sm">{formatDate(client.createdAt)}</p>
             </div>
             <div className="space-y-1">
-              <Label className="text-muted-foreground">Last Login</Label>
+              <Label className="text-muted-foreground">
+                Dérnière connexion
+              </Label>
               <div className="flex flex-col">
                 <p className="text-sm">{getRelativeTime(lastLoginTime)}</p>
                 <p className="text-xs text-muted-foreground">
@@ -456,7 +464,7 @@ export function ClientProfile({ client, onClientUpdated }: ClientProfileProps) {
               </div>
             </div>
             <div className="space-y-1">
-              <Label className="text-muted-foreground">Active Sessions</Label>
+              <Label className="text-muted-foreground">Session active</Label>
               <p className="text-sm">{client.Session?.length || 0}</p>
             </div>
           </div>

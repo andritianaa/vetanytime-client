@@ -31,7 +31,7 @@ export function ClientsTitleSearch({
 
       <div className="flex items-center space-x-2">
         <Input
-          placeholder="Search clients..."
+          placeholder="Rechercher clients..."
           value={searchQuery}
           onChange={(e) => {
             setSearchQuery(e.target.value);
@@ -44,7 +44,7 @@ export function ClientsTitleSearch({
         </Button>
         <Button>
           <UserPlus className="h-4 w-4 mr-2" />
-          Add Client
+          Ajouter client
         </Button>
       </div>
     </div>

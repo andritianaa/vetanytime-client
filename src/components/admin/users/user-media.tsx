@@ -93,14 +93,14 @@ export function ClientMedia({ clientId, media }: ClientMediaProps) {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle>Client Media</CardTitle>
+            <CardTitle>Média du client</CardTitle>
             <CardDescription>
-              Media files uploaded by this client
+              Fichier média uploadé par le client
             </CardDescription>
           </div>
           <Button>
             <Upload className="mr-2 h-4 w-4" />
-            Upload Media
+            Uploader
           </Button>
         </CardHeader>
         <CardContent>
@@ -152,7 +152,7 @@ export function ClientMedia({ clientId, media }: ClientMediaProps) {
                           disabled={isLoading}
                         >
                           <Trash className="h-4 w-4 mr-1" />
-                          Delete
+                          Supprimer
                         </Button>
                       </div>
                     </div>
@@ -164,7 +164,7 @@ export function ClientMedia({ clientId, media }: ClientMediaProps) {
             <div className="py-12 text-center">
               <FileText className="h-12 w-12 mx-auto text-muted-foreground" />
               <p className="mt-4 text-muted-foreground">
-                No media files found for this client.
+                Aucun fichier média du client.
               </p>
             </div>
           )}
@@ -187,14 +187,16 @@ export function ClientMedia({ clientId, media }: ClientMediaProps) {
             ) : (
               <div className="flex flex-col items-center justify-center py-12">
                 <FileText className="h-24 w-24 text-muted-foreground" />
-                <p className="mt-4">Preview not available for this file type</p>
+                <p className="mt-4">
+                  Prévisualisation impossible pour ce type de fichier
+                </p>
                 <Button className="mt-4" asChild>
                   <a
                     href={selectedMedia?.url}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Download File
+                    Télécharger
                   </a>
                 </Button>
               </div>

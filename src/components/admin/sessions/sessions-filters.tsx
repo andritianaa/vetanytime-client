@@ -153,7 +153,7 @@ export function SessionsFilters({
       <div className="flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-2 mr-1">
           <Filter className="h-4 w-4 text-muted-foreground" />
-          <span className="font-medium text-sm">Filters</span>
+          <span className="font-medium text-sm">Filtres</span>
         </div>
 
         {/* Client filter with search */}
@@ -196,7 +196,7 @@ export function SessionsFilters({
                 </div>
               ) : (
                 <Badge className="ml-1 bg-primary/10 text-primary hover:bg-primary/20 px-2 py-0 h-5">
-                  All
+                  Tout
                 </Badge>
               )}
             </Button>
@@ -204,7 +204,7 @@ export function SessionsFilters({
           <PopoverContent className="p-0 w-[300px]" align="start">
             <Command>
               <CommandInput
-                placeholder="Search clients..."
+                placeholder="Recherche clients..."
                 value={clientSearch}
                 onValueChange={setClientSearch}
                 className="h-9"
@@ -244,7 +244,7 @@ export function SessionsFilters({
                         }}
                         className="flex items-center gap-2"
                       >
-                        <span className="text-sm">All clients</span>
+                        <span className="text-sm">Tous les clients</span>
                       </CommandItem>
                       {clients.map((client) => (
                         <CommandItem
@@ -295,7 +295,7 @@ export function SessionsFilters({
               >
                 <span className="text-sm font-medium">Type d'appareil</span>
                 <Badge className="ml-1 bg-primary/10 text-primary hover:bg-primary/20 px-2 py-0 h-5">
-                  {filters.deviceTypeFilter.length || "All"}
+                  {filters.deviceTypeFilter.length || "Tout"}
                 </Badge>
               </Button>
             </DropdownMenuTrigger>
@@ -339,7 +339,7 @@ export function SessionsFilters({
               >
                 <span className="text-sm font-medium">Browser</span>
                 <Badge className="ml-1 bg-primary/10 text-primary hover:bg-primary/20 px-2 py-0 h-5">
-                  {filters.browserFilter.length || "All"}
+                  {filters.browserFilter.length || "Tout"}
                 </Badge>
               </Button>
             </DropdownMenuTrigger>
@@ -451,8 +451,8 @@ export function SessionsFilters({
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="lastActive">Last Active</SelectItem>
-              <SelectItem value="createdAt">Created Date</SelectItem>
+              <SelectItem value="lastActive">Dernière activité</SelectItem>
+              <SelectItem value="createdAt">Date de création</SelectItem>
               <SelectItem value="deviceType">Type d'appareil</SelectItem>
               <SelectItem value="browser">Browser</SelectItem>
             </SelectContent>

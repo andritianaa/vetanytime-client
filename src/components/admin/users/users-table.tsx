@@ -33,7 +33,9 @@ export function ClientsTable({
         {isLoading ? (
           <div className="py-24 text-center">
             <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></div>
-            <p className="mt-4 text-muted-foreground">Loading client data...</p>
+            <p className="mt-4 text-muted-foreground">
+              Chargement des clients...
+            </p>
           </div>
         ) : clients.length > 0 ? (
           <div className="w-full overflow-auto">
@@ -41,11 +43,11 @@ export function ClientsTable({
               <TableHeader>
                 <TableRow>
                   <TableHead>Client</TableHead>
-                  <TableHead className="w-[200px]">Fullname</TableHead>
-                  <TableHead className="w-[150px]">Roles</TableHead>
-                  <TableHead className="w-[180px]">Verfied client</TableHead>
-                  <TableHead className="w-[100px]">Lang</TableHead>
-                  <TableHead className="w-[200px]">Registration</TableHead>
+                  <TableHead className="w-[200px]">Nom complet</TableHead>
+                  <TableHead className="w-[150px]">Rôle</TableHead>
+                  <TableHead className="w-[180px]">Client vérifié</TableHead>
+                  <TableHead className="w-[100px]">Langue</TableHead>
+                  <TableHead className="w-[200px]">Inscription</TableHead>
                   <TableHead className="text-right w-[100px]">
                     Actions
                   </TableHead>
@@ -101,7 +103,7 @@ export function ClientsTable({
                               <div className="flex items-center pt-2">
                                 <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />
                                 <span className="text-xs text-muted-foreground">
-                                  Client ID: {client.id.substring(0, 8)}...
+                                  Id Client: {client.id.substring(0, 8)}...
                                 </span>
                               </div>
                             </div>
@@ -113,7 +115,7 @@ export function ClientsTable({
                       {client.fullname ? (
                         <p className="text-xs">{client.fullname}</p>
                       ) : (
-                        <p className="text-xs">No fullname</p>
+                        <p className="text-xs">Néant</p>
                       )}
                     </TableCell>
                     <TableCell>
@@ -130,7 +132,7 @@ export function ClientsTable({
                           ))
                         ) : (
                           <Badge variant="outline" className="text-xs">
-                            No roles
+                            Pas de rôle
                           </Badge>
                         )}
                       </div>
@@ -142,7 +144,7 @@ export function ClientsTable({
                           <Badge className="text-xs">Verified</Badge>
                         ) : (
                           <Badge variant="destructive" className="text-xs">
-                            Not Verified
+                            Pas vérifié
                           </Badge>
                         )}
                       </div>
@@ -151,7 +153,7 @@ export function ClientsTable({
                       {client.language ? (
                         <p className="text-xs">{client.language}</p>
                       ) : (
-                        <p className="text-xs">No language</p>
+                        <p className="text-xs">Pas de langue</p>
                       )}
                     </TableCell>
 
@@ -161,7 +163,7 @@ export function ClientsTable({
                           {new Date(client.createdAt).toLocaleDateString()}
                         </p>
                       ) : (
-                        <p className="text-xs">No date</p>
+                        <p className="text-xs">Pas de date</p>
                       )}
                     </TableCell>
                     <TableCell className="text-right">
@@ -172,7 +174,7 @@ export function ClientsTable({
                             size="sm"
                             className="h-8 w-8 p-0"
                           >
-                            <span className="sr-only">Open menu</span>
+                            <span className="sr-only">Ouvrir menu</span>
                             <MoreHorizontal className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
@@ -182,16 +184,16 @@ export function ClientsTable({
                             onClick={() => onViewClientDetails(client)}
                           >
                             <Info className="mr-2 h-4 w-4" />
-                            <span>View Details</span>
+                            <span>Voir détails</span>
                           </DropdownMenuItem>
                           <DropdownMenuItem>
                             <Shield className="mr-2 h-4 w-4" />
-                            <span>Edit Permissions</span>
+                            <span>Modifier permissions</span>
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem>
                             <User className="mr-2 h-4 w-4" />
-                            <span>Impersonate</span>
+                            <span>Imiter</span>
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -205,7 +207,7 @@ export function ClientsTable({
           <div className="py-24 text-center">
             <User className="h-12 w-12 mx-auto text-muted-foreground" />
             <p className="mt-4 text-muted-foreground">
-              No clients found matching your filters.
+              Aucun client trouvé correspondant à vos filtres.
             </p>
           </div>
         )}

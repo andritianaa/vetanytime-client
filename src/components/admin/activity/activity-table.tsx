@@ -41,7 +41,7 @@ export function ActivityTable({
           <div className="py-24 text-center">
             <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em]"></div>
             <p className="mt-4 text-muted-foreground">
-              Loading activity data...
+              Chargement des données d'activité...
             </p>
           </div>
         ) : activities && activities.length > 0 ? (
@@ -49,12 +49,12 @@ export function ActivityTable({
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[180px]">Date & Time</TableHead>
+                  <TableHead className="w-[180px]">Date & Heure</TableHead>
                   <TableHead>Action</TableHead>
                   <TableHead className="w-[200px]">Client</TableHead>
                   <TableHead className="w-[140px]">Session</TableHead>
                   <TableHead className="text-right w-[100px]">
-                    Details
+                    Détails
                   </TableHead>
                 </TableRow>
               </TableHeader>
@@ -111,14 +111,14 @@ export function ActivityTable({
                                 </Button>
                               </TooltipTrigger>
                               <TooltipContent side="top">
-                                <p>View session details</p>
+                                <p>Afficher les détails de la séance</p>
                               </TooltipContent>
                             </Tooltip>
                           </TooltipProvider>
                         </div>
                       ) : (
                         <span className="text-xs text-muted-foreground">
-                          No session data
+                          Aucune donnée de session
                         </span>
                       )}
                     </TableCell>
@@ -128,7 +128,7 @@ export function ActivityTable({
                         size="sm"
                         onClick={() => onViewDetails(activity)}
                       >
-                        View
+                        Voir
                       </Button>
                     </TableCell>
                   </TableRow>
@@ -139,7 +139,7 @@ export function ActivityTable({
         ) : (
           <div className="py-24 text-center">
             <p className="text-muted-foreground">
-              No activities found matching your filters.
+              Aucune activité trouvée correspondant à vos filtres.
             </p>
           </div>
         )}

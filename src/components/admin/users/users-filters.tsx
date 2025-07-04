@@ -106,7 +106,7 @@ export function ClientsFilters({
       <div className="flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-2 mr-1">
           <Filter className="h-4 w-4 text-muted-foreground" />
-          <span className="font-medium text-sm">Filters</span>
+          <span className="font-medium text-sm">Filtres</span>
         </div>
 
         {/* Role filter */}
@@ -117,14 +117,14 @@ export function ClientsFilters({
               size="sm"
               className="h-9 px-3 flex items-center gap-1.5 rounded-full bg-background"
             >
-              <span className="text-sm font-medium">Role</span>
+              <span className="text-sm font-medium">Rôle</span>
               <Badge className="ml-1 bg-primary/10 text-primary hover:bg-primary/20 px-2 py-0 h-5">
-                {filters.roleFilter.length || "All"}
+                {filters.roleFilter.length || "Tout"}
               </Badge>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-56">
-            <DropdownMenuLabel>Client Roles</DropdownMenuLabel>
+            <DropdownMenuLabel>Role du client</DropdownMenuLabel>
             <DropdownMenuSeparator />
             {availableRoles.map((role) => (
               <DropdownMenuCheckboxItem
@@ -158,12 +158,12 @@ export function ClientsFilters({
           }}
         >
           <SelectTrigger className="h-9 rounded-full bg-background w-[180px]">
-            <SelectValue placeholder="Email Verification" />
+            <SelectValue placeholder="Verification email" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Verification Status</SelectItem>
-            <SelectItem value="verified">Verified</SelectItem>
-            <SelectItem value="unverified">Unverified</SelectItem>
+            <SelectItem value="all">Tous les vériications de status</SelectItem>
+            <SelectItem value="verified">Vérifié</SelectItem>
+            <SelectItem value="unverified">Non vérifié</SelectItem>
           </SelectContent>
         </Select>
 
@@ -176,13 +176,13 @@ export function ClientsFilters({
           }}
         >
           <SelectTrigger className="h-9 rounded-full bg-background w-[150px]">
-            <SelectValue placeholder="Account Status" />
+            <SelectValue placeholder="Status" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Status</SelectItem>
-            <SelectItem value="active">Active</SelectItem>
-            <SelectItem value="inactive">Inactive</SelectItem>
-            <SelectItem value="locked">Locked</SelectItem>
+            <SelectItem value="all">Tous les Status</SelectItem>
+            <SelectItem value="active">Actif</SelectItem>
+            <SelectItem value="inactive">Inactif</SelectItem>
+            <SelectItem value="locked">Vérouillé</SelectItem>
           </SelectContent>
         </Select>
 
@@ -197,7 +197,7 @@ export function ClientsFilters({
                 !dateRange && "text-muted-foreground"
               )}
             >
-              <Calendar className="h-4 w-4" />
+              <Calendar lang="Fr" className="h-4 w-4" />
               {dateRange?.from ? (
                 dateRange.to ? (
                   <>
@@ -210,7 +210,7 @@ export function ClientsFilters({
                   format(dateRange.from, "LLL dd, y")
                 )
               ) : (
-                <span>Registration date</span>
+                <span>Date d'enregistrement</span>
               )}
             </Button>
           </PopoverTrigger>
@@ -263,10 +263,10 @@ export function ClientsFilters({
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="createdAt">Registration Date</SelectItem>
-              <SelectItem value="username">Username</SelectItem>
+              <SelectItem value="createdAt">Date d'inscription</SelectItem>
+              <SelectItem value="username">Nom d'utilisateur</SelectItem>
               <SelectItem value="email">Email</SelectItem>
-              <SelectItem value="lastLogin">Last Login</SelectItem>
+              <SelectItem value="lastLogin">Dernière connexion</SelectItem>
             </SelectContent>
           </Select>
 
@@ -288,7 +288,7 @@ export function ClientsFilters({
                   filters.sortDirection === "asc" && "rotate-180"
                 )}
               />
-              {filters.sortDirection === "asc" ? "Ascending" : "Descending"}
+              {filters.sortDirection === "asc" ? "Ascendant" : "Descendant"}
             </span>
           </Button>
         </div>
