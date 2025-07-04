@@ -67,13 +67,13 @@ export function ClientDetailsDialog({
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
         <DialogHeader>
-          <DialogTitle className="text-xl">Client Details</DialogTitle>
+          <DialogTitle className="text-xl">Détails du client</DialogTitle>
         </DialogHeader>
 
         {isLoading ? (
           <div className="flex items-center justify-center py-12">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            <span className="ml-2">Loading client details...</span>
+            <span className="ml-2">Chargement des données du client...</span>
           </div>
         ) : clientData ? (
           <Tabs
@@ -81,11 +81,11 @@ export function ClientDetailsDialog({
             className="flex-1 overflow-hidden flex flex-col"
           >
             <TabsList className="grid grid-cols-4">
-              <TabsTrigger value="profile">Profile</TabsTrigger>
+              <TabsTrigger value="profile">Profil</TabsTrigger>
               <TabsTrigger value="sessions">Sessions</TabsTrigger>
               {/* <TabsTrigger value="activities">Activities</TabsTrigger> */}
-              <TabsTrigger value="media">Media</TabsTrigger>
-              <TabsTrigger value="permissions">Permissions</TabsTrigger>
+              <TabsTrigger value="media">Média</TabsTrigger>
+              <TabsTrigger value="permissions">Pérmissions</TabsTrigger>
             </TabsList>
 
             <TabsContent value="profile" className="flex-1 overflow-hidden">

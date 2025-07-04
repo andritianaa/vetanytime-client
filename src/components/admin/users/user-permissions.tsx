@@ -32,37 +32,37 @@ export function ClientPermissions({
 
   // Available roles
   const availableRoles = [
-    { id: "CLIENT", name: "Client", description: "Basic client access" },
+    { id: "CLIENT", name: "Client", description: "Accès basique du client" },
     {
       id: "ADMIN",
       name: "Admin",
-      description: "Administrative access to manage clients and content",
+      description: "Accès administratif pour gérer les clients et le contenu",
     },
     {
       id: "SUPERADMIN",
       name: "Super Admin",
-      description: "Full system access with no restrictions",
+      description: "Accès complet au système sans aucune restriction",
     },
     {
       id: "MODERATOR",
-      name: "Moderator",
+      name: "Modérateur",
       description: "Can moderate content and clients",
     },
     {
       id: "DEV",
-      name: "Developer",
-      description: "Access to developer tools and APIs",
+      name: "Développeur",
+      description: "Accès aux outils de développement et aux API",
     },
-    { id: "SUPPORT", name: "Support", description: "Customer support access" },
+    { id: "SUPPORT", name: "Support", description: "Accès au support client" },
     {
       id: "EDITOR",
-      name: "Editor",
-      description: "Can edit and publish content",
+      name: "Editeur",
+      description: "Peut éditer et publier du contenu",
     },
     {
       id: "VIEWER",
-      name: "Viewer",
-      description: "Read-only access to content",
+      name: "Lecteur",
+      description: "Accès en lecture seule au contenu",
     },
   ];
 
@@ -118,21 +118,21 @@ export function ClientPermissions({
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle>Client Permissions</CardTitle>
+            <CardTitle>Pérmission du client</CardTitle>
             <CardDescription>
-              Manage client roles and permissions
+              Gérer les rôles et les autorisations des clients
             </CardDescription>
           </div>
           <Button variant="outline" onClick={() => setIsEditing(!isEditing)}>
-            {isEditing ? "Cancel" : "Edit Permissions"}
+            {isEditing ? "Annuler" : "Modifier permissions"}
           </Button>
         </CardHeader>
         <CardContent>
           {isEditing ? (
             <div className="space-y-4">
               <p className="text-sm text-muted-foreground">
-                Select the roles you want to assign to this client. Each role
-                grants specific permissions.
+                Sélectionnez les rôles que vous souhaitez attribuer à ce client.
+                Chaque rôle accorde des autorisations spécifiques.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {availableRoles.map((role) => (
@@ -174,7 +174,7 @@ export function ClientPermissions({
                 ) : (
                   <div className="flex items-center text-muted-foreground">
                     <X className="h-4 w-4 mr-2" />
-                    <span>No roles assigned</span>
+                    <span>Pas de rôle assigné</span>
                   </div>
                 )}
               </div>
@@ -209,7 +209,7 @@ export function ClientPermissions({
                 setIsEditing(false);
               }}
             >
-              Cancel
+              Annuler
             </Button>
             <Button onClick={handleSavePermissions} disabled={isLoading}>
               {isLoading ? (
@@ -220,7 +220,7 @@ export function ClientPermissions({
               ) : (
                 <>
                   <Check className="mr-2 h-4 w-4" />
-                  Save Permissions
+                  Enregistrer permissions
                 </>
               )}
             </Button>

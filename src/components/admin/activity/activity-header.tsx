@@ -36,7 +36,7 @@ export function ActivityHeader({
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>
-                <BreadcrumbPage>Client Activity</BreadcrumbPage>
+                <BreadcrumbPage>Activité du client</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -46,16 +46,16 @@ export function ActivityHeader({
       <div className="flex flex-col space-y-4 md:flex-row md:justify-between md:space-y-0 p-6">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">
-            Client Activity Log
+            Journal d'activité du client
           </h2>
           <p className="text-muted-foreground">
-            Monitor and analyze client actions across the platform
+            Surveiller et analyser les actions des clients sur la plateforme
           </p>
         </div>
 
         <div className="flex items-center space-x-2">
           <Input
-            placeholder="Search activities..."
+            placeholder="Recherche activité..."
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
