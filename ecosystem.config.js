@@ -1,11 +1,11 @@
 module.exports = {
     apps: [
         {
-            name: "Vetanytime prod",
+            name: "Vetanytime client",
             script: "npm",
             args: "start",
             env: {
-                PORT: 3000,
+                PORT: 3042,
                 NODE_ENV: "production"
             }
         }
