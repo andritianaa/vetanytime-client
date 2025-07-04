@@ -1,4 +1,3 @@
-import { logger } from 'better-auth';
 
 import { prisma } from '@/prisma';
 
@@ -22,7 +21,6 @@ export async function GET() {
       status: 200,
     });
   } catch (error) {
-    logger.error("Erreur récupération careTypes :", error);
     return new Response(JSON.stringify({ message: "Erreur interne serveur" }), {
       status: 500,
     });

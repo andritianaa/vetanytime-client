@@ -1,4 +1,3 @@
-import { logger } from 'better-auth';
 import { NextResponse } from 'next/server';
 
 import { prisma } from '@/prisma';
@@ -28,7 +27,6 @@ export async function GET(request: Request) {
       status: 200,
     });
   } catch (error) {
-    logger.error("Erreur récupération consultations :", error);
     return NextResponse.json(
       { message: "Erreur interne serveur" },
       { status: 500 },
