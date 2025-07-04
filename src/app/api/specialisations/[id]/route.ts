@@ -33,10 +33,11 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } },
+  context: any
 ) {
   try {
-    const { id } = params;
+    const { params } = context
+    const id = params.id.toString()
 
     await prisma.specialisation.delete({
       where: { id },
