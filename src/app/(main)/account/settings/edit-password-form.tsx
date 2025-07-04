@@ -110,9 +110,9 @@ export function EditPasswordForm() {
   return (
     <Card className="max-lg:shadow-none max-lg:border-none">
       <CardHeader>
-        <CardTitle>Change Password</CardTitle>
+        <CardTitle>Changer de mot de passe</CardTitle>
         <CardDescription>
-          Update your password to keep your account secure.
+          Mettez à jour votre mot de passe pour sécuriser votre compte.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -123,12 +123,12 @@ export function EditPasswordForm() {
               name="currentPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Current Password</FormLabel>
+                  <FormLabel>Mot de passe actuel</FormLabel>
                   <FormControl>
                     <div className="relative">
                       <Input
                         type={showCurrentPassword ? "text" : "password"}
-                        placeholder="Enter your current password"
+                        placeholder="Votre mot de passe actuel"
                         {...field}
                       />
                       <button
@@ -139,8 +139,8 @@ export function EditPasswordForm() {
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
                         aria-label={
                           showCurrentPassword
-                            ? "Hide password"
-                            : "Show password"
+                            ? "Afficher le mot de passe"
+                            : "Masquer le mot de passe"
                         }
                       >
                         {showCurrentPassword ? (
@@ -161,12 +161,12 @@ export function EditPasswordForm() {
               name="newPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>New Password</FormLabel>
+                  <FormLabel>Nouveau mot de passe</FormLabel>
                   <FormControl>
                     <div className="relative">
                       <Input
                         type={showNewPassword ? "text" : "password"}
-                        placeholder="Enter your new password"
+                        placeholder="Entrer votre nouveau mot de passe"
                         {...field}
                       />
                       <button

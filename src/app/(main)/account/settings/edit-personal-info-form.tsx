@@ -1,7 +1,5 @@
 "use client";
 
-import type React from "react";
-
 import { Loader2, Save, Upload, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -21,6 +19,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useClient } from '@/hooks/use-user';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import type React from "react";
 // Définir le schéma de validation
 const profileFormSchema = z.object({
   fullname: z.string().optional(),
@@ -30,7 +29,7 @@ const profileFormSchema = z.object({
   email: z.string().email({
     message: "Please enter a valid email address.",
   }),
-  theme: z.enum(["light", "dark", "system"]),
+  theme: z.enum(["light", "dark", "system"]).optional(),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -38,8 +37,7 @@ type ProfileFormValues = z.infer<typeof profileFormSchema>;
 export function EditPersonalInfoForm() {
   const { toast } = useToast();
   const router = useRouter();
-  const { client, mutate, isLoading: isClientLoading } = useClient();
-  const [isLoading, setIsLoading] = useState(true);
+  const { client, mutate, isLoading: isClientLoading, isError } = useClient();
   const [isSaving, setIsSaving] = useState(false);
   const {
     uploadFile,
@@ -59,28 +57,22 @@ export function EditPersonalInfoForm() {
       email: "",
       theme: "light",
     },
+    mode: "onChange",
   });
 
-  // Charger les données de l'utilisateur
+  // Charger les données de l'utilisateur quand elles sont disponibles
   useEffect(() => {
-    if (client) {
-      setProfileImage(client.image);
-
+    if (client && !isClientLoading) {
+      console.log("Loading client data:", client); // Debug
+      setProfileImage(client.image || null);
       form.reset({
         fullname: client.fullname || "",
-        username: client.username,
-        email: client.email,
-      });
-    } else {
-      form.reset({
-        fullname: "",
-        username: "",
-        email: "",
+        username: client.username || "",
+        email: client.email || "",
         theme: "light",
       });
     }
-    setIsLoading(false);
-  }, [form, isClientLoading]);
+  }, [client, isClientLoading, form]);
 
   // Gérer le changement d'image
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,7 +84,7 @@ export function EditPersonalInfoForm() {
       toast({
         title: "Type de fichier non supporté",
         description: "Veuillez sélectionner une image (JPG, PNG, etc.)",
-        variant: "error",
+        variant: "destructive",
       });
       return;
     }
@@ -102,7 +94,7 @@ export function EditPersonalInfoForm() {
       toast({
         title: "Fichier trop volumineux",
         description: "La taille de l'image ne doit pas dépasser 5MB",
-        variant: "error",
+        variant: "destructive",
       });
       return;
     }
@@ -113,12 +105,15 @@ export function EditPersonalInfoForm() {
       setProfileImage(e.target?.result as string);
     };
     reader.readAsDataURL(file);
-
     setNewImageFile(file);
   };
 
   // Gérer la soumission du formulaire
   const onSubmit = async (data: ProfileFormValues) => {
+    console.log("=== FORM SUBMISSION STARTED ===");
+    console.log("Form data:", data);
+    console.log("Form state:", form.formState);
+
     setIsSaving(true);
 
     try {
@@ -126,13 +121,17 @@ export function EditPersonalInfoForm() {
 
       // Upload de la nouvelle image si nécessaire
       if (newImageFile) {
+        console.log("Uploading new image...");
         const mediaResult = await uploadFile(newImageFile);
         if (mediaResult) {
           imageUrl = mediaResult.url;
+          console.log("Image uploaded successfully:", imageUrl);
         } else {
           throw new Error("Échec de l'upload de l'image");
         }
       }
+
+      console.log("Sending API request with:", { ...data, image: imageUrl });
 
       // Mettre à jour le profil
       const response = await fetch("/api/user", {
@@ -146,29 +145,54 @@ export function EditPersonalInfoForm() {
         }),
       });
 
-      if (!response.ok) throw new Error("Échec de la mise à jour du profil");
+      console.log("API response status:", response.status);
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        console.error("API error:", errorData);
+        throw new Error(
+          `Échec de la mise à jour du profil: ${response.status}`
+        );
+      }
+
+      const result = await response.json();
+      console.log("API response:", result);
 
       toast({
         title: "Profil mis à jour",
         description: "Vos informations ont été mises à jour avec succès.",
       });
 
-      // Rafraîchir les données
-      router.refresh();
+      // Rafraîchir les données SWR
+      await mutate();
+      setNewImageFile(null);
+
+      console.log("=== FORM SUBMISSION COMPLETED ===");
     } catch (error) {
+      console.error("=== FORM SUBMISSION ERROR ===", error);
       toast({
         title: "Erreur",
         description:
           error instanceof Error ? error.message : "Une erreur est survenue",
-        variant: "error",
+        variant: "destructive",
       });
     } finally {
       setIsSaving(false);
-      setNewImageFile(null);
     }
   };
 
-  if (isLoading) {
+  // Gérer les erreurs de validation
+  const onError = (errors: any) => {
+    console.log("=== FORM VALIDATION ERRORS ===", errors);
+    toast({
+      title: "Erreur de validation",
+      description: "Veuillez corriger les erreurs dans le formulaire.",
+      variant: "destructive",
+    });
+  };
+
+  // Afficher le loader pendant le chargement initial
+  if (isClientLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -176,17 +200,33 @@ export function EditPersonalInfoForm() {
     );
   }
 
+  // Afficher l'erreur si pas de client
+  if (isError || !client) {
+    return (
+      <Card className="max-lg:shadow-none max-lg:border-none">
+        <CardContent className="flex items-center justify-center p-8">
+          <p className="text-destructive">
+            Erreur lors du chargement des données utilisateur
+          </p>
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
     <Card className="max-lg:shadow-none max-lg:border-none">
       <CardHeader>
-        <CardTitle>Personnal informations</CardTitle>
+        <CardTitle>Informations personnelles</CardTitle>
         <CardDescription>
-          Update your personal information and profile picture.
+          Mettez à jour vos informations personnelles et votre photo de profil.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form
+            onSubmit={form.handleSubmit(onSubmit, onError)}
+            className="space-y-8"
+          >
             <div className="flex flex-col md:flex-row gap-8">
               <div className="flex flex-col items-center space-y-4">
                 <div className="relative">
@@ -201,7 +241,6 @@ export function EditPersonalInfoForm() {
                       <User className="h-12 w-12" />
                     </AvatarFallback>
                   </Avatar>
-
                   {isUploading && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full">
                       <div className="text-white text-sm font-medium">
@@ -209,7 +248,6 @@ export function EditPersonalInfoForm() {
                       </div>
                     </div>
                   )}
-
                   <div className="absolute -bottom-2 -right-2">
                     <label htmlFor="avatar-upload" className="cursor-pointer">
                       <div className="h-8 w-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center shadow-md hover:bg-primary/90 transition-colors">
@@ -227,7 +265,6 @@ export function EditPersonalInfoForm() {
                     />
                   </div>
                 </div>
-
                 <div className="text-center">
                   <p className="text-sm font-medium">
                     {client?.fullname || client?.username}
@@ -236,11 +273,9 @@ export function EditPersonalInfoForm() {
                     {client?.email}
                   </p>
                 </div>
-
                 {uploadError && (
                   <p className="text-sm text-destructive">{uploadError}</p>
                 )}
-
                 {isUploading && (
                   <Progress
                     value={uploadProgress}
@@ -256,21 +291,20 @@ export function EditPersonalInfoForm() {
                     name="fullname"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Name</FormLabel>
+                        <FormLabel>Nom complet</FormLabel>
                         <FormControl>
-                          <Input placeholder="Jon Doe" {...field} />
+                          <Input placeholder="John Doe" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-
                   <FormField
                     control={form.control}
                     name="username"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Username</FormLabel>
+                        <FormLabel>Nom d'utilisateur</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="votre-nom-utilisateur"
@@ -278,14 +312,13 @@ export function EditPersonalInfoForm() {
                           />
                         </FormControl>
                         <FormDescription>
-                          Your username must be unique
+                          Votre nom d'utilisateur doit être unique
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
-
                 <FormField
                   control={form.control}
                   name="email"
@@ -295,6 +328,7 @@ export function EditPersonalInfoForm() {
                       <FormControl>
                         <Input
                           placeholder="votre-email@exemple.com"
+                          type="email"
                           {...field}
                         />
                       </FormControl>
@@ -310,7 +344,10 @@ export function EditPersonalInfoForm() {
             </div>
 
             <div className="flex justify-end">
-              <Button type="submit" disabled={isSaving || isUploading}>
+              <Button
+                type="submit"
+                disabled={isSaving || isUploading || !form.formState.isValid}
+              >
                 {isSaving ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />

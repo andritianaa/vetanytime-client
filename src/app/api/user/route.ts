@@ -10,7 +10,6 @@ const updateProfileSchema = z.object({
     username: z.string().min(3).optional(),
     email: z.string().email().optional(),
     image: z.string().optional(),
-    theme: z.enum(["light", "dark", "system"]).optional(),
 })
 
 // GET: Récupérer les informations du profil de l'utilisateur connecté
@@ -94,6 +93,8 @@ export async function PUT(request: Request) {
         if (error instanceof z.ZodError) {
             return NextResponse.json({ error: "Invalid data", details: error.errors }, { status: 400 })
         }
+        console.log(error);
+
         return NextResponse.json({ error: "Erreur serveur" }, { status: 500 })
     }
 }

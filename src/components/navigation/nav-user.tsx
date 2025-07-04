@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, ChevronsUpDown, CreditCard, Lock, LogOut, Settings } from 'lucide-react';
+import { ChevronsUpDown, Lock, LogOut, PawPrint, Settings } from 'lucide-react';
 import Link from 'next/link';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -68,31 +68,29 @@ export function NavClient({
             <Link href={"/account/security"}>
               <DropdownMenuItem>
                 <Lock />
-                Security
+                Sécurité
               </DropdownMenuItem>
             </Link>
             <Link href={"/account/settings"}>
               <DropdownMenuItem>
                 <Settings />
-                Settings
+                Paramètres
               </DropdownMenuItem>
             </Link>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem>
-              <CreditCard />
-              Billing
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Bell />
-              Notifications
-            </DropdownMenuItem>
+            <Link href={"/account/pets"}>
+              <DropdownMenuItem>
+                <PawPrint />
+                Animaux
+              </DropdownMenuItem>
+            </Link>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="text-red-500 hover:text-red-600 dark:text-red-400">
             <LogOut />
-            Log out
+            Deconnexion
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

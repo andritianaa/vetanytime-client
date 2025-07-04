@@ -4,7 +4,7 @@ model Client {
     image                    String
     username                 String               @unique
     email                    String               @unique
-    language                 String               @default("en")
+    language                 String               @default("fr")
     description              String?
     password                 String
     createdAt                DateTime             @default(now())
