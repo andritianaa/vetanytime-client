@@ -206,7 +206,7 @@ const SearchFormContent = () => {
 
   return (
     <div className="flex w-full gap-2">
-      {/* Sélecteur de type de soin */}
+      {/* Sélecteur de profession */}
       <Popover open={openCareType} onOpenChange={setOpenCareType}>
         <PopoverTrigger asChild>
           <Button
@@ -226,11 +226,11 @@ const SearchFormContent = () => {
         <PopoverContent className="w-[300px] p-0">
           <Command>
             <CommandInput
-              placeholder="Rechercher un type de soin..."
+              placeholder="Rechercher un profession..."
               className="h-9"
             />
             <CommandList>
-              <CommandEmpty>Aucun type de soin trouvé.</CommandEmpty>
+              <CommandEmpty>Aucun profession trouvé.</CommandEmpty>
               <CommandGroup>
                 {careTypeOptions.map((careType) => (
                   <CommandItem

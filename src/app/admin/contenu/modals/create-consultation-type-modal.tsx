@@ -1,19 +1,31 @@
 "use client";
 
 import type React from "react";
-import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
-import { addConsultationType, updateConsultationType } from '@/actions/admin/list.actions';
-import { Button } from '@/components/ui/button';
 import {
-    Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+  addConsultationType,
+  updateConsultationType,
+} from "@/actions/admin/list.actions";
+import { Button } from "@/components/ui/button";
 import {
-    Select, SelectContent, SelectItem, SelectTrigger, SelectValue
-} from '@/components/ui/select';
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type CareType = {
   id: string;
@@ -130,7 +142,7 @@ export function CreateConsultationTypeModal({
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="careType">Type de soin</Label>
+              <Label htmlFor="careType">profession</Label>
               <Select
                 value={formData.careTypeId}
                 onValueChange={(value) =>
@@ -138,7 +150,7 @@ export function CreateConsultationTypeModal({
                 }
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Sélectionnez un type de soin" />
+                  <SelectValue placeholder="Sélectionnez un profession" />
                 </SelectTrigger>
                 <SelectContent>
                   {careTypes.map((careType) => (

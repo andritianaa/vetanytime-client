@@ -1,16 +1,21 @@
 "use client";
 
 import type React from "react";
-import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
-import { addCareType, updateCareType } from '@/actions/admin/list.actions';
-import { Button } from '@/components/ui/button';
+import { addCareType, updateCareType } from "@/actions/admin/list.actions";
+import { Button } from "@/components/ui/button";
 import {
-    Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 type CareType = {
   id: string;
@@ -61,10 +66,10 @@ export function CreateCareTypeModal({
     try {
       if (isEditing && editData) {
         await updateCareType(editData.id, name.trim());
-        toast.success("Type de soin modifié avec succès");
+        toast.success("profession modifié avec succès");
       } else {
         await addCareType(name.trim());
-        toast.success("Type de soin ajouté avec succès");
+        toast.success("profession ajouté avec succès");
       }
 
       setName("");
@@ -72,8 +77,8 @@ export function CreateCareTypeModal({
     } catch (error) {
       toast.error(
         isEditing
-          ? "Erreur lors de la modification du type de soin"
-          : "Erreur lors de l'ajout du type de soin"
+          ? "Erreur lors de la modification du profession"
+          : "Erreur lors de l'ajout du profession"
       );
     } finally {
       setLoading(false);
@@ -85,18 +90,18 @@ export function CreateCareTypeModal({
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>
-            {isEditing ? "Modifier le type de soin" : "Ajouter un type de soin"}
+            {isEditing ? "Modifier le profession" : "Ajouter un profession"}
           </DialogTitle>
           <DialogDescription>
             {isEditing
-              ? "Modifiez les informations du type de soin"
-              : "Créez un nouveau type de soin dans le système"}
+              ? "Modifiez les informations du profession"
+              : "Créez un nouveau profession dans le système"}
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
-              <Label htmlFor="name">Nom du type de soin</Label>
+              <Label htmlFor="name">Nom du profession</Label>
               <Input
                 id="name"
                 value={name}

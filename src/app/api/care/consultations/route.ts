@@ -7,13 +7,13 @@ export async function GET(request: Request) {
     const url = new URL(request.url);
     const careTypeId = url.searchParams.get("careTypeId");
     console.log(
-      "Récupération des consultations pour le type de soin :",
+      "Récupération des consultations pour le profession :",
       careTypeId,
     );
 
     if (!careTypeId) {
       return NextResponse.json(
-        { message: "ID du type de soin manquant" },
+        { message: "ID du profession manquant" },
         { status: 400 },
       );
     }

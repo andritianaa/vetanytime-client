@@ -1,31 +1,56 @@
 "use client";
 
-import { Edit, Heart, MapPin, Plus, Search, Stethoscope, Trash2 } from 'lucide-react';
-import { useState } from 'react';
-import useSWR from 'swr';
+import {
+  Edit,
+  Heart,
+  MapPin,
+  Plus,
+  Search,
+  Stethoscope,
+  Trash2,
+} from "lucide-react";
+import { useState } from "react";
+import useSWR from "swr";
 
 import {
-    AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription,
-    AlertDialogFooter, AlertDialogHeader, AlertDialogTitle
-} from '@/components/ui/alert-dialog';
-import { Badge } from '@/components/ui/badge';
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { Badge } from "@/components/ui/badge";
 import {
-    Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator
-} from '@/components/ui/breadcrumb';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Separator } from '@/components/ui/separator';
-import { SidebarTrigger } from '@/components/ui/sidebar';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useToast } from '@/hooks/use-toast';
-import { Breed, Specialisation } from '@prisma/client';
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from "@/hooks/use-toast";
+import { Breed, Specialisation } from "@prisma/client";
 
-import { CreateBreadModal } from './modals/create-breed-modal';
-import { CreateCareTypeModal } from './modals/create-care-type-modal';
-import { CreateCityModal } from './modals/create-city-modal';
-import { CreateConsultationTypeModal } from './modals/create-consultation-type-modal';
-import { CreateSpecialisationModal } from './modals/create-specialisation-modal';
+import { CreateBreadModal } from "./modals/create-breed-modal";
+import { CreateCareTypeModal } from "./modals/create-care-type-modal";
+import { CreateCityModal } from "./modals/create-city-modal";
+import { CreateConsultationTypeModal } from "./modals/create-consultation-type-modal";
+import { CreateSpecialisationModal } from "./modals/create-specialisation-modal";
 
 const fetcher = async (url: string) =>
   fetch(url).then(async (res) => res.json());
@@ -465,7 +490,7 @@ export default function Page() {
                   className="flex items-center gap-2"
                 >
                   <Plus className="h-4 w-4" />
-                  Ajouter un type de soin
+                  Ajouter un profession
                 </Button>
               </CardHeader>
               <CardContent>
@@ -473,7 +498,7 @@ export default function Page() {
                   <div className="relative">
                     <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400" />
                     <Input
-                      placeholder="Rechercher un type de soin..."
+                      placeholder="Rechercher un profession..."
                       value={careTypeSearch}
                       onChange={(e) => setCareTypeSearch(e.target.value)}
                       className="pl-10"
@@ -495,12 +520,12 @@ export default function Page() {
                   filteredCareTypes.length === 0 &&
                   careTypeSearch && (
                     <div className="py-8 text-center text-gray-500">
-                      Aucun type de soin trouvé pour "{careTypeSearch}"
+                      Aucun profession trouvé pour "{careTypeSearch}"
                     </div>
                   )}
                 {careTypes && careTypes.length === 0 && !careTypeSearch && (
                   <div className="py-8 text-center text-gray-500">
-                    Aucun type de soin trouvé
+                    Aucun profession trouvé
                   </div>
                 )}
                 {filteredCareTypes && filteredCareTypes.length > 0 && (
@@ -557,7 +582,7 @@ export default function Page() {
                 <div>
                   <CardTitle>Types de consultations</CardTitle>
                   <CardDescription>
-                    Gérez les différents types de consultations par type de soin
+                    Gérez les différents types de consultations par profession
                   </CardDescription>
                 </div>
                 <Button
@@ -573,7 +598,7 @@ export default function Page() {
                   <div className="relative">
                     <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400" />
                     <Input
-                      placeholder="Rechercher un type de consultation ou type de soin..."
+                      placeholder="Rechercher un type de consultation ou profession..."
                       value={consultationTypeSearch}
                       onChange={(e) =>
                         setConsultationTypeSearch(e.target.value)
