@@ -38,13 +38,13 @@ export const SectionLayout = ({
       className={cn(
         {
           "bg-background text-foreground": variant === "default",
-          "dark:bg-card text-card-foreground bg-[#f5f5f5]": variant === "card",
+          "text-card-foreground bg-[#f5f5f5]": variant === "card",
           "bg-primary text-primary-foreground": variant === "primary",
           "bg-foreground text-background": variant === "invert",
           "text-foreground backdrop-blur-sm backdrop-brightness-75":
             variant === "image",
         },
-        containerClassName,
+        containerClassName
       )}
       {...props}
     >
@@ -56,7 +56,7 @@ export const SectionLayout = ({
             "max-w-5xl": size === "base",
             "max-w-6xl": size === "lg",
           },
-          className,
+          className
         )}
       >
         {children}

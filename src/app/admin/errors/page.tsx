@@ -1,39 +1,65 @@
 "use client";
 
-import { Calendar, Check, Filter, RefreshCw, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import useSWR from 'swr';
+import { Calendar, Check, Filter, RefreshCw, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 import {
-    Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator
-} from '@/components/ui/breadcrumb';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import {
-    Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle
-} from '@/components/ui/dialog';
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
-    DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel,
-    DropdownMenuSeparator, DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
-    Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext,
-    PaginationPrevious
-} from '@/components/ui/pagination';
-import { ScrollArea } from '@/components/ui/scroll-area';
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
-    Select, SelectContent, SelectItem, SelectTrigger, SelectValue
-} from '@/components/ui/select';
-import { Separator } from '@/components/ui/separator';
-import { SidebarTrigger } from '@/components/ui/sidebar';
-import { Switch } from '@/components/ui/switch';
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Switch } from "@/components/ui/switch";
 import {
-    Table, TableBody, TableCell, TableHead, TableHeader, TableRow
-} from '@/components/ui/table';
-import { useToast } from '@/hooks/use-toast';
-import { fetcher } from '@/lib/utils';
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { useToast } from "@/hooks/use-toast";
+import { fetcher } from "@/lib/utils";
 
 interface ErrorLog {
   id: string;
@@ -145,13 +171,13 @@ export default function AdminErrorsDashboard() {
   const getLevelBadgeColor = (level: string) => {
     switch (level.toUpperCase()) {
       case "ERROR":
-        return "bg-red-100 text-red-800 dark:text-red-200";
+        return "bg-red-100 text-red-800";
       case "WARN":
-        return "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200";
+        return "bg-amber-100 text-amber-800";
       case "INFO":
-        return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200";
+        return "bg-blue-100 text-blue-800";
       default:
-        return "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200";
+        return "bg-gray-100 text-gray-800";
     }
   };
 
@@ -790,7 +816,7 @@ export default function AdminErrorsDashboard() {
                 {selectedError.resolved && selectedError.resolution && (
                   <div>
                     <Label>Resolution</Label>
-                    <p className="text-sm mt-1 p-3 bg-green-50 border border-green-100 rounded-md dark:bg-green-900/20 dark:border-green-900/30">
+                    <p className="text-sm mt-1 p-3 bg-green-50 border border-green-100 rounded-md">
                       {selectedError.resolution}
                     </p>
                   </div>

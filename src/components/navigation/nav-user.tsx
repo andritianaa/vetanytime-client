@@ -1,15 +1,20 @@
 "use client";
 
-import { ChevronsUpDown, Lock, LogOut, PawPrint, Settings } from 'lucide-react';
-import Link from 'next/link';
+import { ChevronsUpDown, Lock, LogOut, PawPrint, Settings } from "lucide-react";
+import Link from "next/link";
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
-    DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel,
-    DropdownMenuSeparator, DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
-import { Skeleton } from '@/components/ui/skeleton';
-import { useClient } from '@/hooks/use-user';
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useClient } from "@/hooks/use-user";
 
 export function NavClient({
   variant = "full",
@@ -88,7 +93,7 @@ export function NavClient({
             </Link>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="text-red-500 hover:text-red-600 dark:text-red-400">
+          <DropdownMenuItem className="text-red-500 hover:text-red-600 ">
             <LogOut />
             Deconnexion
           </DropdownMenuItem>

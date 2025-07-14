@@ -1,10 +1,10 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Image from 'next/image';
-import { useCallback, useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
 
-import { SectionLayout } from '@/components/landing/section-layout';
+import { SectionLayout } from "@/components/landing/section-layout";
 
 const reviews = [
   {
@@ -74,10 +74,7 @@ export const ReviewItem = () => {
     return parts.map((part, index) => {
       if (part.startsWith("**") && part.endsWith("**")) {
         return (
-          <strong
-            key={index}
-            className="font-semibold text-gray-900 dark:text-gray-300"
-          >
+          <strong key={index} className="font-semibold text-gray-900 ">
             {part.slice(2, -2)}
           </strong>
         );
@@ -87,7 +84,7 @@ export const ReviewItem = () => {
   };
 
   return (
-    <div className="relative mx-auto flex max-w-md flex-col items-center justify-center overflow-hidden rounded-2xl bg-white p-8 dark:border-none dark:bg-black">
+    <div className="relative mx-auto flex max-w-md flex-col items-center justify-center overflow-hidden rounded-2xl bg-white p-8 ">
       {/* Client Badge */}
       <div className="mb-6 flex justify-center">
         <div className="bg-primary/10 text-primary inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium">
@@ -113,10 +110,10 @@ export const ReviewItem = () => {
         }`}
       >
         <div className="mb-8 text-center">
-          <p className="mb-4 text-lg leading-relaxed text-gray-700 dark:text-gray-400">
+          <p className="mb-4 text-lg leading-relaxed text-gray-700">
             {parseReviewText(currentReview.review)}
           </p>
-          <p className="text-sm font-medium text-gray-500 dark:text-gray-500">
+          <p className="text-sm font-medium text-gray-500">
             {currentReview.role}
           </p>
         </div>
@@ -127,7 +124,7 @@ export const ReviewItem = () => {
         <button
           onClick={prevSlide}
           disabled={isTransitioning}
-          className="hover:bg-muted flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-2 border-gray-300 transition-all duration-200 hover:border-gray-400 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-700 dark:hover:border-gray-600"
+          className="hover:bg-muted flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-2 border-gray-300 transition-all duration-200 hover:border-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
           aria-label="Previous review"
         >
           <ChevronLeft className="h-5 w-5 text-gray-600" />
@@ -136,7 +133,7 @@ export const ReviewItem = () => {
         <button
           onClick={nextSlide}
           disabled={isTransitioning}
-          className="hover:bg-muted flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-2 border-gray-300 transition-all duration-200 hover:border-gray-400 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700"
+          className="hover:bg-muted flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-2 border-gray-300 transition-all duration-200 hover:border-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
           aria-label="Next review"
         >
           <ChevronRight className="h-5 w-5 text-gray-600" />
@@ -176,7 +173,7 @@ export const ReviewTriple = () => {
       </p>
       <div className="flex gap-4">
         <ReviewItem />
-        <div className="dark:bg-muted grid grid-cols-2 gap-2 rounded-2xl bg-white p-4">
+        <div className="grid grid-cols-2 gap-2 rounded-2xl bg-white p-4">
           <Image
             src="https://images.pexels.com/photos/5214997/pexels-photo-5214997.jpeg"
             alt="Team collaboration"

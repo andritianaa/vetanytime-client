@@ -1,8 +1,8 @@
-import { MDXRemote } from 'next-mdx-remote-client/rsc';
+import { MDXRemote } from "next-mdx-remote-client/rsc";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
-import { rehypePlugins, remarkPlugins } from './markdown.config';
+import { rehypePlugins, remarkPlugins } from "./markdown.config";
 
 interface ServerMdxProps {
   source: string;
@@ -14,7 +14,7 @@ const MdxComponent = {} satisfies Record<string, React.ComponentType>;
 
 export const ServerMdx = (props: ServerMdxProps) => {
   return (
-    <div className={cn("prose dark:prose-invert", props.className)}>
+    <div className={cn("prose ", props.className)}>
       <RenderMdx {...props} />
     </div>
   );

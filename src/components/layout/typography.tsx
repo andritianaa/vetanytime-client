@@ -1,7 +1,7 @@
-import { cva } from 'class-variance-authority';
-import React, { forwardRef } from 'react';
+import { cva } from "class-variance-authority";
+import React, { forwardRef } from "react";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
 import type { VariantProps } from "class-variance-authority";
 import type { ComponentPropsWithRef, ElementType, ForwardedRef } from "react";
@@ -31,7 +31,7 @@ export const typographyVariants = cva("", {
       large: "text-lg font-semibold",
       small: "text-sm font-medium leading-none",
       muted: "text-muted-foreground text-sm",
-      link: "dark:text-primary font-medium text-cyan-600 hover:underline",
+      link: "font-medium text-cyan-600 hover:underline",
     },
   },
   defaultVariants: {

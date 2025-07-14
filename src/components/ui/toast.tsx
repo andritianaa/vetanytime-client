@@ -74,7 +74,7 @@ const Toast = React.forwardRef<
       case "success":
         Icon = (
           <RiCheckboxCircleFill
-            className="size-5 shrink-0 text-emerald-600 dark:text-emerald-500"
+            className="size-5 shrink-0 text-emerald-600 "
             aria-hidden="true"
           />
         );
@@ -82,7 +82,7 @@ const Toast = React.forwardRef<
       case "warning":
         Icon = (
           <RiErrorWarningFill
-            className="size-5 shrink-0 text-amber-500 dark:text-amber-500"
+            className="size-5 shrink-0 text-amber-500 "
             aria-hidden="true"
           />
         );
@@ -90,7 +90,7 @@ const Toast = React.forwardRef<
       case "error":
         Icon = (
           <RiCloseCircleFill
-            className="size-5 shrink-0 text-red-600 dark:text-red-500"
+            className="size-5 shrink-0 text-red-600 "
             aria-hidden="true"
           />
         );
@@ -98,7 +98,7 @@ const Toast = React.forwardRef<
       case "destructive":
         Icon = (
           <RiCloseCircleFill
-            className="size-5 shrink-0 text-red-600 dark:text-red-500"
+            className="size-5 shrink-0 text-red-600 "
             aria-hidden="true"
           />
         );
@@ -106,7 +106,7 @@ const Toast = React.forwardRef<
       case "loading":
         Icon = (
           <RiLoader2Fill
-            className="size-5 shrink-0 animate-spin text-gray-600 dark:text-gray-500"
+            className="size-5 shrink-0 animate-spin text-gray-600 "
             aria-hidden="true"
           />
         );
@@ -114,7 +114,7 @@ const Toast = React.forwardRef<
       default:
         Icon = (
           <RiInformationFill
-            className="size-5 shrink-0 text-blue-500 dark:text-blue-500"
+            className="size-5 shrink-0 text-blue-500 "
             aria-hidden="true"
           />
         );
@@ -128,9 +128,9 @@ const Toast = React.forwardRef<
           // base
           "flex h-fit min-h-16 w-full overflow-hidden rounded-md border shadow-lg shadow-black/5",
           // background color
-          "bg-white dark:bg-[#090E1A]",
+          "bg-white ",
           // border color
-          "border-gray-200 dark:border-gray-800",
+          "border-gray-200 ",
           // swipe
           "data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none",
           // transition
@@ -146,20 +146,18 @@ const Toast = React.forwardRef<
             // base
             "flex flex-1 items-start gap-3 p-4",
             // border
-            !disableDismiss || action
-              ? "border-r border-gray-200 dark:border-gray-800"
-              : ""
+            !disableDismiss || action ? "border-r border-gray-200 " : ""
           )}
         >
           {Icon}
           <div className="flex flex-col gap-1">
             {title && (
-              <ToastPrimitives.Title className="text-sm font-semibold text-gray-900 dark:text-gray-50">
+              <ToastPrimitives.Title className="text-sm font-semibold text-gray-900">
                 {title}
               </ToastPrimitives.Title>
             )}
             {description && (
-              <ToastPrimitives.Description className="text-sm text-gray-600 dark:text-gray-400">
+              <ToastPrimitives.Description className="text-sm text-gray-600">
                 {description}
               </ToastPrimitives.Description>
             )}
@@ -174,13 +172,13 @@ const Toast = React.forwardRef<
                   // base
                   "flex flex-1 items-center justify-center px-6 text-sm font-semibold transition-colors",
                   // hover
-                  "hover:bg-gray-50 hover:dark:bg-gray-900/30",
+                  "hover:bg-gray-50",
                   // text color
-                  "text-gray-800 dark:text-gray-100",
+                  "text-gray-800",
                   // active
-                  "active:bg-gray-100 active:dark:bg-gray-800",
+                  "active:bg-gray-100",
                   {
-                    "text-red-600 dark:text-red-500": variant === "error",
+                    "text-red-600": variant === "error",
                   }
                 )}
                 onClick={(event) => {
@@ -191,7 +189,7 @@ const Toast = React.forwardRef<
               >
                 {action.label}
               </ToastPrimitives.Action>
-              <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
+              <div className="h-px w-full bg-gray-200" />
             </>
           )}
           {!disableDismiss && (
@@ -200,9 +198,9 @@ const Toast = React.forwardRef<
                 // base
                 "flex flex-1 items-center justify-center px-6 text-sm transition-colors",
                 // text color
-                "text-gray-600 dark:text-gray-400",
+                "text-gray-600",
                 // hover
-                "hover:bg-gray-50 hover:dark:bg-gray-900/30",
+                "hover:bg-gray-50",
                 // active
                 "active:bg-gray-100",
                 action ? "h-1/2" : "h-full"
