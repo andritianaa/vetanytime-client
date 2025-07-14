@@ -1,19 +1,33 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { ActivityIcon, Clock, LogOut, Trash } from 'lucide-react';
+import { motion } from "framer-motion";
+import { ActivityIcon, Clock, LogOut, Trash } from "lucide-react";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
-    Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle
-} from '@/components/ui/card';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { cn } from '@/lib/utils';
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 import {
-    formatDate, getDeviceIcon, getRelativeTime, isCurrentSession, item
-} from './session-utils';
+  formatDate,
+  getDeviceIcon,
+  getRelativeTime,
+  isCurrentSession,
+  item,
+} from "./session-utils";
 
 import type { Session } from "@/types/session";
 interface SessionCardProps {
@@ -38,9 +52,7 @@ export function SessionCard({
       <Card
         className={cn(
           "overflow-hidden transition-all duration-200 hover:shadow-md",
-          isCurrent
-            ? "border-primary border-2 bg-primary/5 dark:bg-primary/10"
-            : ""
+          isCurrent ? "border-primary border-2 bg-primary/5" : ""
         )}
       >
         <CardHeader className="pb-2">

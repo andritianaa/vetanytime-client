@@ -109,9 +109,9 @@ export const Services = () => {
   }, [showPlayPause]);
 
   return (
-    <div className="flex bg-[#d3d3d3] py-16 dark:bg-[#0e0e0e]">
+    <div className="flex bg-[#d3d3d3] py-16">
       <div className="mx-auto w-full max-w-6xl p-6">
-        <Card className="overflow-hidden rounded-xl border-none bg-white p-0 shadow-none dark:bg-black">
+        <Card className="overflow-hidden rounded-xl border-none bg-white p-0 shadow-none ">
           <div className="flex min-h-[600px] flex-col p-8 lg:flex-row">
             {/* Stories Section - Left */}
             <div className="relative overflow-hidden rounded-lg bg-gray-100 lg:w-1/2">
@@ -176,7 +176,7 @@ export const Services = () => {
                 {/* Play/Pause Indicator */}
                 {showPlayPause && (
                   <div className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-                    <div className="animate-in fade-in-0 flex h-16 w-16 items-center justify-center rounded-full bg-black/40 backdrop-blur-sm transition-all duration-200 duration-300 hover:bg-black/60">
+                    <div className="animate-in fade-in-0 flex h-16 w-16 items-center justify-center rounded-full bg-black/40 backdrop-blur-sm transition-all duration-300 hover:bg-black/60">
                       {!isPlaying ? (
                         <div className="flex gap-1">
                           <div className="h-6 w-1.5 rounded-full bg-white"></div>
@@ -215,7 +215,7 @@ export const Services = () => {
                       className={`cursor-pointer rounded-xl border-2 p-4 transition-all duration-300 ${
                         isActive
                           ? "border-primary/15 bg-primary/10 shadow-xl"
-                          : "border-transparent bg-gray-50 hover:bg-gray-100 dark:bg-[#0a0a0a]"
+                          : "border-transparent bg-gray-50 hover:bg-gray-100 "
                       }`}
                       onClick={() => goToStory(index)}
                     >
@@ -235,9 +235,7 @@ export const Services = () => {
                         <div className="flex-1">
                           <h3
                             className={`mb-2 text-lg font-semibold ${
-                              isActive
-                                ? "text-primary"
-                                : "text-gray-900 dark:text-gray-50"
+                              isActive ? "text-primary" : "text-gray-900 "
                             }`}
                           >
                             {service.title}
@@ -251,7 +249,7 @@ export const Services = () => {
                                 className={`text-xs ${
                                   isActive
                                     ? "border-primary/15 bg-primary/10 text-primary"
-                                    : "bg-gray-200 text-gray-700 dark:bg-slate-800 dark:text-slate-100"
+                                    : "bg-gray-200 text-gray-700 "
                                 }`}
                               >
                                 {tag}

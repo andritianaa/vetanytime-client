@@ -1,7 +1,9 @@
-import rehypeShiki from "@shikijs/rehype";
 import rehypeAutolinkHeading from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+
+import rehypeShiki from "@shikijs/rehype";
+
 import type { PluggableList } from "unified";
 
 const shikiPlugin = [
@@ -9,7 +11,6 @@ const shikiPlugin = [
   {
     themes: {
       light: "github-light",
-      dark: "github-dark",
     },
   },
 ] satisfies PluggableList[number];

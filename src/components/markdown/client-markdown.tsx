@@ -1,8 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import Markdown from "markdown-to-jsx";
-import { type ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithoutRef } from "react";
+
+import { cn } from "@/lib/utils";
 
 type ClientMarkdownProps = ComponentPropsWithoutRef<typeof Markdown>;
 
@@ -12,7 +13,7 @@ export const ClientMarkdown = ({
   ...props
 }: ClientMarkdownProps) => {
   return (
-    <Markdown className={cn("prose dark:prose-invert", className)} {...props}>
+    <Markdown className={cn("prose", className)} {...props}>
       {children}
     </Markdown>
   );

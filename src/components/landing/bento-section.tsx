@@ -1,7 +1,6 @@
 import { Bone, Cat, PawPrint, Store } from "lucide-react";
 
 import { Pawn } from "@/components/svg/pawn";
-import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 import { SectionLayout } from "./section-layout";
@@ -76,8 +75,8 @@ const CareCard = (props: CareCardProps) => {
   return (
     <div
       className={cn(
-        "relative h-full rounded-2xl bg-white px-6 py-10 dark:bg-black",
-        props.isPrimary && "bg-primary/10 border-primary border-2",
+        "relative h-full rounded-2xl bg-white px-6 py-10 ",
+        props.isPrimary && "bg-primary/10 border-primary border-2"
       )}
     >
       <div
@@ -85,7 +84,7 @@ const CareCard = (props: CareCardProps) => {
           "mb-4 flex size-12 items-center justify-center overflow-hidden rounded-full",
           props.isPrimary
             ? "bg-primary text-white"
-            : "dark:bg-card text-primary bg-[#f5f5f5]",
+            : " text-primary bg-[#f5f5f5]"
         )}
       >
         <props.icon />
