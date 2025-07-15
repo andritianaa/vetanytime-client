@@ -1,17 +1,29 @@
 "use client";
 
-import { Frame, Hospital, Map, PawPrint, PieChart, UserCog } from 'lucide-react';
-import * as React from 'react';
-
-import { Logo } from '@/components/logo';
 import {
-    Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton,
-    SidebarMenuItem
-} from '@/components/ui/sidebar';
+  Frame,
+  Hospital,
+  Map,
+  PawPrint,
+  PieChart,
+  UserCog,
+} from "lucide-react";
+import * as React from "react";
 
-import { NavFooter } from './nav-footer';
-import { NavMain } from './nav-main';
-import { NavClient } from './nav-user';
+import { Logo } from "@/components/logo";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+
+import { NavFooter } from "./nav-footer";
+import { NavMain } from "./nav-main";
+import { NavClient } from "./nav-user";
 
 const data = {
   navMain: [
@@ -45,17 +57,17 @@ const data = {
     },
     {
       title: "Veterinaires",
-      url: "#",
+      url: "/veterinaire/liste",
       icon: Hospital,
       isActive: true,
       items: [
         {
           title: "Liste",
-          url: "#",
+          url: "/veterinaire/liste",
         },
         {
           title: "Nouveaux",
-          url: "#",
+          url: "/veterinaire/nouveaux",
         },
       ],
     },
