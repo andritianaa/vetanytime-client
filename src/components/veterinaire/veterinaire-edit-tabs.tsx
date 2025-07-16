@@ -15,9 +15,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { OrgInfoSettings } from "@/components/veterinaire/profile/org-info-settings";
+import { OrgLocationSettings } from "@/components/veterinaire/profile/org-locations-settings";
 
 import type { VeterinaireFullProfile } from "@/types/admin-veterinaires";
-
 interface VeterinaireEditTabsProps {
   organization: VeterinaireFullProfile;
 }
@@ -85,8 +85,16 @@ export const VeterinaireEditTabs = ({
                 Gérez les informations de profil du vétérinaire.
               </p>
             </div>
-            <div>
+            <div className="space-y-6">
               <OrgInfoSettings organization={organization} />
+              <OrgLocationSettings organization={organization} />
+              {/* <OrgDescription orgId={orgId} />
+              <OrgSpecialisation orgId={orgId} />
+              <OrgExperiences orgId={orgId} />
+              <OrgFormations orgId={orgId} />
+              <OrgConferences orgId={orgId} />
+              <OrgResearches orgId={orgId} />
+              <OrgAssociations orgId={orgId} /> */}
             </div>
           </div>
         </TabsContent>

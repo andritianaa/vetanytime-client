@@ -1,6 +1,5 @@
 "use client";
 import { Camera } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { updateOrgPicture } from "@/actions/vetenarian/vet.action";
@@ -16,7 +15,6 @@ export default function OrgProfilePicture({
   currentPics,
   orgId,
 }: OrgProfilePictureProps) {
-  const router = useRouter();
   const [isUploading, setIsUploading] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
@@ -26,16 +24,12 @@ export default function OrgProfilePicture({
     const file = event.target.files?.[0];
     if (!file || !orgId) return;
 
-    console.log("Starting upload..."); // Debug
-
     setIsUploading(true);
 
     try {
       // Créer l'aperçu immédiatement
       const previewUrl = URL.createObjectURL(file);
       setPreviewImage(previewUrl);
-      console.log("Preview set:", previewUrl); // Debug
-
       // Convertir en base64 et uploader
       const reader = new FileReader();
       reader.onload = async (e) => {
@@ -44,8 +38,6 @@ export default function OrgProfilePicture({
           await updateOrgPicture(orgId, dataUrl);
           window.location.reload();
         } catch (error) {
-          console.error("Upload error:", error);
-          // En cas d'erreur, revenir à l'état initial
           URL.revokeObjectURL(previewUrl);
           setPreviewImage(null);
         } finally {
@@ -73,8 +65,6 @@ export default function OrgProfilePicture({
   // Déterminer quelle image afficher
   const displayImage =
     previewImage || currentPics || "/placeholder.svg?height=80&width=80";
-
-  console.log("Rendering with:", { currentPics, previewImage, isUploading }); // Debug
 
   return (
     <div className="relative group">

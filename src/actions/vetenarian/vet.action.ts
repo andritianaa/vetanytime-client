@@ -61,3 +61,33 @@ export const updateOrgPicture = async (orgId: string, imageUrl: string) => {
     );
   }
 };
+
+export const updateOrgLocation = async (data: {
+  orgId: string;
+  cityId: string;
+  address: string;
+}) => {
+  try {
+    if (!data.cityId || !data.address) {
+      throw new Error("City ID and address are required");
+    }
+
+    const updatedLocation = await prisma.organization.update({
+      where: { id: data.orgId },
+      data: {
+        city: {
+          connect: {
+            id: data.cityId,
+          },
+        },
+        address: data.address,
+      },
+    });
+    return updatedLocation;
+  } catch (error) {
+    console.error("Error updating organization location:", error);
+    throw new Error(
+      "Failed to update organization location. Please try again later."
+    );
+  }
+};
