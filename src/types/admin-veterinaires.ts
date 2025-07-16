@@ -4,6 +4,7 @@ import {
   City,
   Consultation,
   ConsultationType,
+  Contact,
   Organization,
   OrganizationClient,
   OrganizationPet,
@@ -22,14 +23,13 @@ export interface AdminVeterinairesResponse {
   };
 }
 
-export interface VeterinaireFullProfile {
-  organization: Organization & {
-    city: City | null;
-    careType: CareType | null;
-    Avis: Avis | null;
-    Consultation: Consultation | null;
-    consultationTypes: ConsultationType | null;
-    OrganizationClient: OrganizationClient | null;
-    OrganizationPet: OrganizationPet | null;
-  };
-}
+export type VeterinaireFullProfile = Organization & {
+  city: City | null;
+  careType: CareType | null;
+  contactList: Contact[];
+  consultationTypes: ConsultationType[];
+  Consultation: Consultation[];
+  Avis: Avis[];
+  OrganizationClient: OrganizationClient[];
+  OrganizationPet: OrganizationPet[];
+};

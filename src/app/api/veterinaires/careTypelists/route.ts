@@ -5,12 +5,6 @@ import { prisma } from "@/prisma";
 
 export async function GET(request: NextRequest) {
   try {
-    const url = request.nextUrl;
-    const id = url.pathname.split("/").pop();
-    if (!id) {
-      return NextResponse.json({ error: "ID is required" }, { status: 400 });
-    }
-
     // Check authentication and admin permissions
     const session = await currentSession();
     if (
@@ -23,24 +17,11 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
     }
 
-    const organization = await prisma.organization.findUnique({
-      where: {
-        id: id,
-      },
-      include: {
-        city: true,
-        careType: true,
-        Avis: true,
-        Consultation: true,
-        consultationTypes: true,
-        OrganizationClient: true,
-        OrganizationPet: true,
-        contactList: true,
-      },
-    });
-    return NextResponse.json(organization || null);
+    const careTypeList = await prisma.careType.findMany({});
+
+    return NextResponse.json(careTypeList);
   } catch (error) {
-    console.error("Error fetching organization:", error);
+    console.error("Error fetching care type list:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

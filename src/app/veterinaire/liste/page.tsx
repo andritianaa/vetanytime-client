@@ -20,16 +20,10 @@ export default function VeterinaireListePage() {
       <div className="space-y-6 p-6 pt-0 flex-1">
         <VeterinaireTitleSearch />
 
-        {error ? (
-          <div className="text-red-500">Failed to load data.</div>
-        ) : isLoading ? (
-          <div className="text-gray-500">Loading...</div>
-        ) : (
-          <VeterinaireTable
-            veterinaires={data?.organizations}
-            isLoading={isLoading}
-          />
-        )}
+        <VeterinaireTable
+          veterinaires={data?.organizations}
+          isLoading={isLoading}
+        />
       </div>
     </div>
   );
