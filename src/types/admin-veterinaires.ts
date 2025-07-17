@@ -1,14 +1,7 @@
 import {
-  Avis,
-  CareType,
-  City,
-  Consultation,
-  ConsultationType,
-  Contact,
-  Organization,
-  OrganizationClient,
-  OrganizationPet,
-} from "@prisma/client";
+    Avis, CareType, City, Conference, Consultation, ConsultationType, Contact, Experience,
+    Formation, Organization, OrganizationClient, OrganizationPet
+} from '@prisma/client';
 
 export interface AdminVeterinairesResponse {
   organizations: (Organization & {
@@ -32,4 +25,13 @@ export type VeterinaireFullProfile = Organization & {
   Avis: Avis[];
   OrganizationClient: OrganizationClient[];
   OrganizationPet: OrganizationPet[];
+  OrganizationSpecialisation: {
+    specialisation: {
+      id: string;
+      name: string;
+    };
+  }[];
+  formationsList: Formation[];
+  conferencesList: Conference[];
+  experiencesList: Experience[];
 };

@@ -1,21 +1,20 @@
 "use client";
 
-import { Calendar, Clock, Star, Stethoscope, User, Users } from "lucide-react";
+import { Calendar, Clock, Star, Stethoscope, User, Users } from 'lucide-react';
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { OrgInfoSettings } from "@/components/veterinaire/profile/org-info-settings";
-import { OrgLocationSettings } from "@/components/veterinaire/profile/org-locations-settings";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { OrgConferences } from '@/components/veterinaire/profile/org-conferences';
+import { OrgDescription } from '@/components/veterinaire/profile/org-description';
+import { OrgExperiences } from '@/components/veterinaire/profile/org-experiences';
+import { OrgFormations } from '@/components/veterinaire/profile/org-formations';
+import { OrgInfoSettings } from '@/components/veterinaire/profile/org-info-settings';
+import { OrgLocationSettings } from '@/components/veterinaire/profile/org-locations-settings';
+import { OrgSpecialisation } from '@/components/veterinaire/profile/org-specialisation';
 
 import type { VeterinaireFullProfile } from "@/types/admin-veterinaires";
 interface VeterinaireEditTabsProps {
@@ -88,12 +87,12 @@ export const VeterinaireEditTabs = ({
             <div className="space-y-6">
               <OrgInfoSettings organization={organization} />
               <OrgLocationSettings organization={organization} />
-              {/* <OrgDescription orgId={orgId} />
-              <OrgSpecialisation orgId={orgId} />
-              <OrgExperiences orgId={orgId} />
-              <OrgFormations orgId={orgId} />
-              <OrgConferences orgId={orgId} />
-              <OrgResearches orgId={orgId} />
+              <OrgDescription organization={organization} />
+              <OrgSpecialisation organization={organization} />
+              <OrgExperiences organization={organization} />
+              <OrgFormations organization={organization} />
+              <OrgConferences organization={organization} />
+              {/* <OrgResearches orgId={orgId} />
               <OrgAssociations orgId={orgId} /> */}
             </div>
           </div>

@@ -1,36 +1,25 @@
 "use client";
 
-import { EllipsisVertical, Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import useSWR from "swr";
-import * as z from "zod";
+import { EllipsisVertical, Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import useSWR from 'swr';
+import * as z from 'zod';
 
-import { updateOrgLocation } from "@/actions/vetenarian/vet.action";
-import { Button } from "@/components/ui/button";
+import { updateOrgLocation } from '@/actions/vetenarian/vet.action';
+import { Button } from '@/components/ui/button';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+    Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger
+} from '@/components/ui/dialog';
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { SearchableSelect } from "@/components/ui/searchable-select";
-import { fetcher } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
+    Form, FormControl, FormField, FormItem, FormLabel, FormMessage
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { SearchableSelect } from '@/components/ui/searchable-select';
+import { fetcher } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 type City = { id: string; name: string };
 
@@ -153,7 +142,17 @@ export const EditLocationModal = ({
                 </FormItem>
               )}
             />
-            <DialogFooter>
+            <div className="flex gap-2">
+              <Button
+                type="submit"
+                className="flex-1"
+                disabled={isSubmitting || citiesLoading}
+              >
+                {isSubmitting && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Enregistrer
+              </Button>
               <Button
                 type="button"
                 variant="outline"
@@ -162,13 +161,7 @@ export const EditLocationModal = ({
               >
                 Annuler
               </Button>
-              <Button type="submit" disabled={isSubmitting || citiesLoading}>
-                {isSubmitting && (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                )}
-                Enregistrer
-              </Button>
-            </DialogFooter>
+            </div>
           </form>
         </Form>
       </DialogContent>

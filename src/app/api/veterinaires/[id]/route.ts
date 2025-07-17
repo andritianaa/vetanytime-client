@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 
-import { currentSession } from "@/lib/current-user";
-import { prisma } from "@/prisma";
+import { currentSession } from '@/lib/current-user';
+import { prisma } from '@/prisma';
 
 export async function GET(request: NextRequest) {
   try {
@@ -35,6 +35,19 @@ export async function GET(request: NextRequest) {
         consultationTypes: true,
         OrganizationClient: true,
         OrganizationPet: true,
+        OrganizationSpecialisation: {
+          include: {
+            specialisation: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
+        conferencesList: true,
+        experiencesList: true,
+        formationsList: true,
         contactList: true,
       },
     });

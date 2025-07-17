@@ -1,41 +1,28 @@
 "use client";
 
-import { Globe, Mail, Pen, Phone, Plus, Trash2 } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
-import { toast } from "sonner";
-import * as z from "zod";
+import { Globe, Mail, Pen, Phone, Plus, Trash2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useFieldArray, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import * as z from 'zod';
 
-import { editOrgPrincipalInfo } from "@/actions/vetenarian/vet.action";
-import { Button } from "@/components/ui/button";
+import { editOrgPrincipalInfo } from '@/actions/vetenarian/vet.action';
+import { Button } from '@/components/ui/button';
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+    Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger
+} from '@/components/ui/dialog';
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { MultiSelect } from "@/components/ui/multi-select";
-import { SearchableSelect } from "@/components/ui/searchable-select";
+    Form, FormControl, FormField, FormItem, FormLabel, FormMessage
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { MultiSelect } from '@/components/ui/multi-select';
+import { SearchableSelect } from '@/components/ui/searchable-select';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { CareType } from "@prisma/client";
+    Select, SelectContent, SelectItem, SelectTrigger, SelectValue
+} from '@/components/ui/select';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { CareType } from '@prisma/client';
 
 import type { MultiSelectOption } from "@/components/ui/multi-select";
 const LANGUAGES: MultiSelectOption[] = [
@@ -166,7 +153,7 @@ export function VetProfileEditDialog({
   };
 
   const defaultTrigger = (
-    <div className="hover:bg-muted hover:text-primary text-muted-foreground absolute top-2 right-8 cursor-pointer rounded-lg p-2 transition-all">
+    <div className="hover:bg-muted hover:text-primary text-muted-foreground absolute top-5 right-9 cursor-pointer rounded-lg p-2 transition-all">
       <Pen size={20} />
     </div>
   );

@@ -1,15 +1,15 @@
 "use client";
 
-import { Earth } from "lucide-react";
-import useSWR from "swr";
+import { Earth } from 'lucide-react';
+import useSWR from 'swr';
 
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { VetProfileEditDialog } from "@/components/veterinaire/modal/vet-profile-edit-dialog";
-import OrgProfilePicture from "@/components/veterinaire/profile/org-profil-picture";
-import { fetcher } from "@/lib/utils";
-import { languageLabels } from "@/utils/languageLables";
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Card, CardContent } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { VetProfileEditDialog } from '@/components/veterinaire/modal/vet-profile-edit-dialog';
+import OrgProfilePicture from '@/components/veterinaire/profile/org-profil-picture';
+import { fetcher } from '@/lib/utils';
+import { languageLabels } from '@/utils/languageLables';
 
 import type { VeterinaireFullProfile } from "@/types/admin-veterinaires";
 import type { CareType } from "@prisma/client";
