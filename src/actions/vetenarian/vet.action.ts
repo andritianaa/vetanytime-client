@@ -371,3 +371,153 @@ export const deleteConference = async (conferenceId: string) => {
     throw new Error("Failed to delete conference. Please try again later.");
   }
 };
+
+export const createResearch = async (
+  orgId: string,
+  data: {
+    title: [string, string, string];
+    organization: [string, string, string];
+    year: number;
+  }
+) => {
+  try {
+    if (!orgId || !data.title || !data.year) {
+      throw new Error("Organization ID, title, and year are required");
+    }
+
+    const newResearch = await prisma.research.create({
+      data: {
+        organizationId: orgId,
+        title: data.title,
+        organization: data.organization,
+        year: data.year,
+      },
+    });
+    return newResearch;
+  } catch (error) {
+    console.error("Error creating research:", error);
+    throw new Error("Failed to create research. Please try again later.");
+  }
+};
+
+export const updateResearch = async (
+  researchId: string,
+  data: {
+    title: [string, string, string];
+    organization: [string, string, string];
+    year: number;
+  }
+) => {
+  try {
+    if (!researchId || !data.title || !data.year) {
+      throw new Error("Research ID, title, and year are required");
+    }
+
+    const updatedResearch = await prisma.research.update({
+      where: { id: researchId },
+      data: {
+        title: data.title,
+        organization: data.organization,
+        year: data.year,
+      },
+    });
+    return updatedResearch;
+  } catch (error) {
+    console.error("Error updating research:", error);
+    throw new Error("Failed to update research. Please try again later.");
+  }
+};
+
+export const deleteResearch = async (researchId: string) => {
+  try {
+    if (!researchId) {
+      throw new Error("Research ID is required");
+    }
+
+    await prisma.research.delete({
+      where: { id: researchId },
+    });
+  } catch (error) {
+    console.error("Error deleting research:", error);
+    throw new Error("Failed to delete research. Please try again later.");
+  }
+};
+
+export const createAssociation = async (
+  orgId: string,
+  data: {
+    association: [string, string, string];
+    role: [string, string, string];
+    startYear: number;
+    endYear?: number | null;
+  }
+) => {
+  try {
+    if (!orgId || !data.association || !data.startYear) {
+      throw new Error(
+        "Organization ID, association, and start year are required"
+      );
+    }
+
+    const newAssociation = await prisma.association.create({
+      data: {
+        organizationId: orgId,
+        association: data.association,
+        role: data.role,
+        startYear: data.startYear,
+        endYear: data.endYear ?? null,
+      },
+    });
+    return newAssociation;
+  } catch (error) {
+    console.error("Error creating association:", error);
+    throw new Error("Failed to create association. Please try again later.");
+  }
+};
+
+export const updateAssociation = async (
+  associationId: string,
+  data: {
+    association: [string, string, string];
+    role: [string, string, string];
+    startYear: number;
+    endYear?: number | null;
+  }
+) => {
+  try {
+    if (!associationId || !data.association || !data.startYear) {
+      throw new Error(
+        "Association ID, association, and start year are required"
+      );
+    }
+
+    const updatedAssociation = await prisma.association.update({
+      where: { id: associationId },
+      data: {
+        association: data.association,
+        role: data.role,
+        startYear: data.startYear,
+        endYear: data.endYear ?? null,
+      },
+    });
+    return updatedAssociation;
+  } catch (error) {
+    console.error("Error updating association:", error);
+    throw new Error("Failed to update association. Please try again later.");
+  }
+};
+
+export const deleteAssociation = async (associationId: string) => {
+  try {
+    if (!associationId) {
+      throw new Error("Association ID is required");
+    }
+
+    await prisma.association.delete({
+      where: { id: associationId },
+    });
+  } catch (error) {
+    console.error("Error deleting association:", error);
+    throw new Error("Failed to delete association. Please try again later.");
+  }
+};

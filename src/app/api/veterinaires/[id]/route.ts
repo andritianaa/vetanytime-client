@@ -49,6 +49,8 @@ export async function GET(request: NextRequest) {
         experiencesList: true,
         formationsList: true,
         contactList: true,
+        researchList: true,
+        associationsList: true,
       },
     });
     return NextResponse.json(organization || null);

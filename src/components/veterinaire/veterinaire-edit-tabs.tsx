@@ -8,12 +8,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { OrgAssociations } from '@/components/veterinaire/profile/org-associations';
 import { OrgConferences } from '@/components/veterinaire/profile/org-conferences';
 import { OrgDescription } from '@/components/veterinaire/profile/org-description';
 import { OrgExperiences } from '@/components/veterinaire/profile/org-experiences';
 import { OrgFormations } from '@/components/veterinaire/profile/org-formations';
 import { OrgInfoSettings } from '@/components/veterinaire/profile/org-info-settings';
 import { OrgLocationSettings } from '@/components/veterinaire/profile/org-locations-settings';
+import { OrgResearches } from '@/components/veterinaire/profile/org-research';
 import { OrgSpecialisation } from '@/components/veterinaire/profile/org-specialisation';
 
 import type { VeterinaireFullProfile } from "@/types/admin-veterinaires";
@@ -92,8 +94,8 @@ export const VeterinaireEditTabs = ({
               <OrgExperiences organization={organization} />
               <OrgFormations organization={organization} />
               <OrgConferences organization={organization} />
-              {/* <OrgResearches orgId={orgId} />
-              <OrgAssociations orgId={orgId} /> */}
+              <OrgResearches organization={organization} />
+              <OrgAssociations organization={organization} />
             </div>
           </div>
         </TabsContent>
