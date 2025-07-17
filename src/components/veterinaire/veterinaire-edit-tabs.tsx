@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { AvailabilityManager } from '@/components/veterinaire/availability/availability-manager';
 import { OrgAssociations } from '@/components/veterinaire/profile/org-associations';
 import { OrgConferences } from '@/components/veterinaire/profile/org-conferences';
 import { OrgDescription } from '@/components/veterinaire/profile/org-description';
@@ -101,37 +102,20 @@ export const VeterinaireEditTabs = ({
         </TabsContent>
 
         <TabsContent value="disponibilite" className="mt-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Gestion des disponibilités</CardTitle>
-              <CardDescription>
-                Configurez vos horaires de travail et vos créneaux disponibles
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="grid grid-cols-7 gap-2 text-center">
-                  {["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"].map(
-                    (jour) => (
-                      <div key={jour} className="p-4 border rounded-lg">
-                        <h3 className="font-medium mb-2">{jour}</h3>
-                        <div className="space-y-2">
-                          <div className="text-sm">
-                            <div>09:00 - 12:00</div>
-                            <div>14:00 - 18:00</div>
-                          </div>
-                          <Button variant="outline" size="sm">
-                            Modifier
-                          </Button>
-                        </div>
-                      </div>
-                    )
-                  )}
-                </div>
-                <Button>Mettre à jour les horaires</Button>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-1">
+              <p className="text-3xl font-semibold">
+                Gestion des Disponibilités
+              </p>
+              <p className="text-muted-foreground">
+                Gérez les horaires d'ouverture, les jours fériés et les
+                indisponibilités exceptionnelles.
+              </p>
+            </div>
+            <div className="">
+              <AvailabilityManager organization={organization} />
+            </div>
+          </div>
         </TabsContent>
 
         <TabsContent value="consultations-types" className="mt-6">

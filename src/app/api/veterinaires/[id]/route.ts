@@ -51,6 +51,9 @@ export async function GET(request: NextRequest) {
         contactList: true,
         researchList: true,
         associationsList: true,
+        OrganizationsHours: true,
+        Unavailability: true,
+        ExceptionalAvailability: true,
       },
     });
     return NextResponse.json(organization || null);

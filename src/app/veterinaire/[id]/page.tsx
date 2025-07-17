@@ -1,23 +1,18 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useMemo } from "react";
-import useSWR from "swr";
+import { usePathname } from 'next/navigation';
+import { useMemo } from 'react';
+import useSWR from 'swr';
 
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Skeleton } from "@/components/ui/skeleton";
-import { VeterinaireEditTabs } from "@/components/veterinaire/veterinaire-edit-tabs";
-import { fetcher } from "@/lib/utils";
+    Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator
+} from '@/components/ui/breadcrumb';
+import { Separator } from '@/components/ui/separator';
+import { SidebarTrigger } from '@/components/ui/sidebar';
+import { Skeleton } from '@/components/ui/skeleton';
+import { VeterinaireEditTabs } from '@/components/veterinaire/veterinaire-edit-tabs';
+import { fetcher } from '@/lib/utils';
 
 import type { VeterinaireFullProfile } from "@/types/admin-veterinaires";
 export default function Page() {
