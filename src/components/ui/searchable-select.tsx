@@ -43,7 +43,7 @@ export function SearchableSelect({
   const [search, setSearch] = React.useState("");
 
   const filteredOptions = options.filter((option) =>
-    option.name.toLowerCase().includes(search.toLowerCase()),
+    option.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -86,7 +86,7 @@ export function SearchableSelect({
                 <Check
                   className={cn(
                     "ml-auto h-4 w-4",
-                    value === option.id ? "opacity-100" : "opacity-0",
+                    value === option.id ? "opacity-100" : "opacity-0"
                   )}
                 />
               </CommandItem>
