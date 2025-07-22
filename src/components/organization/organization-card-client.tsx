@@ -1,15 +1,13 @@
 "use client";
 
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
-import { AvailabilityDialog } from "./availability-dialog";
+import { AvailabilityDialog } from './availability-dialog';
 
 interface OrganizationCardClientProps {
-  description?: string;
-  organization?: {
+  organization: {
     id: string;
     name: string;
     logo: string | null;
@@ -33,87 +31,60 @@ interface OrganizationCardClientProps {
       duration: number;
       color: string;
     }>;
-    OrganizationsHours: Array<{
+    OrganizationsHours?: Array<{
       dayOfWeek: number;
       isOpen: boolean;
       openTime: Date;
       closeTime: Date;
+      breakStartTime?: Date | null;
+      breakEndTime?: Date | null;
+    }>;
+    ExceptionalAvailability?: Array<{
+      id: string;
+      date: Date;
+      startTime: Date;
+      endTime: Date;
+      isAvailable: boolean;
     }>;
     Unavailability?: Array<{
       id: string;
       type: string;
       startDate: Date;
       endDate: Date;
+      startTime?: Date | null;
+      endTime?: Date | null;
     }>;
   };
-  availabilities?: Array<{
+  availabilities: Array<{
     date: string;
-    fullDate: string;
+    fullDate: Date;
     time: string;
     isToday: boolean;
     consultationType: string;
   }>;
-  showButton?: boolean;
 }
 
-export const OrganizationCardClient = ({
-  description,
+export function OrganizationCardClient({
   organization,
-  availabilities = [],
-  showButton = false,
-}: OrganizationCardClientProps) => {
-  const [showDescription, setShowDescription] = useState(false);
+  availabilities,
+}: OrganizationCardClientProps) {
   const [showAvailabilityDialog, setShowAvailabilityDialog] = useState(false);
 
-  // Convertir les dates string en Date objects pour le dialog
-  const processedAvailabilities = availabilities.map((avail) => ({
-    ...avail,
-    fullDate: new Date(avail.fullDate),
-  }));
+  return (
+    <>
+      <Button
+        className="w-full bg-blue-600 hover:bg-blue-700"
+        onClick={() => setShowAvailabilityDialog(true)}
+      >
+        Voir tout
+      </Button>
 
-  if (showButton && organization) {
-    return (
-      <>
-        <Button
-          onClick={() => setShowAvailabilityDialog(true)}
-          className="w-full"
-        >
-          Voir tout
-        </Button>
-
-        <AvailabilityDialog
-          isOpen={showAvailabilityDialog}
-          onClose={() => setShowAvailabilityDialog(false)}
-          organization={organization}
-          availabilities={processedAvailabilities}
-        />
-      </>
-    );
-  }
-
-  if (description) {
-    return (
-      <div className="mb-4">
-        <button
-          onClick={() => setShowDescription(!showDescription)}
-          className="flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-800"
-        >
-          À propos du praticien
-          {showDescription ? (
-            <ChevronUp className="h-4 w-4" />
-          ) : (
-            <ChevronDown className="h-4 w-4" />
-          )}
-        </button>
-
-        {showDescription && (
-          <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-            {description}
-          </p>
-        )}
-      </div>
-    );
-  }
-
-  return null;
-};
+      <AvailabilityDialog
+        isOpen={showAvailabilityDialog}
+        onClose={() => setShowAvailabilityDialog(false)}
+        organization={organization}
+        availabilities={availabilities}
+      />
+    </>
+  );
+}

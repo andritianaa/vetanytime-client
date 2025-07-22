@@ -1,7 +1,7 @@
-import { Navbar } from "@/app/(web)/navbar";
-import { SearchForm } from "@/components/landing/search-form";
-import { OrganizationSearchCard } from "@/components/organization/organization-search-card";
-import { prisma } from "@/prisma";
+import { Navbar } from '@/app/(web)/navbar';
+import { SearchForm } from '@/components/landing/search-form';
+import { OrganizationSearchCard } from '@/components/organization/organization-search-card';
+import { prisma } from '@/prisma';
 
 type SearchParams = {
   city?: string;
@@ -56,6 +56,15 @@ export default async function SearchOrganizationsPage({
       OrganizationsHours: {
         orderBy: { dayOfWeek: "asc" },
       },
+      ExceptionalAvailability: true,
+      Unavailability: {
+        where: {
+          endDate: {
+            gte: new Date(),
+          },
+        },
+        orderBy: { startDate: "asc" },
+      },
       // Simuler des avis pour l'affichage
       _count: {
         select: {
@@ -66,7 +75,7 @@ export default async function SearchOrganizationsPage({
   });
 
   // Calculer les statistiques pour chaque organisation
-  const organizationsWithStats = organizations.map((org) => {
+  const organizationsWithStats = organizations.map((org: any) => {
     // Simulation des avis basée sur le nombre de consultations
     const consultationCount = org._count.Consultation;
     const averageRating = Math.min(4.2 + Math.random() * 0.8, 5.0);
@@ -98,7 +107,6 @@ export default async function SearchOrganizationsPage({
           <h1 className="mb-2 text-3xl font-bold">
             Professionnels de santé disponibles
           </h1>
-
           {/* Filtres actifs */}
           {(city || careType || consultationType || speciality) && (
             <div className="mb-4 flex flex-wrap gap-2">
@@ -124,7 +132,6 @@ export default async function SearchOrganizationsPage({
               )}
             </div>
           )}
-
           <p className="text-gray-600">
             {organizationsWithStats.length} professionnel
             {organizationsWithStats.length > 1 ? "s" : ""} trouvé
@@ -146,7 +153,7 @@ export default async function SearchOrganizationsPage({
           </div>
         ) : (
           <div className="space-y-6">
-            {organizationsWithStats.map((org) => (
+            {organizationsWithStats.map((org: any) => (
               <OrganizationSearchCard key={org.id} organization={org} />
             ))}
           </div>
